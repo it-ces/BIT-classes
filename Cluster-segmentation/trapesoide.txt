@@ -1,0 +1,26 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+xmin=-0.31017507295365176,
+xmax=4.0819687147023975,
+ymin=-0.5668111342030819,
+ymax=2.255888603675345,
+xtick={-0.2,0,...,4},
+ytick={-0.4,-0.2,...,2.2},]
+\clip(-0.31017507295365176,-0.5668111342030819) rectangle (4.0819687147023975,2.255888603675345);
+\draw [line width=2pt] (0.8,1)-- (2.2,1);
+\draw [line width=2pt] (2.2,1)-- (2.8,0);
+\draw [line width=2pt] (0.8,1)-- (0.2,0);
+\draw (2.797094190433907,-0.08103083308143821) node[anchor=north west] {$\mathbf{X}$};
+\draw (0.05487876280048323,1.2038436911870516) node[anchor=north west] {$\mathbf{\mu_{A}(x)}$};
+\end{axis}
+\end{tikzpicture}
+\end{document}
