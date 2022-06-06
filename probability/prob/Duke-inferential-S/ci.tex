@@ -1,0 +1,175 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{comment}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{munsell}{rgb}{0.0, 0.5, 0.69}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{minas}{RGB}{0.244, 0.172, 0.36}
+\definecolor{PUJ}{RGB}{44, 86, 151}
+\definecolor{PUJ2}{RGB}{43, 93, 156}
+\definecolor{PUJ3}{RGB}{20, 52, 107}
+\definecolor{cyandk}{rgb}{0.0, 0.72, 0.92}
+
+\author{Iván Andrés Trujillo }
+
+%% code information
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  classoffset=1,
+  morekeywords={True,False}, keywordstyle=\color{munsell}, 
+  classoffset=0, 
+  keywordstyle=\color{blue},  
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{PUJ3},
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+}
+
+\begin{document}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\graphicspath{{/home/ces/Pictures/puj/}}
+\includegraphics[width = 4cm]{pujshield.eps}\\[0.5cm] 
+
+\begin{center} 
+\textbf{\LARGE Introduction to inferential notes}\\[0.2cm]
+\emph{\LARGE Notes of class}\\[0.3cm] 
+\emph{Iván Andrés Trujillo Abella} \\
+\textsc{\Large 
+}\\[0.2cm] 
+\textsc{\large Facultad de ingeniería}\\[0.5cm] 
+\HRule \\[0.4cm]
+\end{center}
+\vspace{1cm}
+\section{name}
+
+
+
+
+\section{Binomial distribution}
+$ x \sim B()$
+
+$\mu = np$ and $ \sigma^{2} =  np(1-p)$
+
+Note that is related with bernoulli varianle.
+
+\begin{equation}
+\begin{align*}
+E(x) &= \sum xp (x) \\
+     &= \sum x \binom{n}{x} p^{x}(1-p)^{n-x}
+\end{align*}
+\end{equation}
+using the binomial theorem you can proof that is rewritten.
+
+
+
+
+
+\section{Bias of estimators}
+
+
+
+
+\section{Confidence interval for mean}
+
+
+
+
+
+\section{Confidence interval proportion}
+the concept involved here is margin of error.
+
+
+unlike to point estimators, range give us a width of values that contain  the true parameter.
+
+
+\begin{equation}
+\hat{p} \pm 1.96 \sqrt{\frac{\hat{p} (1-\hat{p})}{n}}
+\end{equation}
+where $n$ is the sample size.
+
+with $95\%$ confidence, this means that: 
+confidence interval not is a $95\%$ of probability that the population parameter is in in the interval.
+
+
+we have seen that $\bar{X}$ (sample mean) is a unbiased estimator of $\mu$ (population mean), we can prove this with maximum likelihood. 
+Build an app to see the Confidence interval in my web page.
+
+
+
+
+
+
+
+\begin{comment}
+toodler: 
+convey: transmitir, comunicar.
+trustworthy: confiable
+vanish:
+\end{comment}
+
+
+
+
+\section{Hypothesis testing over bernoulli}
+suppose that we have a random variable with  Bernoulli distribution with $\theta$ unknown parameter.
+to get $\hat{\theta}$ we take a random sample $x_{1},x_{2},..,x_{n}$. And given data, we known that:
+\begin{equation}
+\begin{align*}
+H_{0} = \frac{1}{2}  \mbox{ or } H_{1} \neq \frac{1}{2}
+\end{align*}
+\end{equation}
+
+there are doubt about of the real value of $\theta$ however, we define a zone of rejected if:
+$ \vert \bar{x} - \frac{1}{2} \vert > k$
+where $c$ is any number, therefore this zone is composed of a set of values in which we reject the hypothesis.
+
+
+\subsubsection{How define $k$}
+here play a big role $\alpha$ or significance level.
+
+note here that is the error kind one 
+$\alpha = P(\vert \bar{x} - \frac{1}{2} \vert > k \mid \theta=\frac{1}{2}).$ using the property of $P(X>x) = 1 - P(X< x)$ and the property of absolute value we have:
+$ 1 - P(-k < \bar{x}  - \frac{1}{2} < k \mid \theta = \frac{1}{2})$.
+
+Remember that the $var(x) = \theta(1-\theta)$ and that by sampling distribution the standard error have $\sqrt{\frac{sd}{n}}$. therefore the last expression involving $\alpha$ could be write as 
+
+\begin{equation}
+\alpha = 1 - P\left(\frac{-k}{\sqrt{\frac{\theta(1-\theta)}{n}}} < \frac{\bar{x} - \frac{1}{2}}{\sqrt{\frac{\theta(1-\theta)}{n}}} <           
+\frac{k}{\sqrt{\frac{\theta(1-\theta)}{n}}}
+\right)
+\end{equation}
+
+
+
+
+we can redirect to collab, plus.. at least for me.
+\end{document}
+
+

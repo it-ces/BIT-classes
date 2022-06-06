@@ -1,0 +1,197 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{munsell}{rgb}{0.0, 0.5, 0.69}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{minas}{RGB}{0.244, 0.172, 0.36}
+\definecolor{PUJ}{RGB}{44, 86, 151}
+\definecolor{PUJ2}{RGB}{43, 93, 156}
+\definecolor{PUJ3}{RGB}{20, 52, 107}
+\definecolor{cyandk}{rgb}{0.0, 0.72, 0.92}
+
+\author{Iván Andrés Trujillo }
+
+%% code information
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  classoffset=1,
+  morekeywords={True,False}, keywordstyle=\color{munsell}, 
+  classoffset=0, 
+  keywordstyle=\color{blue},  
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{PUJ3},
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+}
+
+\begin{document}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\includegraphics[width = 4cm]{pujshield.eps}\\[0.5cm] 
+
+\begin{center} 
+\textbf{\LARGE
+Pattern Recognition}\\[0.2cm]
+\emph{\LARGE Last exam }\\[0.3cm] 
+\emph{Iván A. Trujillo A.} \\
+\textsc{\Large Pontificia Universidad Javeriana
+}\\[0.2cm] 
+\textsc{\large Facultad de ingeniería}\\[0.5cm] 
+\HRule \\[0.4cm]
+\end{center}
+
+\section{Problem 1}
+
+\emph{
+Choose two methodological approaches to solve a classification problem in the context of IoT to images recognition. suppose that the problem have two classes $-1$ and $1$, We have the $N=1000$ with a $\mathbf{X^{5}.$ }}
+
+\vspace{0.5cm}
+
+
+
+
+In this problem we could outline  two criteria to the classification task, we could uses a black and a white box model, the first could be used to gain prediction over a new data set (no fit or training data), and the second to  make inferences about the production process and gain readability of the model. 
+
+
+
+The following two methodologies are proposed:  \textbf{Perceptron and decision trees}, specifically proposed by twice reasons: 
+are complementary, the first work a black box and the second is a white box model, the first is limited to be a linear classifier and the last overcome not linearity.
+
+\subsection{Perceptron}
+
+
+
+
+\textbf{Theorem}
+if exist a linear frontier then the perceptron converge. 
+\end{theorem}
+
+The previously announced theorem, guaranteed a convergence in the model if only if the both classes could be separated linearly.
+
+
+In the implementation of perceptron it is neccesary define a boundary over the iterations (epochs) due that if the problem not could be reduce a linear classifier then the perceptron is a infinite loop, this problem due of the updates of parameters is according the following rule:
+
+\begin{equation}
+\Delta w_{i} = (y_{i} -\hat{y_{i}}) = 0
+\end{equation}
+where $y_{i}$ is the real observed data, and $\hat{y_{i}}$ is the predicted class.
+
+when the $y_{i} = -1$ and $\hat{y} = 1$ then $\Delta w = -2$, in otherwise $y_{i}=1$ and $\hat{y_{i}}=-1$ then $\Delta w = 2$.
+
+Then when there are mistakes 
+\begin{equation}
+\varphi(w^{t}_{i+1} \mathbf{x_{i}}) =\varphi((w_{i} + \Delta w_{i})^{t} \mathbf{ x_{i}}) = y_{i} 
+\end{equation}
+
+This mean that  weights for the vector of features of the sample $i$ are update to predict the correct class.
+ 
+\begin{equation}
+w_{i+1} = w_{i} + \eta \Delta w_{i} \mathbf{x_{i}}
+\end{equation}
+
+The cost function used in hard sense not guaranteed and optimal solution:
+\begin{equation}
+J(w)_{hard} = \sum_{i=1}^{n} = \max(-y_{i}\hat{y},0)
+\end{equation}
+$J$ only count the number of mismatches.
+However this function not is differentiable.
+
+
+
+
+\subsection{Decision tree}
+Work as a if-else system ruled based on the bias-variance problem, that tend to overfitting data, and reduce the accuracy in new data, however this could be reduced with pruning, or fixing  the depth of the algorithm, given the split of data could be very deep.
+
+
+
+Decision trees is readable due of is based in order, the uncertainty, for instance suppose that you flip a coin and maximum entropy is reached when the success have $p=\frac{1}{2}$ due we do not have additional information about what side lands.
+
+The event with small probability of occurrence give more information than those with a major probability.
+
+\begin{equation}
+\begin{align*}
+I(x) &= log \frac{1}{p(x)}
+     &= - log p(x)
+\end{align*}
+\end{equation}
+the avarage surprisal:
+\begin{equation}
+\sum p(x)I(x)
+\end{equation}
+we can rewrite as:
+\begin{equation}
+H(x) = - \sum p(x) log p(x)
+\end{equation}
+suppose that we have a variable $x \sim N(\mu, \sigma)$
+do not have more entropy than a variable $y \sim U(a,b)$ given that each 'character' have the same probability of occur.
+\end{frame}
+
+The main reason for the readability of the trees is that is constructed in the reduction of this entropy in all tree, that is got with each node (averaging in each class the order of information)
+
+
+
+\textbf{\emph{Another important reason of uses these   complementary methodologies, is one is for perceptron the variable scale affect the   perform of the model, and the uses of categorical variable requiere preprocessing while in decision trees not.}}
+
+\section{Problem 2}
+
+
+A balanced model that not affect by the size of classes.
+
+
+\subsection{Logistic Regression}
+Constructed over the sigmoid function, to modeling population growth in limited context, this model gain importancen in classification given three mainly reasons:
+
+\begin{itemize}
+
+
+\item is limited to the  [0,1] interval
+
+\item The effect of a feature over the log of odds not is constant.
+\end{itemize}
+
+Logistic regression have a good  interpretability, not have affect by the unbalaced number of classes as Decission tree, and dont tend to overlap the frontier decision as perceptron, also not suppose stricted assumptions about normality and equal variance as Multiple Discriminant Analysis.
+
+
+
+
+\begin{equation*}
+
+F(X)=P(X\leq x)= \int_{-\infty}^{\infty} f(t)dt ; -\infty<x<\infty \\
+
+
+P(Z)= \dfrac{e^{z}}{1+e^{z}} \\
+
+\dfrac{P_{z}}{1-P_{z}}=e^{z} \\
+
+\ln\left(\dfrac{P_{z}}{1-P_{z}}\right)=Z= \beta_{1}+ \beta_{2}x_{i} \\
+
+\end{equation*}
+
+
+
+
+
+
+
+\end{document}

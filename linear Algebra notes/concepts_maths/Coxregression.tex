@@ -1,0 +1,549 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{comment}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{munsell}{rgb}{0.0, 0.5, 0.69}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{minas}{RGB}{0.244, 0.172, 0.36}
+\definecolor{PUJ}{RGB}{44, 86, 151}
+\definecolor{PUJ2}{RGB}{43, 93, 156}
+\definecolor{PUJ3}{RGB}{20, 52, 107}
+\definecolor{cyandk}{rgb}{0.0, 0.72, 0.92}
+
+\author{Iván Andrés Trujillo }
+
+%% code information
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  classoffset=1,
+  morekeywords={True,False}, keywordstyle=\color{munsell}, 
+  classoffset=0, 
+  keywordstyle=\color{blue},  
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{PUJ3},
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+}
+
+\begin{document}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\includegraphics[width = 4cm]{pujshield.eps}\\[0.5cm] 
+
+\begin{center} 
+\textbf{\LARGE Introduction to cox regression}\\[0.2cm]
+\emph{\LARGE Notes of class}\\[0.3cm] 
+\emph{Iván Andrés Trujillo Abella} \\
+\textsc{\Large 
+}\\[0.2cm] 
+\textsc{\large Facultad de ingeniería}\\[0.5cm] 
+\HRule \\[0.4cm]
+\end{center}
+\vspace{1cm}
+
+
+
+
+
+\subsection{Exponential Distribution}
+Exponential distribution dont have memory equall to the geometric distribution.
+with one parameter $\lambda$  the time between until a  poisson process occur.
+Assume that $y \sim G(p)$ then
+$$ P(Y \leq z) 	$$
+
+
+The exponential distribution have the following Probability Distribution Function:
+$$f(x)=\lambda e^{- \lambda x}$$
+ 
+Therefore we said, $ X \sim exp(\lambda)$ that $x$ follow a exponential distribution
+with one only parameter in this case lambda. 
+
+
+
+Notes exponential distribution it is related with \textbf{gamma distribution}.
+
+\subsubsection{Survivor and hazard function}
+we have a variable $y$ that means time of survivor $f(y)$  it is its PDF.
+the cdf will be  $F(y)=\int_{0}^{y} F(t)dt$
+and survivor function is defined by 
+$$S(y)=P(Y>y)= 1-F(y)$$ 
+that is the probability of survive beyond T.
+
+in this order of ideas the \textit{Hazard function } is defined as 
+$$ h(y)=\frac{f(y)}{S(y)}$$
+then this will be undesertand as a risk.
+but 
+$$ f(y)=   \lim_{\Delta \to 0}   \frac{   F(y + \Delta y) - F(y)}{(\Delta y)}$$
+$$\frac{f(y)}{S(y)}= \frac{\lim_{\Delta \to 0}   \frac{ F(y + \Delta y) - F(y)}{(\Delta y)}}{1-F(y)}$$
+if we translate the above expression in probability terms we have \textit{ the probality of failure in a small time period of change} due the survial period.
+\begin{eqnarray}
+ h(y) =-\frac{d}{dy}ln[1-F(y)] \\
+\int_{0}^{y} h(y) = -ln(S(y)) \\
+S(y)=e^{\int_{0}^{y} -h(t) dt}
+\label{hazard-survival}
+\end{eqnarray}
+
+Note here that survival function and hazard are related.
+
+
+
+\subsubsection{Hazard in exponential}
+we need get the \textbf{CDF} this is 
+
+\begin{eqnarray*}
+f(x)=\lambda e^{- \lambda x }   \\
+\int_{0}^{x} f(t)dt= 1 - e^{\lambda x} \\
+S(x)=e^{-\lambda x} \\
+h(x)= \lambda
+\end{eqnarray*}
+
+thus the hazard it is a contant when failure time it is exponential.
+
+Another formulation:
+\begin{equation}
+\begin{align*}
+h(y) = \lim_{\Delta \to 0}   \frac{P(y<  Y \leq y + \Delta y  \mid Y > y )}{\Delta y}
+\end{align*}
+\end{equation}
+Therefore we can see that the denominator is a conditional probability that we could rewrite in terms of joint distribution, and how the one event is a subset of another by intersection we have:
+
+\begin{equation}
+h(y) = \lim_{\Delta \to 0}  \frac{ P(y<Y \leq y + \Delta y) }{P(Y>y)\Delta y}
+\end{equation}
+
+Note that $P(Y>y)$ is the survival function.
+
+\begin{equation}
+h(y) = \lim_{\Delta \to 0}  \frac{P(Y \leq y + \Delta y ) - P(Y < y)}{S(y)\Delta y }
+\end{equation}
+
+note that is equal to the result that we get previously given that; $P(Y \leq y + \Delta y ) = F(y+\Delta y)$.
+
+
+ \emph{ \textbf{Hint:}  You could read a hazard ($\lambda$) as the risk of occur the event at $t$ period of time}
+
+
+\section{Cox hazard}
+the main parameter is \textit{hazard rate} the expected number of event by period time.
+
+\textit{hazard ratio} could be compated with odds ratio.
+
+\textbf{observed to expected} this is very important this concept due 
+it is have a notion about ramdon.
+
+$\lambd_{0}(t)$  risk can change over time according to covariates.
+the proportional hazard condition establish that covariates are multiplicative related to 
+hazard. 
+
+the measure of effect is the hazard rate, not is probability ( the expected number of events per unit of time).  Sometimes we are interested, in compare rates among groups. 
+
+
+$$\lambda(t|z)= \lambda_{0}(t) e^{\sum_{i=1}^{n} \beta_{i} x_{i}}$$
+
+in this case there are not $\beta_{0}$ due if $z=0$ then $\lambda_{0}(t)$ it is the baseline hazard.
+
+
+
+
+\emph{The cox regression give us the probability that occur the event of interest by a t period, given a vector of inputs.}
+
+
+\begin{lstlisting}
+import pandas
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Wald }
+
+
+\subsection{Ratio Likelihood}
+
+
+
+
+
+
+
+\subsection{Coursera}
+
+hazard : the risk of death at a given moment in time.
+
+Hazard ratio is as odds ratio.
+
+
+\begin{comment}
+https://www.youtube.com/watch?v=yldSqu3WArw
+
+deceive: engañar.
+giving away: regalando, revelando.
+dairy:  lacteos
+we must resort to: debemos recurrir 
+sneak; furtivo
+sugary:azucarado
+meat:carne
+meal;comida
+keen:entusiasta, interesado
+missingness:falta
+acquainted:familiarizado
+leaping:
+by the way: por cierto.
+nagging:persistente
+appointments;equipo
+appointment; cita, nombramineto, designación
+sneaks:soplón, se escapa, se cuela.
+thrown away:tirado
+affluent:afluente, rico, opulento.
+COPD: Crhonic Obstructive Pulmonary 
+Disease. 
+awful:horrible, terrible,
+overseas:exterior
+offending:ofensivo
+dull:aburrido
+concordance in survival models.
+likelihood ratio test.
+tuneful: Aburrido
+merely: simplemente.
+
+nuisance;
+
+Heagerty, P. (2015). Package „risksetROC‟. Disponible en:
+https://cran.r-project.org/web/packages/risksetROC/risksetROC.pdf. Fecha de consulta:11/2017.
+Heagerty, P. J.; Lumley, T.; Pepe, M. S. (2000). Time-dependent ROC curves for censored survival data and a diagnostic marker. Biometrics, 56: 337-344.
+Heagerty, P. J.; Zheng, Y. (2005). Survival model predictive accuracy and ROC curves. Biometrics, 61: 92-105
+
+
+\end{comment}
+
+
+\subsection{Missing values}
+
+
+
+
+\section{Residuals}
+The difference among $t_{i} - \hat{t_{i}}$.
+
+\subsection{Schoendfeld residual}
+
+
+\subsection{Martingale Residual}
+
+
+\subsection{Deviance Test}
+
+
+
+
+\subsection{What means proportional hazard ratios?}
+It is simply that the hazard of the event according to a category is parallel to the another, for instance, the hazard of art student is twice of the hazard of economic student. 
+
+
+
+\section{Hazard ratio}
+
+\begin{equation}
+\frac{\lambda_{i}}{\lambda_{j}}
+\end{equation}
+
+\section{Interpret the model}
+Each binary variable is a estimator of hazard ratio. Measure the risk of presence regarding lacking the feature.
+
+\subsection{continuous variables}
+
+\begin{equation}
+e^{\beta_{i}}
+\end{equation}
+The hazard ratio to increase at one unit the variable $i$.
+
+
+
+
+
+
+
+
+\section{Prediction}
+
+
+\subsection{$ROC_{t}$ curve }
+
+
+
+\subsubsection{Concordance}
+If $j$ and $i$ underwent the event of interest then, and suppose that $t_{j} > t_{i}$  and the predicted survival of $j$ is $\hat{S(j)}$, therefore if $\hat{S}(j) > \hat{S}(i)$  occur a match. 
+
+\begin{equation}
+Adjusment = \frac{\sum_{i \neq j}^{n} match(i,j)}{C(i,j) \in n}
+\end{equation}
+
+What happens if compare with a censored data?
+
+\section{Considerations}
+
+
+
+
+
+
+
+\section{Cox and survival}
+By the equation, \eqref{hazard-survival} we have that 
+\begin{equation}
+\lambda(t) = \lambda_{0}(t)e^{\sum \beta_{i}x_{i}}
+\end{equation}
+
+
+\begin{equation}
+S(t) = e^{\int_{0}^{t} -  \lambda_{0}(t)e^{\mathbf{\beta x}}dt}
+\label{last}
+\end{equation}
+
+With this equation we can get the probability that the individual, survive until $t$ time according to input features $\mathbf{\beta x}.$
+
+
+
+
+
+
+hints over cox regression:
+linear model of hazard ratio.
+
+\begin{equation}
+    log \left( \frac{\lambda_{i}(t)}{\lambda_{0}(t)} \right) = \sum_{j} = \beta_{j}x_{j}{i}
+\end{equation}
+
+
+
+
+the baseline hazard function:
+
+
+
+
+\section{Statistics and properties}
+
+A 'estadístico' is a function that 
+
+$$ F: \mathbb{R}^{n} \rightarrow  \mathbb{R}$$
+for instance the median, variance we can call this parameter as $\theta$ and 
+define a probability density function for this parameter.
+for instance the mean is a random variable, whose distribution it is ready known.
+
+therefore the distribution of mean have its own first moment or mean.
+
+
+
+a statistics $\hat{\theta}$ is used to estimate a parameter then will be a estimator. for instance $\bar{x} = \frac{1}{n-1}\sum x_{i}$ it is a estimator of $\mu$.
+
+now $E(\hat{\theta}) = \varsigma(\theta)$
+we search that $\varsigma(\theta) = \theta$
+then we said that $\hat{\theta}$ is a unbiased estimator.
+
+Another wished characteristic is that $MSE(\theta) = E((\hat{\theta}-\theta)^{2}).$
+
+i can rewrite as:
+\begin{equation}
+MSE(\theta) = var(\hat{\theta}) + (\xi(\theta))^{2}
+\end{equation}
+
+where $\xi(\theta)$ is the bias, the two term  we can read as accuracy.
+the is wished $\min_{\theta} MSE(\theta)$
+
+the Rao-Cramer:
+establish a cote over the variance of a estimator.
+
+assume that $X_{i} \sim f_{\theta}$ and the variables are iid, and the join distribution is $f(\vec{x}) = \prod f_{\theta}(x_{i}).$
+
+
+
+\begin{equation}
+var(\hat{\theta}) \geq \frac{(\varsigma'(\theta))^{2}}{nE \left(                             \frac{\partial}{\partial \Theta} log(f_{\theta}(X)   \right)     }
+\end{equation}
+
+note that the numerator of the last equation is equal to one, when the estimator is unbiased.
+
+therefore we said that a estimator is efficient  if have the min possible variance and it is unbiased.
+
+rao-cramer allow us determine if a estimator is or not efficient.
+
+
+suppose that $X \sim poisson(\lambda)$ 
+now used $\hat{\lambda} = \bar{X}$.Now
+$E(\bar{X}) = \lambda$.
+
+by properties:
+$ var(\bar{X}) = \frac{1}{n^{2}} \sum var(x_{i}) = \frac{\lambda}{n}.$
+
+now to establish the bound, then reduce: 
+$var(\hat{\lambda}) \geq \frac{1}{nE \left((\frac{\partial}{\partial \lambda} 
+log \frac{e^{-\lambda}\lambda^{x}}{x!})^{2} \right)} =  \frac{\lambda}{n}$.
+
+\\
+
+consistency we said that $\hat{\theta} $ is consistency estimator of $\theta$ if 
+$\forall \epsilon > 0 \lim_{n \to \infty}P(\vert \hat{\theta}-\theta \vert \leq \epsilon) =1$
+note that n is the sample size.
+
+the weak law of big number:
+
+
+remember that asymptoticaly unbiased implies that n tend to infinity.
+
+
+what is the difference among consistency and unbiased estimator.
+
+
+Thus a estimator could be biased but consistency thus, the estimated parameter and the real could converge.
+
+
+
+\section{Partial likelihood}
+
+
+
+
+
+\section{wald test}
+
+\begin{equation}
+\begin{align*}
+H_{0} :& \theta  = \theta_{0} \\
+H_{1} :& \theta  \neq \theta_{0}
+\end{align*}
+\end{equation}
+
+based in the distance about the $\theta$ of $H_{0}$ 
+
+
+\section{likelihood ratio test}
+
+
+
+
+\section{Information matrix}
+
+
+
+
+\subsection{Gauss Markov Theorem}
+
+
+\subsection{Matrix semi positive}
+
+
+
+
+
+
+\subsection{Lab excersices}
+
+\subsection{Exponential Distribution}
+Useful times of occurrence, is derived from gamma distribution. This is related with Poisson distribution.
+
+\begin{equation}
+pdf = f(x) =  \lambda e^{- \lambda x}
+\end{equation}
+
+
+
+\begin{lstlisting}
+def dexp(x, parameter, mode='pdf'):
+    if mode=='pdf':
+        pdf = parameter * np.exp(-parameter*x)
+        return pdf
+    if mode=='cdf':
+        cdf = 1 - np.exp(np.exp(-parameter*x))
+        return cdf
+\end{lstlisting}
+
+visually this is :
+\begin{lstlisting}
+x = np.linspace(1,10,100)
+lmbd = 0.90
+plt.plot(x, dexp(x,lmbd))
+\end{lstlisting}
+
+\subsection{Real life example}
+
+
+
+
+
+
+
+
+
+\section{hazard}
+event occurred over the number at risk in a certain period,if we think in terms of probability $f(x)$ is based in the relative frequency of events in the period, and the cumulative over that in the are in risk. 
+
+\section{Hazard ratio}
+
+
+
+
+\section{Empirical to take decisions}
+We can estimate a $S_{i}(t)$ by the $i$  individual and  its feature vector $X_{i}$compare with a mean in sample, thus we can take decisions over borrow or not. Also allow us consider health indicator of risk management.
+
+
+
+
+
+
+\section{Nelson-Aalaen estimator}
+proceso no homogeneo de poisson.
+
+
+
+
+
+
+
+
+\section{Neyman person lemma}
+
+remember the likelihood function
+
+
+
+
+
+\section{likelihood ratio test}
+
+
+
+
+
+
+
+\end{document}
