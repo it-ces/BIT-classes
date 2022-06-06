@@ -1,3 +1,7 @@
 *.tex
+*.nav
+*.snm
+*.toc
+*.ggb
 *.bbl
 *.aux
