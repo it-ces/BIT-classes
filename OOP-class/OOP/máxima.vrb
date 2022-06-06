@@ -1,0 +1,2 @@
+\frametitle{dynamic binding or late binding}
+The messages sent, to invoke a method is in runtime or execution  time and not in compilation.
