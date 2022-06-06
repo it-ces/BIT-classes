@@ -1,0 +1,7 @@
+\frametitle{Perceptron algorithm}
+\begin{verbatim}
+initialize w:
+for each x in sample :
+	estimate y(x)
+	w = w + update(w)
+\end{verbatim}

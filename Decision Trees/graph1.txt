@@ -1,0 +1,64 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\definecolor{cqcqcq}{rgb}{0.7529411764705882,0.7529411764705882,0.7529411764705882}
+\definecolor{yqyqyq}{rgb}{0.5019607843137255,0.5019607843137255,0.5019607843137255}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(0.583971188197394,-9.577359803384862) rectangle (27.83763927934435,7.9377593494334295);
+\fill[line width=2pt,color=yqyqyq,fill=yqyqyq,fill opacity=0.1] (3,0) -- (3,1) -- (18,1) -- (18,0) -- cycle;
+\fill[line width=2pt,color=cqcqcq,fill=cqcqcq,fill opacity=0.1] (3,-1) -- (3,-1) -- (18,-1) -- (18,-1) -- cycle;
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (13,-3) -- (13,-4) -- (18,-4) -- (18,-3) -- cycle;
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (8,-1) -- (8,-2) -- (13,-2) -- (13,-1) -- cycle;
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (3,1) -- (3,0) -- (8,0) -- (8,1) -- cycle;
+\fill[line width=2pt,color=yqyqyq,fill=yqyqyq,fill opacity=0.1] (3,-3) -- (3,-4) -- (18,-4) -- (18,-3) -- cycle;
+\fill[line width=2pt,color=yqyqyq,fill=yqyqyq,fill opacity=0.1] (3,-1) -- (3,-2) -- (18,-2) -- (18,-1) -- cycle;
+\draw [line width=2pt,color=yqyqyq] (3,0)-- (3,1);
+\draw [line width=2pt,color=yqyqyq] (3,1)-- (18,1);
+\draw [line width=2pt,color=yqyqyq] (18,1)-- (18,0);
+\draw [line width=2pt,color=yqyqyq] (18,0)-- (3,0);
+\draw [line width=2pt,color=cqcqcq] (3,-1)-- (3,-1);
+\draw [line width=2pt,color=cqcqcq] (3,-1)-- (18,-1);
+\draw [line width=2pt,color=cqcqcq] (18,-1)-- (18,-1);
+\draw [line width=2pt,color=cqcqcq] (18,-1)-- (3,-1);
+\draw [line width=2pt] (8,1)-- (8,0);
+\draw [line width=2pt] (13,1)-- (13,0);
+\draw [line width=2pt] (8,-1)-- (8,-2);
+\draw [line width=2pt] (13,-1)-- (13,-2);
+\draw [line width=2pt] (8,-3)-- (8,-4);
+\draw [line width=2pt] (13,-3)-- (13,-4);
+\draw [line width=2pt,color=zzttqq] (13,-3)-- (13,-4);
+\draw [line width=2pt,color=zzttqq] (13,-4)-- (18,-4);
+\draw [line width=2pt,color=zzttqq] (18,-4)-- (18,-3);
+\draw [line width=2pt,color=zzttqq] (18,-3)-- (13,-3);
+\draw [line width=2pt,color=zzttqq] (8,-1)-- (8,-2);
+\draw [line width=2pt,color=zzttqq] (8,-2)-- (13,-2);
+\draw [line width=2pt,color=zzttqq] (13,-2)-- (13,-1);
+\draw [line width=2pt,color=zzttqq] (13,-1)-- (8,-1);
+\draw [line width=2pt,color=zzttqq] (3,1)-- (3,0);
+\draw [line width=2pt,color=zzttqq] (3,0)-- (8,0);
+\draw [line width=2pt,color=zzttqq] (8,0)-- (8,1);
+\draw [line width=2pt,color=zzttqq] (8,1)-- (3,1);
+\draw [line width=2pt,color=yqyqyq] (3,-3)-- (3,-4);
+\draw [line width=2pt,color=yqyqyq] (3,-4)-- (18,-4);
+\draw [line width=2pt,color=yqyqyq] (18,-4)-- (18,-3);
+\draw [line width=2pt,color=yqyqyq] (18,-3)-- (3,-3);
+\draw [line width=2pt,color=yqyqyq] (3,-1)-- (3,-2);
+\draw [line width=2pt,color=yqyqyq] (3,-2)-- (18,-2);
+\draw [line width=2pt,color=yqyqyq] (18,-2)-- (18,-1);
+\draw [line width=2pt,color=yqyqyq] (18,-1)-- (3,-1);
+\draw (5.025177572160478,-1.0516704397930667) node[anchor=north west] {$\mathbf{train}$};
+\draw (14.9777605530898,0.945980624479488) node[anchor=north west] {$\mathbf{train}$};
+\draw (10.019305232841859,-3.08499384449906) node[anchor=north west] {$\mathbf{train}$};
+\draw (4.971669061510321,-3.049321504065621) node[anchor=north west] {$\mathbf{train}$};
+\draw (15.156122255256992,-1.0516704397930667) node[anchor=north west] {$\mathbf{train}$};
+\draw (9.98363289240842,1.017325305346365) node[anchor=north west] {$\mathbf{train}$};
+\draw (5.060849912593917,0.9816529649129265) node[anchor=north west] {$\mathbf{test}$};
+\draw (10.072813743492016,-1.0338342695763474) node[anchor=north west] {$\mathbf{test}$};
+\draw (15.280975446774026,-3.049321504065621) node[anchor=north west] {$\mathbf{test}$};
+\end{tikzpicture}
+\end{document}

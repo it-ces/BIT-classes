@@ -1,0 +1,33 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-12.564766534876606,0.22190923729896378) rectangle (-2.0940558311248365,7.241112822647047);
+\draw [line width=2pt] (-12,6)-- (-12,1);
+\draw [line width=2pt] (-10,6)-- (-10,1);
+\draw [line width=2pt] (-8,6)-- (-8,1);
+\draw [line width=2pt] (-4,6)-- (-4,1);
+\draw [line width=2pt] (-6,6)-- (-6,1);
+\draw [line width=2pt] (-12,6)-- (-4,6);
+\draw [line width=2pt] (-12,1)-- (-4,1);
+\draw [line width=2pt] (-10,4)-- (-9,4);
+\draw [line width=2pt] (-8.296193565998552,2.4731031062869198)-- (-7.5965657346611755,3.0081126243684424);
+\draw [line width=2pt] (-10.381358867239362,2.418230335201635)-- (-9.681731035901985,1.938093588205397);
+\draw [line width=2pt] (-4.468817782799958,3.3922220219654338)-- (-5.2096001924513,2.8572125038839107);
+\draw [line width=2pt] (-6.965528867180401,4.571986600299049)-- (-6.1012827225871735,4.242749973787341);
+\draw [line width=2pt] (-7.1164289876649365,1.4579568412091586)-- (-6.238464650300384,1.1424384074687728);
+\begin{scriptsize}
+\draw [fill=ududff] (-9,4) circle (2.5pt);
+\draw [fill=ududff] (-8.296193565998552,2.4731031062869198) circle (2.5pt);
+\draw [fill=ududff] (-10.381358867239362,2.418230335201635) circle (2.5pt);
+\draw [fill=ududff] (-4.468817782799958,3.3922220219654338) circle (2.5pt);
+\draw [fill=ududff] (-6.965528867180401,4.571986600299049) circle (2.5pt);
+\draw [fill=ududff] (-6.238464650300384,1.1424384074687728) circle (2.5pt);
+\end{scriptsize}
+\end{tikzpicture}
+\end{document}

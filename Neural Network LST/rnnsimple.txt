@@ -1,0 +1,29 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-2.804050038825151,4.40834404813588) rectangle (12.685869461437976,12.34733201747763);
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (4,9) -- (4,7.5) -- (6,7.5) -- (6,9) -- cycle;
+\draw [line width=2pt,color=zzttqq] (4,9)-- (4,7.5);
+\draw [line width=2pt,color=zzttqq] (4,7.5)-- (6,7.5);
+\draw [line width=2pt,color=zzttqq] (6,7.5)-- (6,9);
+\draw [line width=2pt,color=zzttqq] (6,9)-- (4,9);
+\draw [line width=2pt] (5.048061122941567,6.408519545003317) circle (0.5284510583863585cm);
+\draw [line width=2pt] (5,10) circle (0.5284510583863585cm);
+\draw [->,line width=2pt] (5.005262549857102,6.93523465134791) -- (5.012195121951219,7.5);
+\draw [->,line width=2pt] (5,9) -- (5.006259999359222,9.471586020701869);
+\draw [line width=2pt] (6,8.3)-- (6.4,8.3);
+\draw [line width=2pt] (6.4,8.3)-- (6.4,9.2);
+\draw [line width=2pt] (6.4,9.2)-- (3.6,9.2);
+\draw [line width=2pt] (3.6,9.2)-- (3.6,8.3);
+\draw [->,line width=2pt] (3.6,8.3) -- (4,8.3);
+\draw (4.8438956017014245,8.52335919721424) node[anchor=north west] {$RNN$};
+\draw (4.957078729573911,6.623499550783171) node[anchor=north west] {$X_{i}$};
+\draw (4.9166561839051655,10.213021606167832) node[anchor=north west] {$Y_{i}$};
+\end{tikzpicture}
+\end{document}

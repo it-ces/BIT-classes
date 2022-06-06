@@ -1,0 +1,12 @@
+\frametitle{Loops in turtle}
+
+\begin{lstlisting}
+for x in range(4):
+  right(90)
+  forward(100)
+\end{lstlisting}
+
+
+\begin{lstlisting}
+
+\end{lstlisting}

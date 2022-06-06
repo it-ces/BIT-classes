@@ -1,0 +1,25 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+xmin=-0.7347314381118282,
+xmax=6.012437342707233,
+ymin=-1.7689611929495224,
+ymax=2.56724282718419,
+xtick={-0.6000000000000001,-0.4000000000000001,...,6},
+ytick={-1.6,-1.4000000000000001,...,2.4},]
+\clip(-0.7347314381118282,-1.7689611929495224) rectangle (6.012437342707233,2.56724282718419);
+\draw [->,line width=2pt] (0,0) -- (1,0);
+\draw [->,line width=2pt] (0,0) -- (0,1);
+\draw (0.44425682398155486,-0.002686642996890036) node[anchor=north west] {\mathbf{$\vec{i}$}};
+\draw (-0.2136804458758012,0.6640819996102287) node[anchor=north west] {\mathbf{$\vec{j}$}};
+\end{axis}
+\end{tikzpicture}
+\end{document}

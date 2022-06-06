@@ -1,0 +1,21 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-17.511022258372737,-7.769570489167741) rectangle (6.095505161426637,7.401640195546216);
+\draw [line width=2pt] (-12,4)-- (-12,-7);
+\draw [line width=2pt] (-2,7)-- (-2,-7);
+\draw [line width=2pt] (-12,-7)-- (-2,-7);
+\draw [line width=2pt] (-12,7)-- (-2,7);
+\draw [line width=2pt] (-12,4)-- (-12,7);
+\draw [line width=2pt] (-12,5)-- (-2,5);
+\draw [line width=2pt] (-12,-2)-- (-2,-2);
+\draw (-8.16419693836055,6.181145649627272) node[anchor=north west] {\textbf{class Name:}};
+\draw (-11.856579172216604,4.5744186524681565) node[anchor=north west] {\parbox{4.5687878494591985 cm}{-Attribute 1: Int \textbackslash \textbackslash  -Attribute 2: Float \textbackslash \textbackslash  -Attribute 3: Boolean \textbackslash \textbackslash  -Attribute 4: str}};
+\draw (-11.918376364415032,-2.856693709392754) node[anchor=north west] {\parbox{8.137575698918397 cm}{+methodOne(parameter1:int, parameter2:str) \textbackslash \textbackslash  +methoTwo(parameter1:float)}};
+\end{tikzpicture}
+\end{document}

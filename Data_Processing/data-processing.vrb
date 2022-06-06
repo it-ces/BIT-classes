@@ -1,0 +1,4 @@
+\begin{lstlisting}
+from sklearn.preprocessing import scale
+scale(X)
+\end{lstlisting}

@@ -1,0 +1,22 @@
+\frametitle{Uniform distribution}
+\begin{columns}
+\column{0.5 \textwidth}
+$\mathbf{x} \sim U(a,b)$ in the interval$(a,b)$.
+\begin{equation}
+f(x) = \frac{1}{b-a}
+\end{equation}
+the function is defined in the open interval  $a<x<b$.
+Remember that:
+\begin{equation}
+F(x) = \int_{- \infty}^{x}f(u)du
+\end{equation}
+
+\column{0.5\textwidth}
+\begin{lstlisting}
+import numpy as np
+np.random.uniform(a,b ,size=(k,p)) # [)
+
+#Draw k list with p elements with numbers [a,b)
+\end{lstlisting}
+Choose a point in the interval (a,b), you can calculate what it is the probability that a point is in (c,d)
+\end{columns}
