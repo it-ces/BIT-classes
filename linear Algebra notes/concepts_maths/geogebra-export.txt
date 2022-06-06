@@ -1,0 +1,37 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+xmin=-0.4917288227170077,
+xmax=4.12143238498744,
+ymin=-0.5202856575366671,
+ymax=2.444455380399042,
+xtick={-0.4,-0.2,...,4},
+ytick={-0.4,-0.2,...,2.4},]
+\clip(-0.4917288227170077,-0.5202856575366671) rectangle (4.12143238498744,2.444455380399042);
+\draw [->,line width=2pt] (0,0) -- (1,0);
+\draw [->,line width=2pt] (0,0) -- (0,1);
+\draw (0.44418739088795206,-0.025155789694043584) node[anchor=north west] {$\mathbf{\vec{i}}$};
+\draw (-0.21397304319553578,0.6420618980694918) node[anchor=north west] {$\mathbf{\vec{j}}$};
+\draw [->,line width=2pt] (0,0) -- (3,0);
+\draw (1.8903288951356156,-0.007041282333947601) node[anchor=north west] {$\mathbf{x\vec{i}}$};
+\draw [->,line width=2pt] (0,0) -- (0,2);
+\draw (-0.1868012821553918,1.6353407183147548) node[anchor=north west] {$\mathbf{y\vec{j}}$};
+\draw [->,line width=2pt] (0,0) -- (3,2);
+\draw [line width=2pt,dotted] (0,2)-- (3,2);
+\draw [->,line width=2pt] (0,0) -- (3,0);
+\draw (2.9319130683411356,2.1757568545576182) node[anchor=north west] {$(x,y)$};
+\begin{scriptsize}
+\draw [fill=xdxdff] (3,2) circle (2.5pt);
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\end{document}

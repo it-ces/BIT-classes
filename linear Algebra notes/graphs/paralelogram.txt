@@ -1,0 +1,36 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+xmin=-1.53295944346379,
+xmax=12.706297059380853,
+ymin=-1.5357319163741068,
+ymax=7.615413296841486,
+xtick={-1.5,-1,...,12.5},
+ytick={-1.5,-1,...,7.5},]
+\clip(-1.53295944346379,-1.5357319163741068) rectangle (12.706297059380853,7.615413296841486);
+\draw [->,line width=2pt] (0,0) -- (2,4);
+\draw [->,line width=2pt] (0,0) -- (6,2);
+\draw [->,line width=2pt] (0,0) -- (8,6);
+\draw [->,line width=2pt] (2,4) -- (8,6);
+\draw [->,line width=2pt] (6,2) -- (8,6);
+\begin{scriptsize}
+\draw [fill=uuuuuu] (0,0) circle (2pt);
+\draw[color=uuuuuu] (0.07920768676665688,0.1836023930335072) node {$A$};
+\draw[color=black] (1.0017773162048895,2.1312493885142185) node {$u$};
+\draw[color=black] (3.023975392852329,1.1527664482009428) node {$v$};
+\draw[color=black] (4.011777218311447,3.147007869410858) node {$w$};
+\draw[color=black] (5.018216814062246,5.150568175766614) node {$a$};
+\draw[color=black] (6.993820464980482,4.125490809724134) node {$b$};
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\end{document}

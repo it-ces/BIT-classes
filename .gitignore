@@ -1,8 +1,8 @@
 */*.tex
-*.ggb
-*.txt
-*.toc
-*.log
-*.nav
-*.snm
-*.vrb
+*/*.ggb
+*/*.txt
+*/*.toc
+*/*.log
+*/*.nav
+*/*.snm
+*/*.vrb
