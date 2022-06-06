@@ -1,3 +1,7 @@
 *.tex
 *.ggb
 *.txt
+*.toc
+*.log
+*.nav
+*.snm
