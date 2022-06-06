@@ -1,0 +1,33 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-7.836595828830608,8.483123289392461) rectangle (23.96217415591174,28.919243790057973);
+\draw [line width=2pt] (-1.072323706231507,23.471677466691496) circle (1.3237949544534073cm);
+\draw [line width=2pt] (-1.0606069491840735,19.192465620938574) circle (1.3237949544534078cm);
+\draw [line width=2pt] (-0.9910206714855865,14.772252748878007) circle (1.3237949544534071cm);
+\draw [line width=2pt] (7.383191907344222,18.810303474592057) circle (1.399052811248412cm);
+\draw [->,line width=2pt] (0.1743228265392744,22.848354200306108) -- (6.19074739773739,19.704636856797183);
+\draw [->,line width=2pt] (0.2014238381212479,18.945808532501925) -- (6.028141328245549,18.89160650933798);
+\draw [->,line width=2pt] (0.3301962961892744,14.854828809357688) -- (6.176028930123589,18.10312152128025);
+\draw (-1.4268961198642192,15.78768367201323) node[anchor=north west] {$\mathbf{a^{l-1}_{3}}$};
+\draw (-1.489328259886619,20.012258480195612) node[anchor=north west] {$\mathbf{a^{l-1}_{2}}$};
+\draw (-1.5517603999090188,24.340886855081994) node[anchor=north west] {$\mathbf{a^{l-1}_{1}}$};
+\draw [line width=2pt] (7.34070664122771,25.05723383677692) circle (1.323794954453405cm);
+\draw [->,line width=2pt] (7.30242141322907,23.73399261811972) -- (7.3010366974508285,20.206942042779783);
+\draw (6.751714223070167,26.026554635686786) node[anchor=north west] {$\mathbf{b^{l}_{i}}$};
+\draw [line width=2pt] (13.02020231639471,18.75610145142811) circle (1.3990528112484113cm);
+\draw (12.453849678449359,19.783340633446812) node[anchor=north west] {$\mathbf{\sigma(z_{i}^{l})}$};
+\draw (6.876578503114968,19.76252992010601) node[anchor=north west] {$\mathbf{(z_{i}^{l})}$};
+\draw [->,line width=2pt] (8.781170177104421,18.755480797346557) -- (11.638050725714063,18.75610145142811);
+\draw (2.9641643950445737,23.196297621337997) node[anchor=north west] {$\mathbf{w_{i1}^{l}}$};
+\draw (2.090114434730975,18.139294279523618) node[anchor=north west] {$\mathbf{w_{i3}^{l}}$};
+\draw (2.090114434730975,20.57414774039721) node[anchor=north west] {$\mathbf{w_{i2}^{l}}$};
+\draw [->,line width=2pt] (14.456555930239306,18.70189942826416) -- (17.817081366404018,18.70189942826416);
+\draw (18.01031014044295,19.97063705351401) node[anchor=north west] {$\mathbf{a_{i}^{l}}$};
+\end{tikzpicture}
+\end{document}

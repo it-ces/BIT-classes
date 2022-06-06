@@ -1,0 +1,42 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1}
+\definecolor{qqqqtt}{rgb}{0,0,0.2}
+\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+\definecolor{qqttcc}{rgb}{0,0.2,0.8}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+xmin=-2.675665139105161,
+xmax=106.03556108256446,
+ymin=-9.631087996514406,
+ymax=60.23437283436955,
+xtick={0,5,...,105},
+ytick={-5,0,...,60},]
+\clip(-2.675665139105161,-9.631087996514406) rectangle (106.03556108256446,60.23437283436955);
+\draw[line width=3.6pt,color=qqttcc,smooth,samples=100,domain=-2.675665139105161:106.03556108256446] plot(\x,{0.03*((\x)-3)^(2)-4});
+\draw [line width=2pt,dotted,color=qqqqtt,domain=-2.675665139105161:106.03556108256446] plot(\x,{(-61.81--2.46*\x)/1});
+\draw (43.996170202135204,-0.31095014636593465) node[anchor=north west] {$\mathbf{x_{0}}$};
+\draw (8.707709334368099,6.23449017587574) node[anchor=north west] {$\mathbf{f(x^{*})=0}$};
+\draw (14.257104390186312,0.40051075822555166) node[anchor=north west] {$\mathbf{x^{*}}$};
+\draw [line width=2pt,dash pattern=on 1pt off 1pt on 1pt off 4pt] (44,46.43)-- (45,0);
+\draw (25.071310139985908,0.04478030592980852) node[anchor=north west] {$\mathbf{x_{1}}$};
+\draw (45.20565373994174,20.961730900919505) node[anchor=north west] {$\mathbf{f(x_{0}) - 0}$};
+\draw (31.616750462233032,-0.5243884177433805) node[anchor=north west] {$\mathbf{x_{0} - x_{1}}$};
+\draw (30.193828653048875,10.930132146179549) node[anchor=north west] {$\mathbf{f^{1}(x_{0}) = \frac{f(x_{0}) -0}{x_{0} - x_{1}}}$};
+\begin{scriptsize}
+\draw[color=qqttcc] (-1.9642042345130826,-3.2635129004206025) node {$f$};
+\draw [fill=uuuuuu] (44,46.43) circle (3.5pt);
+\draw[color=uuuuuu] (42.21751794065501,47.03677305419748) node {$A$};
+\draw[color=qqqqtt] (50.185880072086285,59.91421542730338) node {$g$};
+\draw [fill=xdxdff] (45,0) circle (2.5pt);
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\end{document}

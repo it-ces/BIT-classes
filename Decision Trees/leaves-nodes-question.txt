@@ -1,0 +1,23 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-3.3868370460207724,3.6986840820381235) rectangle (15.260965765068997,13.25616965640667);
+\draw [line width=2pt] (6.038606830933502,10.256222395728951) circle (1.2731064370271643cm);
+\draw [->,line width=2pt] (5.999499575278403,8.98371674837208) -- (4,8);
+\draw [->,line width=2pt] (5.999499575278403,8.98371674837208) -- (8,8);
+\draw [line width=2pt] (3.8380174677238967,6.665787118913279) circle (1.2731064370271636cm);
+\draw (5.538024737783674,10.501822999027546) node[anchor=north west] {$\mathbf{Variable }$};
+\draw (4.467430630675179,9.139248680889464) node[anchor=north west] {$\mathbf{Yes}$};
+\draw (7.212044614353319,9.119783333487492) node[anchor=north west] {$\mathbf{No}$};
+\draw (3.2119157232479454,6.949397098167547) node[anchor=north west] {$\mathbf{Variable 2}$};
+\begin{scriptsize}
+\draw [fill=xdxdff] (5.999499575278403,8.98371674837208) circle (2.5pt);
+\end{scriptsize}
+\end{tikzpicture}
+\end{document}

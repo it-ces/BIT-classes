@@ -1,0 +1,26 @@
+\documentclass[10pt]{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\begin{document}
+\definecolor{qqqqcc}{rgb}{0,0,0.8}
+\definecolor{qqwuqq}{rgb}{0,0.39215686274509803,0}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+xmin=-0.8694140372315902,
+xmax=26.594349777827446,
+ymin=-4.314718926642073,
+ymax=19.594337869801166,
+xtick={0,2,...,26},
+ytick={-4,-2,...,18},]
+\clip(-0.8694140372315902,-4.314718926642073) rectangle (26.594349777827446,19.594337869801166);
+\draw [line width=2pt,color=qqwuqq] (0,0)-- (13.16,11.1);
+\draw [rotate around={-56.694479071423174:(-215.18175234556708,339.0826607244106)},line width=1.6pt,pattern color=qqqqcc] (-215.18175234556708,339.0826607244106) ellipse (402.68437368747675cm and 84.90521670471614cm);
+\draw [line width=2.4pt,dotted] (13.080575941403652,11.028023396032836)-- (13,0);
+\end{axis}
+\end{tikzpicture}
+\end{document}
