@@ -8,5 +8,5 @@ Cluster-segmentation/**/*.snm
 Cluster-segmentation/**/*.vrb
 
 
-Cluster-segmentation/*.tex
+./Cluster-segmentation/*.tex
 
