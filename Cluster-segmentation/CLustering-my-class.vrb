@@ -1,8 +1,0 @@
-\frametitle{K means}
-
-\begin{verbatim}
-chose k initial centroids:
-	assing each observation to the closest centroid
-	assing new centroids
-	break the assingantion if not change
-\end{verbatim}

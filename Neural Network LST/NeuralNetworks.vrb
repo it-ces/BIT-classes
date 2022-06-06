@@ -1,8 +1,0 @@
-\frametitle{GD algorithm}
-\begin{itemize}
-\item derivates of loss function(gradient).
-\item choose random initial values for parameters
-\item evaluate parameters in derivates
-\item calculate step  = slope * learningRate
-\item update parameters ( parameter - step)
-\end{itemize}
