@@ -1,0 +1,798 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{comment}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{munsell}{rgb}{0.0, 0.5, 0.69}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{minas}{RGB}{0.244, 0.172, 0.36}
+\definecolor{PUJ}{RGB}{44, 86, 151}
+\definecolor{PUJ2}{RGB}{43, 93, 156}
+\definecolor{PUJ3}{RGB}{20, 52, 107}
+\definecolor{cyandk}{rgb}{0.0, 0.72, 0.92}
+
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\author{Iván Andrés Trujillo }
+
+%% code information
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  classoffset=1,
+  morekeywords={True,False}, keywordstyle=\color{munsell}, 
+  classoffset=0, 
+  keywordstyle=\color{blue},  
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{PUJ3},
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+}
+
+\begin{document}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\includegraphics[width = 4cm]{pujshield.eps}\\[0.5cm] 
+
+\begin{center} 
+\textbf{\LARGE Introduction to Decesion trees}\\[0.2cm]
+\emph{\LARGE Notes of class}\\[0.3cm] 
+\emph{Iván Andrés Trujillo Abella} \\
+\textsc{\Large 
+}\\[0.2cm] 
+\textsc{\large Facultad de ingeniería}\\[0.5cm] 
+\HRule \\[0.4cm]
+\end{center}
+\vspace{1cm}
+
+
+
+
+
+\subsection{Decision trees}
+Powerful algorithm, based in measures of homogenity in this notes we discuss and construct over the concept of gain information and entropy.
+
+
+
+
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{Empty tree \;}
+\While{ features to split}
+{Select the variable to split data \;
+repeat the before steps again until reach a stopping criteria\;}
+
+
+\end{algorithm}
+
+
+
+
+\subsection{Entropy}
+Derived from Information theory, we can measure the homogenity of a set, 
+$E = 1$ at maximun disorder, and $E=0$ when.
+
+We also, can take in mind that the construction is recursive implementation.
+
+Write pseudocode.
+
+\begin{lstlisting}
+while stopping criteria is false:
+	select the better variable:
+		update data:
+			select the better variable
+\end{lstlisting}
+
+
+\section{Overfitting}
+
+
+Hint: A big gap in validation error with training error are a strong signal about over fitting.
+
+We can select the better depth 
+$ \min  E_{validation}  - E_{training}$  select 
+
+
+The are some ways of avoid overfiting, however note that this is not a solution to the generalization.
+
+
+
+
+The depth of three reduce training error, therefore decision boundaries are more complex.
+
+\subsection{Early stopping}
+
+Before of construc the tree:
+\textbf{limit the depth of tree}:
+We can uses cross validation:
+
+
+
+
+
+
+
+
+\subsection{Prunning}
+
+If we select a tree based in $R(T)$ that is 
+resubstitution rate is the rate of responses predicted well with training dataset. 
+
+
+select $\alpha$ we need uses cross validation to select the parameter
+
+\begin{algorithm}[H]
+
+\end{algorithm}
+
+
+
+
+
+
+
+
+
+
+\subsection{Feature importance}
+How we can establish, what is the degree of importance of the variables?
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{comment}
+   gauge: calibrar, medir
+Spike backup:
+stump:
+stamp:
+shoot up:
+soar:
+shallower:
+chop off:
+holdout: reserva, resistir.
+holdout data: datos de reserva.
+plentiful: abundante.
+\end{comment}
+
+
+hint: if you have two tress that have the same validation error pick always the simplest model.
+
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwResult{Write here the result }
+ initialization\;
+ \While{While condition}{
+  instructions\;
+  \eIf{condition}{
+   instructions1\;
+   instructions2\;
+   }{
+   instructions3\;
+  }
+ }
+ \caption{Cross validation}
+\end{algorithm}
+
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\For{$i\leftarrow 2$ \KwTo $l$}{
+test data $i$
+} 
+ \caption{Cross validation}
+\end{algorithm}
+
+
+
+\begin{comment}
+
+\begin{algorithm}[H]
+ \KwData{this text}
+ \KwResult{}
+ \While{condition}
+  \eIf{}
+   }{}
+ \If{}
+ \caption{How to write algorithms}
+ \KwTo the word to
+ \leftarrow 
+\end{algorithm}
+
+\end{comment}
+
+
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\For{$i$ \KwTo 4 }{
+print in screen $i$ \;
+\eIf{ $i >$ 4}{
+print this number is major 4\;
+   \If{$i=3$}{three}      }
+{print is lesser \;}
+}
+\caption{Simple algorithm}
+\end{algorithm}
+
+
+
+
+
+
+
+
+\subsection{K fold cross validation}
+
+K means samples of K size, therefore we could have $\frac{N}{k}$, where $N$ is the total amount of instances or observations.
+
+$MSE = \frac{1}{k} \sum_{i=1}^{k}Accuracy_{i}$.
+
+with cross validation we search optimize the parameter $max\_depth$ in librarie sickit-learn.
+
+
+
+
+
+
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{N observations}
+\emph{Split the data in $k$ groups 
+\;}
+\For{$i$ in $k$}
+{Test the model in $i$ and train in the rest data \;
+Measure the accuracy in each iteration \;}
+\caption{K fold: Cross validation algorithm}
+\end{algorithm}
+
+
+
+
+
+
+
+
+
+\begin{figure}[h]
+\resizebox{0.8\textwidth}{8cm}{
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\definecolor{cqcqcq}{rgb}{0.7529411764705882,0.7529411764705882,0.7529411764705882}
+\definecolor{yqyqyq}{rgb}{0.5019607843137255,0.5019607843137255,0.5019607843137255}
+\begin{tikzpicture}[line cap=round,line join=round,scale=2]
+\clip(0.583971188197394,-9.577359803384862) rectangle (27.83763927934435,7.9377593494334295);
+\fill[line width=2pt,color=yqyqyq,fill=yqyqyq,fill opacity=0.1] (3,0) -- (3,1) -- (18,1) -- (18,0) -- cycle;
+\fill[line width=2pt,color=cqcqcq,fill=cqcqcq,fill opacity=0.1] (3,-1) -- (3,-1) -- (18,-1) -- (18,-1) -- cycle;
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (13,-3) -- (13,-4) -- (18,-4) -- (18,-3) -- cycle;
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (8,-1) -- (8,-2) -- (13,-2) -- (13,-1) -- cycle;
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (3,1) -- (3,0) -- (8,0) -- (8,1) -- cycle;
+\fill[line width=2pt,color=yqyqyq,fill=yqyqyq,fill opacity=0.1] (3,-3) -- (3,-4) -- (18,-4) -- (18,-3) -- cycle;
+\fill[line width=2pt,color=yqyqyq,fill=yqyqyq,fill opacity=0.1] (3,-1) -- (3,-2) -- (18,-2) -- (18,-1) -- cycle;
+\draw [line width=2pt,color=yqyqyq] (3,0)-- (3,1);
+\draw [line width=2pt,color=yqyqyq] (3,1)-- (18,1);
+\draw [line width=2pt,color=yqyqyq] (18,1)-- (18,0);
+\draw [line width=2pt,color=yqyqyq] (18,0)-- (3,0);
+\draw [line width=2pt,color=cqcqcq] (3,-1)-- (3,-1);
+\draw [line width=2pt,color=cqcqcq] (3,-1)-- (18,-1);
+\draw [line width=2pt,color=cqcqcq] (18,-1)-- (18,-1);
+\draw [line width=2pt,color=cqcqcq] (18,-1)-- (3,-1);
+\draw [line width=2pt] (8,1)-- (8,0);
+\draw [line width=2pt] (13,1)-- (13,0);
+\draw [line width=2pt] (8,-1)-- (8,-2);
+\draw [line width=2pt] (13,-1)-- (13,-2);
+\draw [line width=2pt] (8,-3)-- (8,-4);
+\draw [line width=2pt] (13,-3)-- (13,-4);
+\draw [line width=2pt,color=zzttqq] (13,-3)-- (13,-4);
+\draw [line width=2pt,color=zzttqq] (13,-4)-- (18,-4);
+\draw [line width=2pt,color=zzttqq] (18,-4)-- (18,-3);
+\draw [line width=2pt,color=zzttqq] (18,-3)-- (13,-3);
+\draw [line width=2pt,color=zzttqq] (8,-1)-- (8,-2);
+\draw [line width=2pt,color=zzttqq] (8,-2)-- (13,-2);
+\draw [line width=2pt,color=zzttqq] (13,-2)-- (13,-1);
+\draw [line width=2pt,color=zzttqq] (13,-1)-- (8,-1);
+\draw [line width=2pt,color=zzttqq] (3,1)-- (3,0);
+\draw [line width=2pt,color=zzttqq] (3,0)-- (8,0);
+\draw [line width=2pt,color=zzttqq] (8,0)-- (8,1);
+\draw [line width=2pt,color=zzttqq] (8,1)-- (3,1);
+\draw [line width=2pt,color=yqyqyq] (3,-3)-- (3,-4);
+\draw [line width=2pt,color=yqyqyq] (3,-4)-- (18,-4);
+\draw [line width=2pt,color=yqyqyq] (18,-4)-- (18,-3);
+\draw [line width=2pt,color=yqyqyq] (18,-3)-- (3,-3);
+\draw [line width=2pt,color=yqyqyq] (3,-1)-- (3,-2);
+\draw [line width=2pt,color=yqyqyq] (3,-2)-- (18,-2);
+\draw [line width=2pt,color=yqyqyq] (18,-2)-- (18,-1);
+\draw [line width=2pt,color=yqyqyq] (18,-1)-- (3,-1);
+\draw (5.025177572160478,-1.0516704397930667) node[anchor=north west] {$\mathbf{train}$};
+\draw (14.9777605530898,0.945980624479488) node[anchor=north west] {$\mathbf{train}$};
+\draw (10.019305232841859,-3.08499384449906) node[anchor=north west] {$\mathbf{train}$};
+\draw (4.971669061510321,-3.049321504065621) node[anchor=north west] {$\mathbf{train}$};
+\draw (15.156122255256992,-1.0516704397930667) node[anchor=north west] {$\mathbf{train}$};
+\draw (9.98363289240842,1.017325305346365) node[anchor=north west] {$\mathbf{train}$};
+\draw (5.060849912593917,0.9816529649129265) node[anchor=north west] {$\mathbf{test}$};
+\draw (10.072813743492016,-1.0338342695763474) node[anchor=north west] {$\mathbf{test}$};
+\draw (15.280975446774026,-3.049321504065621) node[anchor=north west] {$\mathbf{test}$};
+\end{tikzpicture}
+}
+\end{figure}
+
+Note that could split the data.
+
+
+
+\subsection{sklearn KFold}
+
+
+\begin{lstlisting}
+import numpy as np
+e = np.array(('a','b','c','d','e','o','p'))
+Kfold = KFold(n_splits=3)
+for itrain, itest in Kfold.split(e):
+    print('train index', itrain)
+    print('test index', itest)
+    print('--')
+# This return the indices we can attach to the index the X and the Y 
+  X.iloc[itrain]
+  X.iloc[itest]
+\end{lstlisting}
+
+
+
+
+
+
+
+\begin{lstlisting}{}
+from sklearn import DecisionTreeClassifier
+model = DecisionTreeClassifier(
+criterion='entropy' # by default is gini.
+max_depth=None #by default.
+)
+model.fit(X,y)
+\end{lstlisting}
+
+
+
+
+\subsection{Methods }
+
+\begin{verbatim}
+predict(X) #  Return the predicted class
+predict_proba(X) # Return classes probabilities
+score(X,y) where y is the true labels. 
+\end{verbatim}
+
+
+
+
+
+
+\begin{comment}
+downsides: desventajas.
+folds: pliegues.
+sighted: avistado, vista normal.
+shallow: superficial, poco profundo.
+brainer: pan comdio.
+throw away: tirar a la basura, desechar.
+overlooked: pasado por alto.
+plies:capas
+rook: torre, grajo.
+rollover:dese la vuelta
+
+\end{comment}
+
+
+
+
+\section{Prunning}
+\subsection{Post pruning}
+\subsubsection{Reduce error pruning}
+let the tree growth and after chop off, 
+
+
+
+reduce error pruning.
+
+\subsection{Cost complexity pruning}
+
+
+\subsection{Weakest link pruning}
+
+
+\section{AUC in decision tree}
+
+$D(n)$ number of leafs. 
+
+$\mbox{Total cost = Measure of fit + Measure of complexity = classification error + number of leaf}$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Search}
+
+Greedy algorithms suffer of horizon effect.
+
+
+
+
+
+
+
+
+
+\subsection{Assess the precision }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Preprocessing DATA}
+
+\begin{lstlisting}
+sklearn.preprocessing.OrdinalEncoder # to encode X
+sklearn.preprocessing.LabelEcoder()  # to label y
+\end{lstlisting}
+
+
+
+
+
+\section{Pruning Uppen}
+A node $t$ and $t_{L}$ and $t_{R}$ left and right child nodes respectively.
+$T$ represent all nodes, $\tilde{T}$ all leafs.
+a split is denoted by $s$ the set of all splits $S$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Impurity function}
+$\vert a \vert$ means the number or 'cardinal' elements
+that belong to the set $a$. (We can write with a indicator function). 
+
+
+
+
+\section{HyperParamter}
+\subsection{Gridsearch}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Example one}
+
+\begin{lstlisting}
+import numpy as np
+import pandas as pd 
+import matplotlib.pyplot as plt
+from sklearn import datasets
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+df =datasets.load_iris(as_frame=True)
+df = df['frame']
+X = df.iloc[:,:-1]
+y = df.iloc[:,[-1]]
+y = y.astype('int')
+clf = DecisionTreeClassifier()
+fitM = clf.fit(X,y)
+clf.score(X,y)
+scores =[]
+from sklearn.model_selection import KFold
+kfolds = KFold(n_splits=5, shuffle=True)
+for itrain, itest in kfolds.split(X):
+    Xtrain, Xtest = X.iloc[itrain], X.iloc[itest]
+    ytrain, ytest = y.iloc[itrain], y.iloc[itest]
+    model = clf.fit(Xtrain,ytrain) 
+    score = accuracy_score(ytest,model.predict(Xtest))
+    scores.append(score)
+mean = np.mean(scores)
+sd = np.std(scores)
+print(mean, sd)
+\end{lstlisting}
+
+
+
+
+\section{Confusion Matrix}
+
+\subsection{Sensitivity and specificity}
+
+
+
+
+
+
+\subsection{Multinomial distribution}
+
+Before we need specify the multinomial  coefficient that is, 
+$\binom{N}{n_{1}...n_{k}}$
+where $n_{1}+..+n_{k} = N$, note also that $\binom{N}{n_{1}...n_{k}} = \frac{N!}{n_{1}!n_{2}!...n_{k}!}.$
+Thus we need select $n_{1}$ objects from $N$, select $n_{2}$ from $N-n_{1}$, select $n_{3}$ from $(N-n_{1}-n_{2}$) and thus in the $k$ selection then we have $n_{k}$ from $ (N-n_{1}-n_{2}-n_{3}-...-n_{k-1})$.
+
+
+
+
+
+\begin{comment}
+
+https://online.stat.psu.edu/stat414/lesson/11/11.5
+
+
+arguably: (arguablí) posiblemente.
+seemingly: aparentemente.
+aka: alias
+touch upon: mencionar brevemente
+\end{comment}
+
+
+
+\section{Minimal cost complexity}
+
+Prunning based in minimal cost complexity and 
+weakest link.
+The problem reduced to minimize the following expression:
+\begin{equation}
+C_{\alpha}(T) = R(T) + \alpha \vert T \vert  
+\label{minimalcost}  
+\end{equation}
+
+where $R(T)$ is miss classification rate in training data and $\vert T \vert$ is the number of leaves in the tree.
+Note that if $\alpha = 0$ then the tree assign to each node a observation. Then we need find the optimize value of $\alpha$.
+
+Recursively you can uses minimal cost beginning with the last leaves and ascending evaluating \eqref{minimalcost}.
+
+
+Remember that is a trade off between complexity and accuracy.
+
+for each $\alpha$ we need find the $T_{\alpha} \subset T_{0}$ that minimize the expression of cost complexity. 
+
+the value of $alpha$
+
+\begin{algorithm}
+\For{$\alpha$ \KwTo N }{
+find $T \subset T_{0}$ that $\min C_{\alpha}(T)$;
+
+Split data in $k$ folds
+
+	\For{k in}{
+	make;
+	}
+
+}
+\end{algorithm}
+
+
+
+
+\begin{equation}
+\argmax_{x \in R} f(x) 
+\end{equation}
+in python or sklearn this effective alpha:
+https://www.programmersought.com/article/16766848143/ # to select alpha among all
+\begin{lstlisting}
+
+def alphaZ(Xtrain,ytrain,Xtest,ytest):
+    clf = DecisionTreeClassifier(random_state=0)
+    path = clf.cost_complexity_pruning_path(Xtrain, ytrain)
+    ccp_alphas, impurities = path.ccp_alphas, path.impurities
+    clfs = []
+    for ccp_alpha in ccp_alphas:
+        clf = DecisionTreeClassifier(random_state=0, ccp_alpha=ccp_alpha)
+        clf.fit(X_train, y_train)
+        clfs.append(clf)
+    train_scores = [clf.score(Xtrain, ytrain) for clf in clfs]
+    test_scores = [clf.score(Xtest, ytest) for clf in clfs]
+    alpha , tscore = ccp_alphas[test_scores.index(max(test_scores))], max(test_scores)
+    return alpha, tscore
+
+\end{lstlisting}
+
+
+
+
+\subsection{Questions}
+How interpret machine learning models a category instead a numerical value?
+
+how we can encode without order.
+
+
+
+\section{OneHotEncoding}
+how we can encode categorical variables?
+this is used to created dummy variables.
+
+
+
+
+\begin{lstlisting}
+var1 = ['A','B','C','A','B','A']
+var2 = ['real','bot','bot','bot','real','real']
+df = pd.DataFrame({"var1":var1, "var2":var2})
+for var in df.columns:
+    if df[var].dtype=='object':
+        df = pd.get_dummies(df,prefix=[var], columns = [var], drop_first=True)
+\end{lstlisting}
+
+
+
+
+\section{LabelEncoder}
+According to the documentation this must be  used to the outcome or $y$ variable.
+due rank the input ant could alter the results.
+
+
+\subsection{Theil index}
+
+\begin{equation}
+H(x) = p(x)
+\end{equation}
+
+\begin{lstlisting}
+import numpy as np
+import pandas as pd
+pd.read_excel(df)
+
+\end{lstlisting}
+
+
+\begin{verbatim}
+print('hello world')
+\end{verbatim}
+
+
+\end{document}
+
+
+
+
+
+
+
+\begin{comment}
+
+\begin{lstlisting}
+import random
+import pandas as pd
+def cross_validate(no_folds, data, resample=False):
+    rows = list(data.index)
+    random.shuffle(rows)
+    N=len(data)
+    len_fold = int(N/no_folds)
+    start=0
+    for i in range(no_folds):
+        if i==no_folds-1:
+            stop =N
+        else:
+            stop = start +len_fold
+        test = data.ix[rows[start:stop]]
+        train = data.ix[rows[:start]+rows[stop:]]
+        if resample:
+            train_len=start+N-stop
+            no_resamples = N-train_len
+            train_rows = list(train.index)
+            random_extra_rows =[random.choice(train_rows) for row in range(no_resamples)]
+            train_rows = train_rows+random_extra_rows
+            train=train.ix[train_rows]
+        yield {'test':test, 'train':train}
+        start=stop
+
+\end{lstlisting}
+
+
+https://triangleinequality.wordpress.com/2013/09/05/to-prune-or-not-to-prune-cross-validation-is-the-answer/
+
+
+good page
+
+
+
+
+
+
+\end{comment}
+

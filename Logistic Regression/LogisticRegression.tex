@@ -1,0 +1,669 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{nicematrix}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{fancyvrb}
+\usepackage{comment}
+\usepackage{array}
+\usepackage{pgfcore}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{munsell}{rgb}{0.0, 0.5, 0.69}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{minas}{RGB}{0.244, 0.172, 0.36}
+\definecolor{PUJ}{RGB}{44, 86, 151}
+\definecolor{PUJ2}{RGB}{43, 93, 156}
+\definecolor{PUJ3}{RGB}{20, 52, 107}
+\definecolor{cyandk}{rgb}{0.0, 0.72, 0.92}
+\setbeamerfont{frametitle}{size=\LARGE ,series=\bfseries}
+\setbeamercolor{frametitle}{fg=PUJ2, bg=white} %% title of the beamer
+\setbeamercolor{titlelike}
+{parent=structure,bg=PUJ2}
+\setbeamercolor{title}{fg=white, bg=PUJ3} 
+%\setbeamercolor{navigation symbols}{fg=white, bg=white}
+\setbeamercolor*{palette primary}{use=structure,fg=black,bg=yellow}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=PUJ3}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=PUJ3}
+
+\setbeamercolor{block title}{bg=PUJ3,fg=white}
+
+
+%% code information
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  classoffset=1,
+  morekeywords={True,False}, keywordstyle=\color{munsell}, 
+  classoffset=0, 
+  keywordstyle=\color{blue},  
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{PUJ3},
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+}
+
+%% You can change default language in the middle of document with \lstset{language=Java}.
+
+
+%% PUT or Remove the logo in a slide.
+
+
+%% Information topic
+
+\institute{Javeriana}
+\date{2020}
+
+\title[Pontificia Universidad Javeriana] %optional
+{Logistic regression}
+\subtitle{Using python.}
+
+\author[Iván Andrés Trujillo] 
+{
+Iván Andrés Trujilllo Abella}
+
+\institute[] 
+{
+  Facultad de Ingenieria\\
+  Pontificia Universidad Javeriana
+  \and
+  
+\textbf{ trujilloiv@javeriana.edu.co \\
+addajaveriana}
+}
+
+\date[MINTA] % (optional)
+
+\newif\ifplacelogo % create a new conditional
+\placelogotrue % set it to true
+%\logo{\ifplacelogo\color{red}\rule{.5cm}{.5cm}\fi}
+\logo{\ifplacelogo \includegraphics[height= 2.0cm]{pujshield.eps}\fi}
+
+
+
+\begin{document}
+
+
+
+\frame{\titlepage}
+
+
+\begin{frame}[fragile]{Introduction}
+Logistic regression is used broadly in empirical works, it used in economics, engineering, epidemiology and clinical research.
+In a simplified way the logistic regression it is used to binary problems.
+\end{frame}
+
+
+\begin{comment}
+qualms: escrupulos.
+horrid:horrible
+improved:mejorado
+badly:mal, gravemente.
+sight: vista, visión, mirada.
+hindsight: compresión retrospectiva
+scent:olor, rastro, perfume.
+unsound: defectuoso, malo, poco seguro.
+sloppy:descuidado, poco riguroso.
+eliciting:provocando,
+underneath:debajo, por debajo.
+horseshoes; herraduras
+dealership:concesión
+aid:ayuda
+sinks:
+nothingness:
+twig:
+likewise:
+sketch:
+startbust:
+overkill:
+whiter
+pinker
+
+rolling snake eyes: 
+way up:dirigirte
+tailor:sastre
+engange:comprometerse
+
+\end{comment}
+
+
+
+
+
+\begin{frame}{Insights}
+If we take a point near to the change in concavity the method could produce divergence.
+
+\end{frame}
+
+
+
+\begin{frame}{Bolzano theorem}
+
+\end{frame}
+
+
+
+\begin{frame}{illustration}
+\definecolor{qqqqtt}{rgb}{0,0,0.2}
+\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+\definecolor{qqttcc}{rgb}{0,0.2,0.8}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.5]
+\begin{axis}[
+x=0.5cm,y=0.3cm,
+axis lines=middle,
+xmin=12,
+xmax=50,
+ymin=-1.8792640494518171,
+ymax=48.1235609654139,
+xtick={10,15,...,85},
+ytick={0,5,...,45},]
+\clip(8.8595386410843,-1.8792640494518171) rectangle (86.66434171926987,48.1235609654139);
+\draw[line width=3.6pt,color=qqttcc,smooth,samples=100,domain=8.8595386410843:86.66434171926987] plot(\x,{0.03*((\x)-3)^(2)-4});
+\draw [line width=2pt,dotted,color=qqqqtt,domain=8.8595386410843:86.66434171926987] plot(\x,{(-61.81--2.46*\x)/1});
+\draw [line width=2pt,dotted,domain=8.8595386410843:86.66434171926987] plot(\x,{(-22.669476279999998--1.32756*\x)/1});
+\draw (25.153738238610075,0.9722208801128268) node[anchor=north west] {$\mathbf{x_{0}}$};
+\draw (16.701122197393577,1.0740596275972785) node[anchor=north west] {$\mathbf{x_{1}}$};
+\draw (20, 30) node[anchor=north west] {$\mathbf{f(x^{*})=0}$};
+\draw (13.849637267826568,3.059915203544084) node[anchor=north west] {$\mathbf{x^{*}}$};
+\begin{scriptsize}
+\draw[color=qqttcc] (12.423894803043062,-0.8354168877361886) node {$f$};
+\draw [fill=uuuuuu] (44,46.43) circle (3.5pt);
+\draw[color=uuuuuu] (42.82276092717708,47.079713803698276) node {$A$};
+\draw[color=qqqqtt] (45.21597149306368,48.09810127854279) node {};
+\draw [fill=uuuuuu] (25.126,10.686796280000001) circle (3.5pt);
+\draw[color=uuuuuu] (24.23718951124925,11.894426547820258) node {$B$};
+\draw[color=black] (52.446522564465745,48.09810127854279) node {$h$};
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\end{frame}
+
+
+
+
+\begin{frame}
+
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1}
+\definecolor{qqqqtt}{rgb}{0,0,0.2}
+\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+\definecolor{qqttcc}{rgb}{0,0.2,0.8}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45, scale=0.6]
+\begin{axis}[
+x=0.5cm,y=0.3cm,
+axis lines=middle,
+xmin=12,
+xmax=50,
+ymin=-1.8,
+ymax=48,
+xtick={0,5,...,105},
+ytick={-5,0,...,60},]
+\clip(-2.675665139105161,-9.631087996514406) rectangle (106.03556108256446,60.23437283436955);
+\draw[line width=3.6pt,color=qqttcc,smooth,samples=100,domain=-2.675665139105161:106.03556108256446] plot(\x,{0.03*((\x)-3)^(2)-4});
+\draw [line width=2pt,dotted,color=qqqqtt,domain=-2.675665139105161:106.03556108256446] plot(\x,{(-61.81--2.46*\x)/1});
+\draw (43.996170202135204,-0.31095014636593465) node[anchor=north west] {$\mathbf{x_{0}}$};
+\draw (8.707709334368099,6.23449017587574) node[anchor=north west] {$\mathbf{f(x^{*})=0}$};
+\draw (14.257104390186312,0.40051075822555166) node[anchor=north west] {$\mathbf{x^{*}}$};
+\draw [line width=2pt,dash pattern=on 1pt off 1pt on 1pt off 4pt] (44,46.43)-- (45,0);
+\draw (25.071310139985908,0.04478030592980852) node[anchor=north west] {$\mathbf{x_{1}}$};
+\draw (45.20565373994174,20.961730900919505) node[anchor=north west] {$\mathbf{f(x_{0}) - 0}$};
+\draw (31.616750462233032,-0.5243884177433805) node[anchor=north west] {$\mathbf{x_{0} - x_{1}}$};
+\draw (30.193828653048875,10.930132146179549) node[anchor=north west] {$\mathbf{f^{1}(x_{0}) = \frac{f(x_{0}) -0}{x_{0} - x_{1}}}$};
+\begin{scriptsize}
+\draw[color=qqttcc] (-1.9642042345130826,-3.2635129004206025) node {$f$};
+\draw [fill=uuuuuu] (44,46.43) circle (3.5pt);
+\draw[color=uuuuuu] (42.21751794065501,47.03677305419748) node {$A$};
+\draw[color=qqqqtt] (50.185880072086285,59.91421542730338) node {$g$};
+\draw [fill=xdxdff] (45,0) circle (2.5pt);
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+
+
+\begin{equation}
+x_{1} = x_{0} - \frac{f(x_{0})}{f^{1}(x_{0})}
+\end{equation}
+
+Thus in $i$ iteration we have:
+\begin{equation}
+x_{i+1} = x_{i} - \frac{f(x_{i})}{f^{1}(x_{i})}
+\end{equation}
+
+We select the point $A$ the tangent line cross the x-axi in $x_{0}$ and again in $f(x_{0})$ and again the tangent line of this point ($B$) cross the x-axis in $x_{1}$ each step is also known as a iteration.
+The algorithm converge to the the value $x^{*}$ think that this could be used to \textit{optimization problems}.
+\end{frame}
+
+
+\begin{frame}[fragile]{Newton-raphson program}
+\begin{lstlisting}
+def quadratic(a,b,c, x): 
+      return a*x**2 + b*x + c
+def dfQuadratic(a,b,x): 
+  return a*x**2 + b*x
+a,b,c ,x0  = 1,-3,-4,8
+def raphsonQuadratic(a,b,c,x0, error_max=0.0000015, iteration_max=100):
+  xi = x0
+  iter, error = 0, 100
+  data = []
+  while (iter < iteration_max) and (error > error_max):
+    xj = xi - quadratic(a,b,c,xi)  / dfQuadratic(a,b,xi)
+    error = abs(xj - xi)
+    iter += 1
+    data.append((xj,xi,error,iter))
+    xi = xj
+  return data
+raphsonQuadratic(a,b,c,4)[-1]
+\end{lstlisting}
+\end{frame}
+
+
+
+\begin{frame}
+second order approximation
+
+\end{frame}
+
+
+
+\begin{frame}{taylor series}
+
+
+\end{frame}
+
+
+
+
+\begin{frame}{Insights abour classic and bayesian}
+\textbf{Uses likelihood function estimation pretend assume that $P(A \mid B) = P(B \mid A)$}
+
+\end{frame}
+
+
+
+\begin{frame}
+$P(\Theta)$ prior distribution, posterior distribution $P(\Theta \mid \mathbf{X})$.  likelihood $P(\mathbf{X} \mid \Theta)$.
+Prior the belief before seen the data.
+\end{frame}
+
+
+
+
+\begin{frame}{Conjugate prior}
+
+
+\end{frame}
+
+
+\begin{frame}{Gamma to poison}
+$ x \sim Poisson(\lambda) $
+
+\end{frame}
+
+
+
+
+
+
+
+
+\begin{frame}{Max a posteriori}
+A set of features $\mathbf{X} = \lbrace x_{1},...x_{n} \rbrace$
+assuming a distribution $P(\mathbf{X}, \Theta)$ where $Theta$ is a parameter (a random variable).
+
+\begin{equation}
+\Theta_{ma} = \max P(\Theta \mid \mathbf{X})
+\end{equation}
+the last equation must be compared regarding the maximun likelihood estimation. that establish the $\max P(\mathbf{X} \mid \Theta)$.
+
+\end{frame}
+
+\begin{frame}
+
+\end{frame}
+
+
+\begin{frame}{Bayesian continuous}
+\begin{equation}
+f_{X \mid Y}(x \mid y) = \frac{f_{Y \mid X}(y \mid x)f_{X}(x)}{f_{Y}(y)} = \frac{f_{Y \mid X}(y \mid x)f_{X}(x)}{ \int f_{Y \mid X}(y \mid x)f_{X}(x)dx}
+\end{equation}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}{Maximun Likelihood Estimation}{MLE}
+Suppose that you data it is generated by a theoretical distribution, the inverse problem is determine the most probable parameter that generate the data.
+\end{frame}
+
+\begin{frame}{Problem}
+you have $n$ balls in a bag where there are $j$ reds and $k$ black thus $n= j+k$. However you do not know the really proportion of each one color. if you draw balls and both are different what is the proportion of black balls $\Theta$.
+
+\begin{block}{MLE insight }
+Then we choose a $\Theta$ among all posible values that maximize the probability of seen the data.
+\end{block}
+\end{frame}
+
+\begin{frame}{Problem}
+In a formal way we can assume that $x \sim B(n,\Theta)$ and we have seen the data results $\lbrace x_{1},x_{2},x_{3},...,x_{n} \rbrace$ 
+\begin{equation}
+P(X=x_{1} \cap X=x_{2},...,\cap X= x_{n})
+\end{equation}
+The variables are i.i.d and therefore the joint probability is the result of multiply the marginal probabilities.
+\begin{equation}
+P(X=x_{1} \cap X=x_{2},...,\cap X= x_{n}) = \prod_{i=1}^{n} P(x_{i})
+\end{equation}
+\end{frame}
+
+\begin{frame}{Problem}
+\begin{equation}
+\begin{align*}
+\prod_{i=1}^{n} P(x_{i})  = & \prod_{i=1}^{n} \binom{m}{x_{i}}\Theta^{x_{i}}(1-\Theta)^{m-x_{i}} \\
+= & \prod \binom{m}{x_{i}} \prod \Theta^{x_{i}} \prod (1 -\Theta )^{m-x_{i}} \\
+= & \prod \binom{m}{x_{i}} \Theta^{\sum x_{i}}(1-\Theta)^{\sum(m-x_{i})} \\
+ln(\prod P(x_{i}) )= &ln(\binom{m}{x_{i}} + \sum x_{i} ln(\Theta) + (nm - \sum x_{i})ln(1-\Theta)
+\end{align*}
+\end{equation}
+\end{frame}
+
+\begin{frame}
+\begin{equation}
+\begin{align*}
+L(\Theta) = &ln(\prod P(x_{i}) \\
+\frac{dL(\Theta)}{d\Theta} = & \frac{\sum x_{i}}{\Theta} - \frac{nm-\sum x_{i}}{1-\Theta} = 0 
+\\
+\frac{1}{\Theta} = & \frac{nm-\sum x_{i}}{\sum x_{i}}+1 \\
+\Theta^{*} = & \frac{\sum x_{i}}{nm}
+\end{align*}
+\end{equation}
+Now to proof that $L(\Theta^{*})$ is the maximun probability we must show that $\frac{d^{2}L(\Theta)}{d\Theta^{2}} \mid_{\Theta=\Theta^{*}} <0.$ 
+\end{frame}
+
+
+
+\begin{frame}{Limit bound Cramer-Rao}
+a boundarie to limit 
+
+\end{frame}
+
+
+
+
+\begin{frame}{Fisher information}
+Measure the amount of information that have a random variable about a parameter. 
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{concepts about estimators}
+The quality of estimators:
+
+\begin{itemize}
+\item \textbf{Unbiased estimator
+:}
+The mean of the estimator is equal to the mean of parameter.
+
+\item \textbf{Variance:}
+the dispersion of the estimations regarding the mean value of the same.
+
+\item \textbf{quadratic value mean:}
+offer information about another two.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Topics to research}
+Teorema rao blackwell
+Teorema de Basu
+Teorema de Lehman-Scheffe
+propiedad de invarianza?
+teomrea de Zenha
+
+\end{frame}
+
+
+\begin{frame}{Compare estimators}
+
+
+\end{frame}
+
+
+
+\begin{frame}
+ the lake is shallow 
+\end{frame}
+
+
+
+\begin{frame}{Score Statistics}
+
+
+\end{frame}
+
+\begin{frame}
+
+
+Suppose that do you have a function $f(x,y) = x^{2}+y^{2}$, then we can define the gradient as follow:
+
+\begin{equation}
+\nabla f(x,y) = 
+\begin{bmatrix}
+\frac{df}{dx} \\
+\frac{df}{dy}
+\end{bmatrix}
+\end{equation}
+
+
+
+
+
+\end{frame}
+
+
+\begin{frame}{Notes about gradient}
+The gradient is perpendicular to each point in the level curve to any surface or level curve.
+
+\end{frame}
+
+
+
+
+
+\begin{frame}{important resource}
+https://www.youtube.com/watch?v=rB83DpBJQsE
+
+\end{frame}
+
+
+\begin{frame}{Escalar fields}
+it is a function that $f: R^{m} \rightarrow R$
+
+\end{frame}
+
+
+
+\begin{frame}{Vector field}
+it is a function $\vec{F} = R^{n} \rightarrow R^{n}$ that associated a vector to each point in the euclidean space.
+you can use the gradient to construct the vector field.
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.5]
+    \begin{axis}[
+        title={$x \exp(-x^2-y^2)$ },
+        domain=-2:2,
+        view={0}{90},
+        axis background/.style={fill=white},
+    ]
+        \addplot3[contour gnuplot={number=9,
+            labels=false},thick]
+                {exp(0-x^2-y^2)*x};
+        \addplot3[blue,
+            quiver={
+             u={exp(0-x^2-y^2)*(1-2*x^2)},
+             v={exp(0-x^2-y^2)*(-2*x*y)},
+             scale arrows=0.4,
+            },
+            -stealth,samples=15]
+                {exp(0-x^2-y^2)*x};
+    \end{axis}
+\end{tikzpicture}
+
+\end{frame}
+
+
+\begin{frame}{Logistic equation}
+\definecolor{ffccww}{rgb}{1,0.8,0.4}
+\definecolor{qqwwzz}{rgb}{0,0.4,0.6}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45, scale=1]
+\begin{axis}[
+x=3.8cm,y=3cm,
+axis lines=middle,
+xmin=-1.2289919911327831,
+xmax=1.829604170941042,
+ymin=0,
+ymax=1.2945223530782293,
+ytick={-0.6000000000000001,-0.4000000000000001,...,1.2000000000000002},]
+\clip(-1.2289919911327831,-0.6711461228095275) rectangle (1.829604170941042,1.2945223530782293);
+\draw[line width=2pt,color=qqwwzz,smooth,samples=100,domain=-1.2289919911327831:1.829604170941042] plot(\x,{1/(1+10^(-(\x)))});
+\draw[line width=2pt,color=ffccww,smooth,samples=100,domain=-1.2289919911327831:1.829604170941042] plot(\x,{1});
+\begin{scriptsize}
+\draw[color=qqwwzz] (-1.2109766996022435,0.05046638794152785) node {$f$};
+\draw[color=ffccww] (-1.2109766996022435,0.9932666447064296) node {$g$};
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\end{frame}
+
+
+
+
+\begin{frame}{logistic equation}
+
+\begin{equation}
+f(x) = \frac{\kappa}{1+e^{-\alpha(x-x_{0})}}
+\end{equation}
+Where $\kappa$ it is the maximun value.
+\end{frame}
+
+
+\begin{frame}{logistic equation}{Population growth}
+
+
+\begin{equation}
+\frac{dy}{dt} = ry(1-\frac{y}{k})
+\end{equation}
+
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{python implementation}{Statsmodels}
+\begin{lstlisting}
+formula = 'died~studytime + C(drug) ' # logit died studytime i.drug 
+model = smf.logit(formula= formula, data=df)
+results = model.fit()
+print(results.summary())
+coefs = pd.DataFrame({
+    'coef': results.params.values,
+    'odds ratio': np.exp(results.params.values),
+    'name': results.params.index
+})
+coefs
+\end{lstlisting}
+\end{frame}
+
+
+
+
+\begin{frame}{Prediction score}
+The usual way 
+
+\end{frame}
+
+
+
+\begin{frame}{Talleres}
+\begin{itemize}
+1. structure problems
+2. loop problems
+3. Combinatorial problems
+4. derivates systems
+5. matrix  algorithm
+6. matrix  algorithm
+7. Economic growth modeling
+8. Analytic problem
+9. Analytic problem
+7  k-means algorithm
+8. perceptron algorithm
+9.  World bank data 
+10. Icfes data
+11. Mortality Data
+12. review project 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Solve}
+with newton method solve the following:
+\begin{equation}
+e^{x} = 4 - x^{2}
+\end{equation}
+las dos soluciones son:
+x1 = 1.05
+x2 = -1.96
+\end{frame}
+
+
+
+
+
+
+
+
+\begin{frame}{Entropy}
+
+\end{frame}
+
+
+
+
+
+
+
+
+\begin{frame}{scoring}
+
+\end{frame}
+
+
+\end{document}

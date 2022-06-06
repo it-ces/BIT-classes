@@ -1,0 +1,52 @@
+\documentclass[10pt]{article}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+
+\begin{document}
+
+\definecolor{qqwuqq}{rgb}{0.12941176470588237,0.12941176470588237,0.12941176470588237}
+
+\definecolor{cqcqcq}{rgb}{0.7529411764705882,0.7529411764705882,0.7529411764705882}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [color=cqcqcq,, xstep=1.0cm,ystep=1.0cm] (-4.3,-5.34) grid (18.7,6.3);
+\draw[->,color=black] (-4.3,0.) -- (18.7,0.);
+\foreach \x in {-4.,-3.,-2.,-1.,1.,2.,3.,4.,5.,6.,7.,8.,9.,10.,11.,12.,13.,14.,15.,16.,17.,18.}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-5.34) -- (0.,6.3);
+\foreach \y in {-5.,-4.,-3.,-2.,-1.,1.,2.,3.,4.,5.,6.}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-4.3,-5.34) rectangle (18.7,6.3);
+\draw[line width=1.2pt,color=qqwuqq,smooth,samples=100,domain=-4.3:18.7] plot(\x,{cos(((\x))*180/pi)});
+\begin{scriptsize}
+\draw[color=qqwuqq] (-4.14,-0.67) node {$f$};
+\end{scriptsize}
+\end{tikzpicture}
+
+
+
+
+
+
+\definecolor{qqqqff}{rgb}{0.3333333333333333,0.3333333333333333,0.3333333333333333}
+\definecolor{zzttqq}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (0.,0.4400000000004479) -- (0.,11.760000000000389);
+\foreach \y in {,1.,2.,3.,4.,5.,6.,7.,8.,9.,10.,11.}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt);
+\clip(-2.86,0.4400000000004479) rectangle (19.82,11.760000000000389);
+\draw[line width=2.8pt,color=zzttqq,smooth,samples=100,domain=1.639999987111602E-7:19.820000000000007] plot(\x,{(\x)^(0.75)});
+\draw[line width=2.8pt,color=qqqqff,smooth,samples=100,domain=-2.860000000000002:19.820000000000007] plot(\x,{4.0});
+\begin{scriptsize}
+\draw[color=zzttqq] (0.76,0.7100000000004443) node {$f$};
+\draw[color=qqqqff] (-2.7,3.8700000000004278) node {$g$};
+\end{scriptsize}
+\end{tikzpicture}
+
+
+\end{document}
+

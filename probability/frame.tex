@@ -1,0 +1,1145 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{comment}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{munsell}{rgb}{0.0, 0.5, 0.69}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{minas}{RGB}{0.244, 0.172, 0.36}
+\definecolor{PUJ}{RGB}{44, 86, 151}
+\definecolor{PUJ2}{RGB}{43, 93, 156}
+\definecolor{PUJ3}{RGB}{20, 52, 107}
+\definecolor{cyandk}{rgb}{0.0, 0.72, 0.92}
+
+\author{Iván Andrés Trujillo }
+
+%% code information
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  classoffset=1,
+  morekeywords={True,False}, keywordstyle=\color{munsell}, 
+  classoffset=0, 
+  keywordstyle=\color{blue},  
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{PUJ3},
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+}
+
+\begin{document}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\includegraphics[width = 4cm]{pujshield.eps}\\[0.5cm] 
+
+\begin{center} 
+\textbf{\LARGE Probability notes}\\[0.2cm]
+\emph{\LARGE Notes of class}\\[0.3cm] 
+\emph{Iván Andrés Trujillo Abella} \\
+\textsc{\Large 
+}\\[0.2cm] 
+\textsc{\large Facultad de ingeniería}\\[0.5cm] 
+\HRule \\[0.4cm]
+\end{center}
+\vspace{1cm}
+
+
+
+
+
+
+\section*{Introduction}
+
+In this section we need that the readers are familiar with some concepts and definitions,  that are elemental in this work.
+
+In this work we try to keep a intuitive approach, thus we uses the [freundental model or bag model], that consists in that for the deduction of each formula you must imagine that of a bag you draw marbles adecuatly labeled with a letter or sign  therefore they are disinguishable (while dont say the contrary). 
+
+
+
+
+
+The number of possible outcomes, that you can get with $n$ elements taken from $k$ in $k$ have some variations, this rely on  the design of the experiment,  for instance with replacement, or not, if order matter or dont, however there are a fundamental theorem that allow us  derived  each one of this cases, is  the total number of outcomes.
+
+
+\begin{theorem}[Fundamental Theorem]
+\label{fundamental}
+
+If one action can be make it of p ways and later other can be make it of q ways then the total numbers of ways that the actions can make it jointly is p.q
+
+
+\end{theorem}
+
+
+
+\begin{proof}
+Being as, to each p ways corresponds "q" ways to carry out the second action, then to p ways correspond p-times q ways of make the two actions. 
+\end{proof}
+
+ a direct consequence of \ref{fundamental} is the next useful corollary.
+ 
+\begin{corollary}
+ 
+if there are a set of consecutive actions and in each there are p, q, and r ways of make it, then the total numbers of possibles ways of make it the actions is p.q.r, thus we can stretch to k-consecutive actions and n-ways like the product rule; $n_{1}.n_{2}.n_{3}...n_{k}$
+
+\end{corollary}
+
+\begin{proof}
+following an analogous reasoning that uses in the proof of \ref{fundamental}, if to each one of p.q ways corresponds r ways of make it the third action, then to pq-times of make the third action, and  the same reasoning is applicable to n-ways in k-consecutive actions.
+
+\end{proof}
+
+ 
+If we think in the total possibles outcomes that are result  of drawing  three marbles in a bag, labeled each one with the letters a,b,c the ways in that we could get the possible results are six, if we make pairs or if only draw two marbles. Using \ref{fundamental} then it said; the first time we can get three ways of drawing a marble and after only two ways  of drawing the rest marbles(we must see that don't insert the marble again) therefore the total of possibles results are six; $(a,b)(a,c)(b,a)(b,c)(c,a)(c,b).$
+
+
+If carried up the same reasoning to an equivalent experiment of  $n$ marbles and need to drawing $k$ times one by one, we found that the possible outcomes are; the first time we can get $n$ marbles, after $(n-1)$, the third time $(n-2)$ thus the $k-time$ we have $(n-k+1)$ ways of drawing one.
+
+
+Usually the total outcomes get in this way are call it; permutations.  We can write this result in a theorem but the most important here is that the reader have a strong notion about of the kind of arrangements in each experiment.
+
+Thus $p(n,k)$ permutations are a function of the number of total objects or marbles in the bag ($n$) and the number of marbles taken $k$.
+
+ 
+\begin{equation}
+\label{permutation}
+p(n,k)= \frac{n!}{(n-k)!}=n(n-1)(n-2)...(n-k+1)
+\end{equation}
+
+%Si queremos que no ennumere solo le ponemos los astericos al equation y al final.
+
+
+
+
+Like consequence $p(n,n)$ is equal to  n-factorial, that is $n!=(n-1)(n-2)(n-3)...1$. 
+
+Now we can consider when you don't extract the ball of bag or you replace the marble then in the experiment by the \ref{fundamental},  the total arrangements or outcomes are 
+$
+\underbrace{n.n.n.n....n}_{k            - \mbox{veces}} = n^{k} $.
+
+the next equations are important equivalences for proof; algebraic equivalences or theorems in this subject, if the reader  don't have enough work with the abstraction must make numerical proof,  for see that it is true.
+
+
+$$n!=n(n-1)!$$ 
+
+
+
+$$n!=n(n-1)(n-2)!$$
+
+like consequence;
+
+$$(n-1)(n-2)!=(n-1)!$$
+
+other important equality is; 
+
+$$\frac{n}{n!}=\frac{1}{(n-1)!}$$
+
+therefore;
+
+$$\frac{n(n-1)(n-2)(n-3)...(n-k)}{n!}=\dfrac{1}{(n-k-1)!}$$
+
+
+the following  is a consequence of stretching (1).
+
+
+$$ \dfrac{n!}{(n-k+1)!}=n(n-1)(n-2)...(n-k+2)$$
+
+
+Until now we have been considering that the marbles or objects are differents each one, but if you have $r$ of them equall then the number of possible outcomes is $p=\frac{n!}{r!}$. this result we will write in a theorem due the proof is a good example of permutation thinking.
+\begin{theorem}[]
+
+\label{two}
+ the number of arrangements $A$ that are possibles with $n$ objects but with  $k_{1}, k_{2},...,k_{n}$ of them equal are $ A =\frac{n!}{k_{1}! k_{2}!...k_{n}!}$
+ 
+\end{theorem}
+
+
+\begin{proof}
+ 
+ there are $k_{1}!$ ways of permuting $k_{1}$ objects different, then by each $A$ permutation with $k_{1}$ equal objects  there are really $Ak_{1}!$ time more arrangements with all different, and if we have $Ak_{1}!$ permutations and  there are $k_{2}$ equal objects then there are $Ak_{1}!k_{2}!$ more with all different thus we can stretch to $Ak_{1}k_{2}...k_{n}$ but the total of arrangements that there are with $n$ objects are $n!$ thus $Ak_{1}!k_{2}!...k_{n}!=n!$ must be to the total of permutations with $n$ objects.
+
+\end{proof}
+
+
+One example of the use of \ref{two} is in this case, what is the possible number of words that we can get with the word "letters" this is $\dfrac{7!}{2!2!}$.
+
+
+Other case are the circular permutations  that if you put in line for example 4 letters then you have 4! permutations but here the consideration is different, this mean that only matter the order of 3 letters because $(c,b,a,d)=(b,a,d,c)=(a,d,c,b)=(d,c,b,a)$
+then by each permutation of $n$ objects there are $n$ ways of read it then there are  n-times more if not it is circular thus the circular permutation of n objects is $\frac{n!}{n}=(n-1)!$.
+
+
+
+\begin{center}
+
+\definecolor{qqqqff}{rgb}{0.3333333333333333,0.3333333333333333,0.3333333333333333}
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(4.,1.4) rectangle (8.,5.);
+\draw(6.1,3.26) circle (0.8609297300012348cm);
+\begin{scriptsize}
+\draw [fill=qqqqff] (5.24,3.3) circle (4.5pt);
+\draw[color=qqqqff] (5.04,3.83) node {$B$};
+\draw [fill=qqqqff] (11.48,-5.28) circle (2.5pt);
+\draw[color=qqqqff] (11.62,-4.91) node {$E$};
+\draw [fill=qqqqff] (6.06,4.2) circle (4.5pt);
+\draw[color=qqqqff] (6.02,4.81) node {$C$};
+\draw [fill=qqqqff] (6.04,2.4) circle (4.5pt);
+\draw[color=qqqqff] (6.04,2.01) node {$A$};
+\draw [fill=qqqqff] (7.,3.3) circle (4.5pt);
+\draw[color=qqqqff] (7.14,3.83) node {$D$};
+\end{scriptsize}
+
+
+\end{tikzpicture}
+
+\end{center}
+
+
+Other way is that you have that in the circular permutation don't matter if for instance A is in the begging or the end then only matter the way of (n-1) elements can permute among them. 
+
+In the practice and probability, several times we must find a number of possible outcomes in specific the number of combinations. According to the bag model, for instance if i have $n$ marble in a bag each one labeled with a sign or letter and we want to know, the possible outcome if we draw $k$ marble and the order dont matter this means that $(a,b)=(b,a)$, then we take in mind that if you choose $k$ marbles then they can permute of $k!$ ways therefore we have 
+
+
+\begin{equation}
+\label{combination}
+ C(n,k) = \dfrac {n!}{k!(n-k)!} 
+\end{equation}
+
+then we can change $k$ if $k\leq n$  for instance if $n=5$; 
+${5 \choose 0}=1$
+${5 \choose 1}=5$
+${5 \choose 2}=10$
+${5 \choose 3}=10$
+${5 \choose 4}=5$
+${5 \choose 5}=0$
+
+
+like we will see this numbers are in the pascal triangle and usually are known like combinatorial numbers.
+
+a importnat issue is that $C(n,n)=1$
+one example of combinatorial numbers is the number of combinations that you can get different teams of 3 peoples of 6, then $\dfrac{6!}{(6-3)!3!}$ is the answer is 20 different teams of 4 persons.
+
+an important issue in the combinatorial number or the combinations $C(n,k)=c(n,n-k)$
+
+
+ this result is very intuitive and the algebraic proof is very easy 
+
+$${n \choose k}= \frac{k!}{k!(n-k)!}$$
+
+$${n \choose n-k}=\frac{n!}{(n-k)!(n-(n-k))}=\dfrac{n!}{(n-k)!k!}$$
+
+$${n \choose k}={n \choose n-k}$$ 
+
+The most important is understand why this result is true, intuitively this occur due exist  a number of complementary, for each combination with $k$ elements exist other complementary with $n-k$ elements, then if exist $c_{1}$ different combinations of $k$ elements must be exist $c_{1}$ combinations with $n-k$ different complementary elements.  
+
+thus we can write another theorem for see mainly its proof attempting of using  some  concepts viewed and the idea of complementary combinations. when we calculate the $C(n,k)$  number of combinations of $k$ elements taken of $n$, we get the number of combinations of two  groups one of $k$ elements and another of $n-k$;
+
+
+\begin{theorem}
+the total of divisions of $k_{1}+k_{2}+k_{3}+...+k_{n}$ where all numbers are different in n groups of $k_{1}, k_{2},k_{3},...,k_{n}$ elements is $$D=\frac{(k_{1}+k_{2}+k_{3}+...+k_{n})!}{k_{1}!k_{2}!k_{3}!...k_{n}!}$$.
+
+\end{theorem}
+
+
+\begin{proof}
+
+there are $\frac{(k_{1}+k_{2}+...+k_{n})!}{k_{1}![k_{2}+...+k_{n}]!}$ ways according to the principle of complementary combinations but by each combination exist $\dfrac{(k_{2}+..+k_{n})!}{k_{2}![k_{3}+...+k_{n}]!}$ so on  by \ref{fundamental} o we get the result.
+\end{proof}
+
+
+
+This proof is easier of understand if we think in the next example; we have the six marbles labeled  $a,b,c,d,e,f$ we  draw first  a group of five then we can get $(a,b,c,d,e)[f] $ $(a,b,c,d,f)[e]$ so on, until by each of six letters, however the groups of five we can split in  two groups one of two and another of 3 then by each letter we have 10 division is said $[f](ab)(cde), [f](a,c)(b,d,e),[f](a,d)(b,c,e))... $ and so on.
+
+
+We must be aware that if the numbers are equal then the groups can permute the reader must think in this and deduce the formula.
+
+
+\begin{table}[h!]
+\centering
+    \begin{tabular}{*{4}{c|}}
+      \multicolumn{2}{c}{} & \multicolumn{2}{c}{}\\\cline{3-4}
+      \multicolumn{1}{c}{} &  & $order$  & $dont order$ \\\cline{2-4}
+        & $Replacement$ & $n^{k}$ & ${ n +k -1 \choose k}$  \\\cline{2-4}
+      & $Without replacement$ & $\dfrac{n!}{(n-k)!}$ & ${ n \choose k}$ \\\cline{2-4}
+    \end{tabular}
+ \caption{source; Harvard course}   
+    \end{table}
+
+
+\begin{theorem}
+of n objects where there are k in a category the possible outcomes of drawing r is 
+$$ { k \choose r} {  n-k \choose }$$
+
+\end{theorem}
+
+
+
+\section{Binomial theorem}
+
+Binomial theorem have a  refined symmetry, due the relation with pascal's triangle. how we will see, later we can rewrite like a serie:
+
+$$(a+b)^2 = a^2 +2ab+b^2$$
+
+if you develop the binomial until the following 4 power you will see that if you put n-power then will be n+1 terms. this  means if $(a+b)^k$ then we will get $k+1$ terms. 
+
+\begin{eqnarray}
+ \nonumber (a+b)^n= a^n+na^{n-1}b+\dfrac{n(n-1)a^{n-2}b^2}{2!}+\dfrac{n(n-1)(n-2)a^{n-3}b^3}{3!}+...+  \\  \dfrac{n(n-1)(n-2)(n-3)...(n-r+2)a^{n-r+1}b^{r-1}}{(r-1)!}+...+nab^{n-1}+b^{n}
+\end{eqnarray}
+
+the $r$ term;
+\begin{equation}
+\dfrac{n(n-1)(n-2)(n-3)...(n-r+2)a^{n-r+1}b^{r-1}}{(r-1)!}
+\end{equation}
+
+
+ The binomial coefficients are combinatory number.  A useful fact is that  in the next figure know like the pascal triangle this are in order. 
+
+
+\begin{center}
+
+\begin{tabular}{rccccccccccc}
+$n=0$:&    &    &    &    &  & 1\\\noalign{\smallskip\smallskip}
+$n=1$:&    &    &    &   &   1  &  & 1\\\noalign{\smallskip\smallskip}
+$n=2$:&    &    &   & 1   &   & 2   &  & 1\\\noalign{\smallskip\smallskip}
+$n=3$:&    &   &  1  &   & 3   &   &  3  &  &1\\\noalign{\smallskip\smallskip}
+$n=4$:&   &  1  &   & 4   &   & 6   &   & 4   & &   1 \\\noalign{\smallskip\smallskip}
+$n=5$:&  1 &    &  5 &    & 10 &    &  10 &    &  5 & & 1\\ \noalign{\smallskip\smallskip}
+
+\end{tabular}
+
+\end{center}
+
+according to (1) then $(a+b)^5 = a^{5} + 5 a^4 b + 10a^{3}b^{2}+ 10a^{2}b^{3}+5ab^{4}+ b^{5}$ that we can see is are the same coefficients that get in the 6 row (n=5) in the pascal's triangle.
+
+the relation among the coefficients in the developing of binomial and the combinatorial numbers allow us write this like;
+
+
+\begin{equation}
+\label{binomio}
+(a+b)^{n} = \sum_{i=0}^{n} a^{n-i}b^{i}C(n,i) 
+\end{equation}
+
+
+
+
+this result is important for solve some problems for instance, how many outcomes are possible if we want add   six different coins?
+
+before we announce a important principle; 
+
+\begin{description}
+\item[Rule of sum]
+
+If we have $N$ ways of make an action, $M$ ways of make another action and both can't occur together then the number of actions of make it the first action or the second actions is $N+M$.
+\end{description}
+
+We need in the exclusion-inclusion, that is very important in the probabilities rules. 
+
+
+
+
+
+\begin{theorem}
+the number of possible combinations of  n different objects, taken of 1 in 1, 2 in 2, 3 in 3, until n,n is equal to $2^{n}-1$
+
+
+
+\end{theorem}
+
+\begin{proof}
+
+
+by \ref{binomio} we said that $a=1,b=1$ then
+
+$$(1+1)^{n}=\sum_{r=0}^{n}C(n,r)$$
+
+$$2^{n}-C(n,0)=\sum_{r=1}^{n}C(n,r)$$
+
+$$2^{n}-1=\sum_{r=1}^{n}C(n,r)$$
+
+\end{proof}
+
+
+using the pattern in the pascal's triangle we can announce the follow theorem, whose proof must make the reader.
+
+\begin{theorem}
+
+the combinatorial number of n is equal to the r term plus r-1 term of n-1. $C(n,r)=C(n-1,r)+(n-1,r-1)$
+
+
+\end{theorem}
+
+
+\section*{probability}
+
+how we saw in the last section, the total of outcomes in a experiment is important becasuse of the \textbf{naive probability definition} rely on in this concept. 
+
+thus we have \textbf{the sample space } $(\Omega)$ that means is the total possibles outcomes in a experiment.
+
+then the probability that occur the event $A_{i}$ is equal to $P(A_{i})=\dfrac{a_{i}}{\Omega}$ we can see that $\Omega$ is the number of favorable and unfavorable cases.
+
+An \textbf{event} is a subset of $\Omega$ and we can denote with the letter $A_{i}$  and therefore the number of favorable cases to this event is $a_{i}$
+
+the \textbf{naive definition;} here there is a problem with this definition due for using this concept we must be sure that the events are equally likely; 
+
+
+the \textbf{no naive definition;}
+
+probability space, a new concept, 
+that include a function $f$ such as; 
+
+$x \subseteq \Omega $ thus $f(x) \in [0,1]$.
+
+then according to the standar literature our fuction will be $P()$ in which we will know that is a probability fuction.
+
+the a fuction of probability "además" should satisfy the next assumptions;
+
+
+
+$$P(\emptyset)=0$$
+
+the probability that something that never will happend is equal to zero.
+
+
+$$P(\Omega)=1$$
+
+the probability of something that always occur is equal to one.
+
+$$P(\cup_{i}^{n} A_{i})=\sum P(A_{i})$$
+
+
+
+the assumptions are the basis for our models, because all theory derivates of them, and our main results are consist with them.
+
+
+
+the second axiom is very intuitevily because $\Omega$ is exhaustive.
+
+however we can try offer a proof;
+\begin{theorem}
+
+In a family of events whose sample space is $\Omega$ we can said that $P(\cup_{1}^{n}A_{i}= \sum_{i}^{n}P(A_{i})$ when $\cap A_{i}=\emptyset$
+
+\end{theorem}
+
+
+
+
+this is the introduction to probability theory....
+
+there are two main theorems that we must consider and allow us calculate probabilities.
+
+\begin{theorem}[Multiplication rule]
+\label{multiplication}
+if the events $A_{1},A_{2},A_{3},...,A_{n}$ are independent each one then the probability that they occur is $\prod_{i=1}^n P(A_{i})$
+\end{theorem}
+
+\begin{proof}
+If there are $a_{1},a_{2},a_{3},...,a_{n}$ favorable cases and $\Omega_{1},\Omega_{2},\Omega_{3},...\Omega_{n}$ possible outcomes to the events $A_{1},A_{2},A_{3},...,A_{n}$ respectively then  by \ref{fundamental} the are  $\Omega_{1}\Omega_{2} \Omega_{3}...\Omega_{n}$ in total possible outcomes, and there are $a_{1} a_{2} a_{3}...a_{n}$ of get a  favorable case therefore by naive definition we have
+
+$$P=\dfrac{a_{1} a_{2} a_{3}...a_{n}}{\Omega_{1}\Omega_{2} \Omega_{3}...\Omega_{n}}=P(A_{1})P(A_{2})P(A_{3})...P(A_{n})$$
+
+ 
+\end{proof}
+
+
+
+\begin{theorem}[addition rule]
+\label{addition}
+if the events $A_{1},A_{2},A_{3},...,A_{n}$ are disjoint then the probability that occur at least one of them is $\sum_{i=1}^{n}P(A_{i})$
+
+\end{theorem}
+
+\begin{proof}
+If there are $a_{1},a_{2},a_{3},...,a_{n}$ favorable cases and $\Omega_{1},\Omega_{2},\Omega_{3},...\Omega_{n}$ possible outcomes to the events $A_{1},A_{2},A_{3},...,A_{n}$ respectively then  by \ref{fundamental} the are  $\Omega_{1}\Omega_{2} \Omega_{3}...\Omega_{n}$ in total possible outcomes, however by each favorable case by $A_{1}$ event there are $\Omega_{2}\Omega_{3}...\Omega_{n}$ events equally favorable in total there are by this event  $a_{1}\Omega_{2}\Omega_{3}...\Omega_{n}$  favorable case, and by the \textbf{Rule of Sume} for $A_{1}$ o $A_{2}$ there are $a_{1} \Omega_{2} \Omega_{3} \Omega_{4}...\Omega_{n} + a_{2} \Omega_{1} \Omega_{3} \Omega_{4}...\Omega_{n}$  thus by all events  and naive definition;
+
+
+$$P = \frac{a_{1}\Omega_{2} \Omega_{3}...\Omega_{n}+a_{2} \Omega_{1} \Omega_{3} \Omega_{4}...\Omega_{n}+...+a_{i}\Omega_{1} \Omega_{2} \Omega_{i+1}... \Omega_{n}}{\Omega_{1}\Omega_{2}\Omega_{3}...\Omega_{n}}$$
+
+$$= \dfrac{a_{1}}{\Omega_{1}}+ \dfrac{a_{2}}{\Omega_{2}}+ \dfrac{a_{3}}{\Omega_{3}}+...+\dfrac{a_{n}}{\Omega_{n}}= P(A_{1})+P(A_{2})+P(A_{3})+..+P(A_{n}).$$
+ 
+\end{proof}
+
+
+\subsection{Pigeonhole principle}
+
+\begin{description}
+\item[Dirichlet principle]
+If there are N boxes and N+1 marbles then  in at least one box there are two marbles.
+\end{description}
+
+this is important and there there are a consequence of the proability, for instance in the birth day problem seems that the result is counterituitive, that we will see, but the next exercise is an introduction:
+
+applying the pigeonhole principle among 13 people, there are two that born in the same month.
+
+if we have 8 persons then at least two of them born in the same day.
+
+then we need 366 persons for to be sure that two of them born in the same day, but what is the measure of certainty that we have if there are less persons? 
+
+
+then the probability can show us this answer and we try to found a paradoxical situation.
+
+
+
+among three persons at least two of them are the same sex.
+
+
+
+\subsection{birthday problem}
+
+if we have k persons then the probability that two of them born in the same day is; if the year have 360 days:
+
+$$1- \frac{360.359.358...(360-k+1)}{360^{k}}$$
+
+the curiosity of this is that you can calculate it with derive for instance;
+
+to know the number of person 
+
+\footnote{the counting was made it in derive}
+
+
+
+
+$$ 1 - \left( \prod_{i=311}^{360} i (360^{-50})\right)\approx 0,97 $$
+
+
+is 97\%  is a high probability  that at least two person born the same day.
+
+
+\section{law of large numbers}
+
+the law of large numbers we can get the definition of frecuentist probability with this law.
+
+this law is very important because we can said us, the approximation to theorical probability. 
+
+
+
+\subsection{benford law}
+
+
+\subsection*{curisotiy}
+
+bose-einsten
+vander monde identity 
+
+
+\section{ramndon variable }
+
+
+
+
+\section{taylor serie}
+\emph{idea}: approximate a function $h(x)$
+with $f(x)$ where $f(x)$ is  a polynomial form of $\sum_{i=0}^{n} a_{i}x^{i}$. with the aim of reduce calculus or operations.
+
+The challenge is find the coefficients $a_{i}$. To find the  values of the coefficients  we need assume that $g^{n}(x) = f^{n}(x)$. think that we already have the first coefficient of $f(0) = h(0)$.
+
+
+thus take in mind that $g^{2}(x=0) = f^{2}(x=0) = 2a_{2}$ and therefore $a_{2} = \frac{ g^{2}(x=0) }{2}$, note that by power rule of derivatives then factorial appear.
+thus the coefficient of the $i$ term will be $a_{i} = \frac{g^{i}(0)}{i!}$.
+
+
+\begin{eqnarray}
+f(x)=\sum_{i=1}^{n} a_{i}x^{i} \\
+f^{1}(x)=\sum_{i=1}^{n} i a_{i}x^{i-1} \\
+f^{2}(x)=\sum_{i=1}^{n} i(i-1) a_{i}x^{i-2} = \sum_{i=1}^{n} \dfrac{i!}{(i-2)!} a_{i}x^{i-2} \\
+f^{3}(x)=\sum_{i=1}^{n} i(i-1)(i-2) a_{i}x^{i-3} = 
+\sum_{i=1}^{n} \dfrac{i!}{(i-3)!} a_{i}x^{i-3} \\
+f^{n}(x)= \sum_{i=1}^{n} n! a_{i}x^{i-n}
+\end{eqnarray}
+
+note that in j-derivate only appear the j-term because of the rest of term are equal to zero. Therefore the j- derivate is:
+$$ f^{j}(x)=\sum_{i=j}^{n} a_{i}x^{i-j} \dfrac{i!}{(i-j)!}$$
+
+but 
+
+$$f^{j}(x)=a_{j} \dfrac{i!}{(i-j)!} + \sum_{i=j+1}^{n} a_{i}x^{i-j} \dfrac{i!}{(i-j)!}$$
+
+
+$$ f^{j}(0)=a_{j} j!$$
+
+therefore
+ $$f(x)=\sum a_{i}x^{i}=\sum_{i=0}^{n}f^{i}(0) \dfrac{x^{i}}{i!}$$
+ 
+ this expression is in the  developed in zero.
+ 
+ 
+example:
+take a function, we can uses Taylor series to make a approximation of $cos(x)$.
+Mauclarin series is a specif case of taylor series using the value center in zero.
+
+\begin{equation}
+cos(x) = 1 - \frac{x^{2}}{2!} + \frac{x^{4}}{4!} - \frac{x^{6}}{6!} + \frac{x^{8}}{8!} - \frac{x^{10}}{10!} +...+
+\end{equation}
+
+henceforth, $ f(x) =  sin(x)$  therefore $f^{1}(x) = cos(x), f^{2}(x) = -sin(x), f^{3} = -cos(x) $  now we can evaluate $f^{i}(0)$, for instance, $f^{1}(0) = 1$.
+
+\begin{equation}
+sin(x) = x - \frac{x^{3}}{3!} + \frac{x^{5}}{5!} - \frac{x^{7}}{7!} +...+
+\end{equation}
+
+
+for the case of $e^{x}$ remember that $\frac{d^{n}e^{x}}{dx^{n}} = e^{x}$
+
+thus, we have that $e^{0} = 1$ note that this is defined. 
+\begin{equation}
+e^{x} = e^{0}  + e^{0}x + \frac{e^{0}x^{2}}{2!} + \frac{e^{0}x^{3}}{3!}+...+
+\end{equation}
+
+
+\begin{equation}
+e^{x} = \sum_{i=0}^{n} \frac{x^{i}}{i!}
+\end{equation}
+
+
+in taylor series where is possible center in any point we have:
+\begin{equation}
+t(x) = f(x_{0})+\frac{df}{dx}(x_{0})\frac{(x - x_{0})}{1!} + \frac
+{d^{2}f}{dx^{2}}(x_{0})\frac{(x-x_{0})^{2}}{2!}+...+
+\end{equation}
+
+
+radious of convergen for taylor series?
+
+https://www.youtube.com/watch?v=3d6DsjIBzJ4
+see this video..
+
+
+\begin{lstlisting}
+import numpy as np
+# Taylor series of e**x
+def e_taylor(loops, point):
+    result = 0
+    for i in range(loops):
+        result  = result + ( point ** i / np.math.factorial(i))
+    return result
+\end{lstlisting}
+
+the following code could be used to ilustrate in colab:
+
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+import numpy as np
+from IPython.display import HTML
+
+# Taylor series of e**x
+def e_taylor(loops, point):
+    result = 0
+    for i in range(loops):
+        result  = result + ( point ** i / np.math.factorial(i))
+    return result
+
+def taylor_pol():
+    # create a simple animation
+    fig, ax = plt.subplots()
+    line, = ax.plot([], [])
+    plt.xlabel("iterations or terms added")
+    plt.ylabel("$e^{x=2}$")
+    ax.set_xlim(1, 30)
+    ax.set_ylim(1, 10)
+
+    def update(i):
+      x = np.arange(1,i)
+      y = [e_taylor(j,2) for j in x]
+      line.set_data(x, y)
+      plt.gca().set_title('sampling over a normal distribution {}'.format(e_taylor(i,2)))
+      return line,
+
+    return animation.FuncAnimation(fig, update, frames=30, interval=150, blit=True)
+graph  = taylor_pol()
+HTML(graph.to_jshtml())
+\end{lstlisting}
+
+
+
+
+
+
+
+\subsection{Optimization}
+
+\begin{equation}
+f(x + \delta x )  =  f(x) 
+\end{equation}
+
+
+
+
+
+
+\section{principal theorems}
+
+
+\begin{theorem}{limit for continuous functions}
+if f(x) is a continuous function defined in a interval I= [a,b] then  f(x) is limit in [a,b]
+\end{theorem}
+ 
+\begin{proof}
+
+by contradiction we assume that f(x) not is limit then in the intermediate point to left c ( the interval [a,c]) neither to, thus in a interactive process to [a_{n} , b_{n}] whose distance is          $\dfrac{(b-a)}{2^{n}}$ 
+the set $A={a_{1}, a_{2}, a_{3},a_{4}, a_{5}....,a_{n}$ 
+
+\end{proof}
+
+
+
+\begin{theorem}{extreme values for function continuous}
+if f(x)  is continuous in an close interval then the function have a maximum and a minimum value absolute.
+\end{theorem}
+
+\begin{theorem}{optimization fundamental theorem}
+if a function f(x) is differentiable in a exteme point $f^{1}(x_{0})=0$ 
+\end{theorem}
+
+\begin{proof}
+if exist a extreme case then exist two possible results that exist $\delta>0 $  for the (x-\delta, x+\delta) where f(x_{0})>f(x) for each x therefore f(x_{0})-f_{x}>0 
+\end{proof}
+
+
+\begin{theorem}{rolle's theorem}
+if f(x) is a fuction definited in I= [a,b] and f(a)= f(b) then exist $x_{0}$ $\in (a,b)$ that $f^{1}(x_{0})=0$.
+\end{theorem}
+
+\begin{theorem}{mean value theorem}
+if a function is continuous  in the interval I=[a,b] and differentiable in the open intervale (a,b) then exist a point $x_{0}$ in which $f^{1}(x_{0}) =\dfrac{f(b)-f(a)}{b-a}$
+\begin{proof}
+is the straight line  that joint the extreme points that is 
+$y=f(a)+ \dfrac{f(b)-(a)}{b-a}(x-a)$ 
+now we define another function $F(x)= f(x)-y$ however is easy see that in this case the rolle´s theorem is applied because  the difference between the  value of function and the rectangle is zero for f(a) and f(b) therefore
+$$F^{1}(x_{0})=f^{1}(x)- f(b)-(a)(b-a)^{1}$$
+\end{proof}
+\end{theorem}
+
+
+\begin{theorem}{calculus fundamental theorem}
+if f(x) is a function continous then $\int\dfrac{df(x)}{dx}= f(x)$
+\begin{proof}
+if we have a function $F(x)=\int_{a}^{x} f(t)dt$ then the difference of $F(x+ \Delta x) - F(x)$ values is $\int_{x}^{\Delta x} f(t) dt$
+\end{proof}
+\end{theorem}
+
+
+
+\section{Mathematical apendix}
+
+Some basic concepts that we have been developed until now are useful in some proofs for example by definition we have that the derivate  of $f(x)= x^{n} $ then $f^{1}(x)=nx^{n-1}$ by definition of limits we have:
+$$ \lim_{\Delta x \to 0} \dfrac{(x+\Delta x)^n - x^{n}}{\Delta x} $$
+
+$$\lim_{\Delta x \to 0} \dfrac{ \sum_{i=0}^{n} x^{n-i}\Delta x^{i}C(n,i) - x^{n}} {\Delta x}$$  
+
+$$\lim_{\Delta x \to 0}\dfrac{ \sum_{i=0}^{n} x^{n-i}\Delta x^{i}C(n,i)}{\Delta x} - \dfrac{x^{n}}{\Delta x}$$
+
+$$ \lim_{\Delta x \to 0} \sum_{i=0}^{n} x^{n-i}\Delta x^{i-1}C(n,i) - \dfrac{x^{n}}{\Delta x}$$
+
+
+$$ \lim_{\Delta x \to 0} x^{n} \Delta x^{-1} C(n,0)+ x^{n-1} \Delta x^{0} C(n,1) +  \sum_{i=2}^{n} x^{n-i} \Delta x^{i-1} C(n,i) - x^{n}\Delta x^{-1}$$
+
+
+$$ \lim_{\Delta x \to 0} nx^{n-1} + \sum_{i=2}^{n} x^{n-i} \Delta x^{i-1} C(n,i)$$
+
+$$f^{1}=nx^{n-1}$$
+
+
+\subsubsection*{logartihmic}
+before that we can developed the properties of logarithmic function a its derivate we can see the "euler´s number" 
+that is defined how; 
+$$\lim_{n \to \infty} (1 + \frac{1}{n})^{n} =   e$$
+$$\Delta y = log_{a} (x + \Delta x) - log_{a} x$$ 
+
+
+\subsection*{Integrals and its rules}
+Integrals are related with derivate, namely they are its inverse operation, thus by the \textbf{funtadamental theorem of calculus}.  Therefore, there  we said that 
+$$ \frac{d \int f(x) }{dx} = f(x)$$
+
+The definition of a integral could be made in the following way:
+$$ \int f(x) =  n \to \infty  \sum_{i=1}^{n} f(x_{(i)}) \Delta x_{(i)}$$ 
+
+Note: That delta in some cases must be part of this infinity.
+
+\subsubsection*{integral by sustitution}
+the derivate of the following  $\frac{dg(x)}{dx}$ where $g(x)=h(g(x))$ it is
+$$\frac{dg(x)}{dx} =  \frac{dh(x)}{dg(x)} \frac{dg(x)}{dx}$$
+Or artenatively you can said that y=g(u) where u=h(x) therefore
+we can said that : 
+
+\begin{eqnarray}
+\frac{dy}{x} = \lim_{x \to 0} \frac{g(u+ \Delta u) - g(u)} {\Delta u} \\
+=\frac{ g(h(x + \Delta x)) - g(h(x))}{h(x + \Delta x)} \\
+=\frac{ g(h(x + \Delta x)) - g(h(x)) }{ h(x + \Delta x )}  \frac{h(x + \Delta x) - h(x)}{h(x + \Delta x) - h(x)}\\
+=\frac{g(h(x + \Delta x)) - g(h(x)) }{ h(x + \Delta x ),}{}
+\end{eqnarray}
+
+
+
+
+
+
+\subsubsection*{integral by parts}
+The derivate of the following $\frac{dg(x)}{dx}$  where $g(x)=f(x)h(x)$ it is
+$$\frac{df(x)}{dx}h(x) + \frac{dh(x)}{dx}f(x)$$
+$$ \int \frac{dg(x)}{dx} =  \int \frac{df(x)}{dx}h(x) +  \int \frac{dh(x)}{dx}f(x)$$
+$$f(	x)h(x) - \int \frac{df(x)}{dx}h(x) = \int \frac{dh(x)}{dx}f(x)$$
+
+
+
+\section{multiple integrals}
+
+
+an intuitive approach to multiple integrals the main idea here is the surface and volume, for instance z=f(x,y) thus we domain is the xy plane. thus we must think in the volumen dx, dy when a partition in a region thus we generate a matrix ; 
+
+$A_{ij}=\Delta x_{i} \Delta x_{j}$ 
+
+that represent the area of a segmentation in the plane xy,  and the height is f(x_{i}, y_{j})  that in any point of the rectangle in the plane therefore;
+
+$$f(x_{i}, y_{j})A_{ij}$$ 
+
+$$\lim_{A_{ij} \to 0}    \sum_{j=1}^{n} \sum_{i=1}^{m} f(x_{ij},y_{ij})A_{ij} = \int \int f(x,j)dy dx $$
+
+para solucionar la integral  debe darse que 
+
+$$ g(x)=\int f(x,y) dy$$
+
+luego si obtenemos
+
+$$ \int g(x) = \int[\int f(x,y) dy] dx $$
+
+that said two things the first is that for get the integral we replace the limits and after get the integral.
+
+
+
+however in the plane dont ever get a rectangle we can ger any figure then, we need the concept of integrals 
+
+
+
+\section*{apendix  stata}
+
+the comamd  \textbf{di comb(n,k)} show us the combinatorial number.
+
+\subsection*{binomial  distribution}
+
+\begin{enumerate}
+\item binomialp(n,k,p) 
+\item binomial(n,k,p)
+\item binomial(n,k,p)
+\end{enumerate}
+
+where the k is the probability of see "k" successes. 
+
+for instance di binomialp(200,10,0.2)
+
+
+\subsection{Poisson distribution}
+The probability of get k success in a period of time, volume, or area.
+
+
+
+
+
+
+\subsection{Geometric distribution}
+We said that $x \sim G(p)$ x follow a geometric distrubution with parameter p, that is the probability 
+of success. the number of events that we need hopte until appear a success.
+
+The probability in a rolling dice that one number $k$ appear in the $d$  rolling, 
+how each number is equally likely then (1/6) $$(5/6)^{d-1}(1/6)$$ 
+
+it is important define binomial trials.
+the number of trials need to get the fist succes.
+the $\mu = \frac{1}{p}$ and 
+
+$$p(X=x_{0})=p(e)^{x-1}p(e)$$
+
+\subsection{Exponential Distribution}
+Exponential distribution dont have memory equall to the geometric distribution.
+with one parameter $\lambda$  the time between until a  poisson process occur.
+Assume that $y \sim G(p)$ then
+$$ P(Y \leq z) 	$$
+
+
+The exponential distribution have the following Probability Distribution Function:
+$$f(x)=\lambda e^{- \lambda x}$$
+ 
+Therefore we said, $ X \sim exp(\lambda)$ that $x$ follow a exponential distribution
+with one only parameter in this case lambda. 
+
+https://www.youtube.com/watch?v=yldSqu3WArw
+
+Notes exponential distribution it is related with \textbf{gamma distribution}.
+
+\subsubsection{Survivor and hazard function}
+we have a variable $y$ that means time of survivor $f(y)$  it is its PDF.
+the cdf will be  $F(y)=\int_{0}^{y} F(t)dt$
+and survivor function is defined by 
+$$S(y)=P(Y>y)= 1-F(y)$$ 
+that is the probability of survive beyond T.
+
+in this order of ideas the \textit{Hazard function } is defined as 
+$$ h(y)=\frac{f(y)}{S(Y)}$$
+then this will be undesertand as a risk.
+but 
+$$ f(y)=   \lim_{\Delta \to 0}   \frac{   F(y + \Delta y) - F(y)}{(\Delta y)}$$
+$$\frac{f(y)}{S(y)}= \frac{\lim_{\Delta \to 0}   \frac{ F(y + \Delta y) - F(y)}{(\Delta y)}}{1-F(y)}$$
+if we translate the above expression in probability terms we have \textit{ the probality of failure in a small time period of change} due the survial period.
+\begin{eqnarray}
+ h(y) =-\frac{d}{dy}ln[1-F(y)] \\
+\int_{0}^{y} h(y) = -ln(S(Y)) \\
+S(y)=e^{\int_{0}^{y} h(t) dt}
+\end{eqnarray}
+
+\subsubsection{Hazard in exponential}
+we need get the \textbf{CDF} this is 
+
+\begin{eqnarray*}
+f(x)=\lambda e^{- \lambda x }   \\
+\int_{0}^{x} f(t)dt= 1 - e^{\lambda x} \\
+S(x)=e^{-\lambda x} \\
+h(x)= \lambda
+\end{eqnarray*}
+
+thus the hazard it is a contant when failure time it is exponential.
+\subsection{Normal distribution}
+\subsection{Weibull distribution}
+
+\section{Cox hazard}
+the main parameter is \textit{hazard rate}
+the expected number of event by period time.
+
+\textit{hazard ratio} could be compated with odds ratio.
+
+\textbf{observed to expected} this is very important this concept due 
+it is have a notion about ramdon.
+
+\lambd_{0}(t)  risk can change over time according to covariates.
+the proportional hazard condition establish that covariates are multiplicative related to 
+hazard. 
+
+the measure of effect is the hazard rate, not is probability ( the expected number of events per unit of time). 
+Sometimes we are interested, in compare rates among groups. 
+
+the model has the following charace
+
+$$\lambda(t|z)= \lambda_{0}(t) e^{\sum_{i=1}^{n} \beta_{i} x_{i}}$$
+
+in this case there are not $\beta_{0}$ due if $z=0$ then $\lambda_{0}(t)$ it is the baseline hazard.
+
+Cox it is semiparametric model due Z, that it is a vector of covariates.
+
+it is called proportional due
+hazard ratio is constant.
+
+https://www4.stat.ncsu.edu/~dzhang2/st745/chap6.pdf  This is a good book to understand this distribution
+probability.
+
+We go to uses a hazard ratio to model bankrupcity.. 
+
+
+\subsection{Poisson Distribution}
+
+According to the former binomial distribution $ X \sim b(p,n)$  the  two parameter are the shape a form of the distribution.
+the poisson distribution is the case when the variable follow a binomial distribution with a 
+$n $ $\to$  $\infty $
+
+In the limit case, the occurrence of  a only event is only guaranteed in the measure that the space is very small, for instance if the ocurrence of the events is simultaneous, you should not consider a Poisson distribution. the  FD we can dervied of a  binomial distribution in the following way $E(x)= np = \lambda$, thus:
+
+$$\frac{\lambda}{n}=p$$
+
+according to FD of a $x \sim b(n,p)$
+
+$$ \frac{n!}{(n-k)!k!}(\frac{\lambda}{n})^{k} (1-\frac{\lambda}{n})^{n-k}$$
+
+
+$$\frac{(n-k+1)!}{n^{k}k!} ( 1 - \frac{\lambda}{n})^{n}  ( 1 -\frac{\lambda}{n})^{-k} $$
+
+
+
+$e=\lim_{x \to \infty} (1+\frac{1}{n})^n$we must use $t=\frac{n}{k}$,  and thus $ \frac{n+k}{n} = 1+\frac{k}{n}$
+
+$$ \lim_{n \to \infty} = \frac{e^{-k} \lambda^{k} }{k!} $$
+
+thus a ramdon variable follow a poisson distrbution with a paramter $\lambda$ $X \sim p(\lambda)$ and its FD is rewritten as:
+
+$$p(X=x)=\frac{e^{-x}\lambda^{x}}{x!}$$
+
+
+\begin{figure}[ht]
+\begin{center}
+
+\includegraphics[width=0.5\textwidth]{poisson.eps}
+\caption{poisson distribution distribution (changes in mean)}
+\end{center}
+\end{figure}
+
+
+
+\subsection{Normal distribution}
+The normal distribution 
+
+
+
+
+\begin{figure}[ht]
+\begin{center}
+
+\includegraphics[width=0.5\textwidth]{mean.eps}
+\caption{Normal distribution (changes in mean)}
+\end{center}
+\end{figure}
+
+
+
+
+
+\section{Gamma distribution}
+This function is related with factorial, and its very worthy due extend the 
+idea of factorial over there,
+
+$$ \int_{0}^{\infty} e^{-t}t^{n} dt = n! $$
+
+at this moment $n$ it is a natural number.
+
+to  achieve this formula we need uses induction ( it is important in discrete mathematics)
+
+
+
+
+\section{words}
+bogged down:
+harmless:
+redo:
+tollgate:
+get away: alejarse, salir.
+freshman: estudiante de primer año, novato.
+thronw me:
+for the sake: por el bien.
+
+
+
+\section{Useful distributions and concepts to Data Analysis}
+
+
+\subsection{Distribution F}
+
+
+
+
+\subsection{Ji-cuadrada}
+
+
+
+
+
+
+
+
+
+
+\section{Python Lab}
+
+
+python allow us 
+
+
+
+\subsection{Normal distribution}
+With the objective of the maintain the original notation in the web page of the project scip,  henceforth \emph{loc = mean} and \emph{scale = Standar Deviation} the terms will be used interchangeably way.
+
+We said that $X \sim N(\mu, \sigma^{2})$
+
+
+\subsubsection{CDF}
+Cumulative Distribution Function is also defined as $P(X \leq x)$.  CDF also can be expressed as $F(x) = \int_{- \infty}^{x}  f(u)du$.
+some properties derived of this are:
+\begin{itemize}
+\item $P(X>x) = 1 - F(x)$
+\item $P(x_{1} \leq X \leq x_{2}) = F(x_{2}) - F(x_{1})$ 
+\end{itemize}
+There are another important properties.
+
+
+\subsubsection{$CDF^{-1}$ or quantile function}
+the inverse of CDF give us the value of $x$ that correspond to a level of probability for instance $X \sim Exponential(\lambda)$
+$F(x) = P(X < x) = 1 - e^{- \lambda x}$ then if the function is monotonic then we have $F^{-1}(p)  = \frac{-ln(1-p)}{\lambda}$.
+
+
+
+
+\begin{lstlisting}
+def prob_ab(a,b, loc=0, scale=1):
+  """to find the probability under the curve normal"""
+  return norm.cdf(b, loc,scale) - norm.cdf(a, loc, scale)
+ 
+def prob_grea(a, loc=0, scale=1):
+  """ the probability of a random variable be grater than a"""
+  return  1 - norm.cdf(a, loc, scale)
+\end{lstlisting}
+
+\begin{lstlisting}
+norm.ppf(q, loc=0, scale=1) #inverse of CDF
+\end{lstlisting}
+
+\begin{lstlisting}
+from scipy.stats import binom
+# k is observed numbers
+# n is trials
+# p is probabilityo of a single sucess
+binom.pmf(k,n ,p) 
+\end{lstlisting}
+
+\begin{lstlisting}
+from scipy.stats import poisson
+poisson.pmf(k,lambda)   # lambda is rate or mean.
+\end{lstlisting}
+
+
+\section{Multinomial distribution}
+Multivariate distribution, generalized binomial distribution. in Bernoulli we think in $k$ success(occur, not occur) in $n$ trials of two possible events, then in multinomial could be exist M possible results, think in the six die faces, then  $\vec{x}$ is associated with $\vec{p}$. if a dice is fair then $p_{i} =\frac{1}{6},\forall i$. 
+related experiments, bag model drawn painting marbles of a urn.
+
+
+
+$$ PMF  =  n! \prod_{i=1}^{k} \frac{p_{i}^{x_{i}}}{x_{i}}!$$
+
+$\sum x_{i=1}^{k} = n$
+
+in urn problem, or bag model, we select $n$ urns 
+and then what is the probability of get $n_{1},n_{2},..,n_{k}$ balls of each one?.
+
+
+we can write also that the random vector $X$ follow a multinomial distribution as  $X \sim Mult(n, \vec{p})$.
+
+The deduction the formula also is related  with the order, then when the order matter the probability could be expressed as $\prod_{i=1}^{k}p_{i}^{x_{i}}$, when order does not matter then, 
+
+\subsection{Binomial distribution}
+is the special case when $k=2$.
+
+\subsection{Categorical distribution}
+is a special case of multinomial distribution when $n=1$.
+
+
+
+
+\end{document}

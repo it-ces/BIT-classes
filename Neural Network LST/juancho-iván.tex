@@ -1,0 +1,780 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{nicematrix}
+\usepackage{tikz}
+\usepackage{comment}
+\usepackage{hyperref}
+\usepackage{fancyvrb}
+\usepackage{mathtools}
+\usepackage{comment}
+\usepackage{array}
+\usepackage{pgfcore}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{munsell}{rgb}{0.0, 0.5, 0.69}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{minas}{RGB}{0.244, 0.172, 0.36}
+\definecolor{PUJ}{RGB}{44, 86, 151}
+\definecolor{PUJ2}{RGB}{43, 93, 156}
+\definecolor{PUJ3}{RGB}{20, 52, 107}
+\definecolor{cyandk}{rgb}{0.0, 0.72, 0.92}
+\setbeamerfont{frametitle}{size=\LARGE ,series=\bfseries}
+\setbeamercolor{frametitle}{fg=PUJ2, bg=white} %% title of the beamer
+\setbeamercolor{titlelike}
+{parent=structure,bg=PUJ2}
+\setbeamercolor{title}{fg=white, bg=PUJ3} 
+%\setbeamercolor{navigation symbols}{fg=white, bg=white}
+\setbeamercolor*{palette primary}{use=structure,fg=black,bg=yellow}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=PUJ3}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=PUJ3}
+
+\setbeamercolor{block title}{bg=PUJ3,fg=white}
+
+
+%% code information
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  classoffset=1,
+  morekeywords={True,False}, keywordstyle=\color{munsell}, 
+  classoffset=0, 
+  keywordstyle=\color{blue},  
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{PUJ3},
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+}
+
+%% You can change default language in the middle of document with \lstset{language=Java}.
+
+
+%% PUT or Remove the logo in a slide.
+
+
+%% Information topic
+
+\institute{Javeriana}
+\date{2020}
+
+\title[Pontificia Universidad Javeriana] %optional
+{Introduction to Recurrent Neural Networks}
+\subtitle{ using python.}
+
+\author[
+Juan Contreras López \\
+Iván Andrés Trujillo
+
+] 
+{
+Juan Contreras López \\
+Iván Andrés Trujilllo Abella}
+
+\institute[] 
+{
+  Facultad de Ingenieria\\
+  Pontificia Universidad Javeriana
+  \and
+  
+\textbf{}
+}
+
+\date[MINTA] % (optional)
+
+\newif\ifplacelogo % create a new conditional
+\placelogotrue % set it to true
+%\logo{\ifplacelogo\color{red}\rule{.5cm}{.5cm}\fi}
+\logo{\ifplacelogo \includegraphics[height= 2.0cm]{pujshield.eps}\fi}
+
+
+
+\begin{document}
+
+
+
+\frame{\titlepage}
+
+
+
+\begin{frame}[fragile]{Background classification problem}
+Fisher(1936) proposes the linear Discriminant, 
+the problem consist in predict a binary outcome according to a set of features, for instance find the variables that could predict the bankruptcy.
+
+The main objective is construct a $z = \mathbf{w^{t}x}$ 
+score whose indicate the probability of belonging to a class.
+\end{frame}
+
+
+\begin{frame}{Binary classification problem}
+$y_{0},y_{1} \in Y $ and $y_{0} \cup y_{1} = Y$ and $y_{0} \cap y_{1} = \emptyset$ both class are exhaustive and are defined without ambiguity. 
+A vector of weights and a vector of features for a 
+\[
+w^{t} \mathbf{x} = 
+\begin{bmatrix}
+w_{1} \\
+w_{2} \\
+\vdots \\
+\end{bmatrix}
+\begin{bmatrix}
+x_{1} & x_{2} & \cdots & x_{n}
+\end{bmatrix}
+= \sum_{i=1}^{n}w_{i}x_{i} = z_{i}
+\]
+
+\end{frame}
+
+\begin{frame}[fragile]{Perceptron}
+Rossenblant(1958)
+We can define a vector input $\mathbf{x}$ and a vector of weights $\mathbf{w}$ and a activation function $\varphi$ that take as input the inner product of both vectors defined previously $\varphi(\mathbf{w}^{t}\mathbf{x})$.
+
+\end{frame}
+
+
+
+\begin{frame}
+\tikzset{basic/.style={draw,fill=none,
+                       text badly centered,minimum width=3em}}
+\tikzset{input/.style={basic,circle,minimum width=3.5em}}
+\tikzset{weights/.style={basic,rectangle,minimum width=2em}}
+\tikzset{functions/.style={basic,circle, minimum width=4em}}
+\newcommand{\addaxes}{\draw (0em,1em) -- (0em,-1em)
+                            (-1em,0em) -- (1em,0em);}
+\newcommand{\relu}{\draw[line width=1.5pt] (-1em,0) -- (0,0)
+                                (0,0) -- (0.75em,0.75em);}
+\newcommand{\stepfunc}{\draw[line width=1.5pt] (0.65em,0.65em) -- (0,0.65em) 
+                                    -- (0,-0.65em) -- (-0.65em,-0.65em);}
+    \begin{tikzpicture}[scale=1.2]
+    % Draw input nodes
+    \foreach \h [count=\hi ] in {$x_2$,$x_1$,$x_0=1$}{%
+          \node[input] (f\hi) at (0,\hi*1.25cm-1.5 cm) {\h};
+        }
+    % Dot dot dot ... x_n
+    \node[below=0.62cm] (idots) at (f1) {\vdots};
+    \node[input, below=0.62cm] (last_input) at (idots) {$x_n$};
+    % Draw summation node
+    \node[functions] (sum) at (4,0) {\Huge$\sum$};
+    \node[below=0.69cm] at (sum) {$z = \sum_{i=0}^n w_ix_i$};
+    % Draw edges from input nodes to summation node
+    \foreach \h [count=\hi ] in {$w_2$,$w_1$,$w_0$}{%
+          \path (f\hi) -- node[weights] (w\hi) {\h} (sum);
+          \draw[->] (f\hi) -- (w\hi);
+          \draw[->] (w\hi) -- (sum);
+        }
+    % Dot dot dot ... w_n
+    \node[below=0.05cm] (wdots) at (w1) {\vdots};
+    \node[weights, below=0.45cm] (last_weight) at (wdots) {$w_n$};
+    % Add edges for last node and last weight etc
+    \path[draw,->] (last_input) -- (last_weight);
+    \path[draw,->] (last_weight) -- (sum);
+    % Draw node for activation function
+    \node[functions] (activation) at (7,0) {};
+    % Place activation function in its node
+    \begin{scope}[xshift=7cm,scale=1.25]
+        \addaxes
+        % flexible selection of activation function
+        \stepfunc
+        % \stepfunc
+    \end{scope}
+    % Connect sum to relu
+    \draw[->] (sum) -- (activation);
+    \draw[->] (activation) -- ++(1,0);
+    % Labels
+    \node[above=1cm]  at (f3) {inputs};
+    \node[above=1cm] at (w3) {weights};
+    \node[above=1cm] at (activation) {activation function  $\varphi(z)$};
+    \end{tikzpicture}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Activation function}
+$\varphi()$ could be defined as the sigmoid function.
+
+\begin{equation}
+\begin{align*}
+p(y=1) = \varphi(z) \\
+p(y=0) = 1 -\varphi(z)
+\end{align*}
+\end{equation}
+Percepton works with a step function:
+
+\begin{equation*}
+\varphi(z) = 
+    \begin{dcases}
+        0 &  z < 0 \\
+        1 &  z \geq 0
+    \end{dcases}
+\end{equation*}    
+Returning  a binary outcome.
+\end{frame}
+
+
+\begin{frame}{What set of $w$ values we must choose}{Cost function}
+The cost function could be defined in a soft or a hard way.
+\begin{equation}
+J(w)_{hard} = \sum_{i=1}^{n} = \max(-y_{i}\hat{y},0)
+\end{equation}
+$J$ only count the number of mismatches.
+However this function not is differentiable.
+
+\begin{equation}
+J(w)_{soft} = \sum_{i=1}^{n} = \max(-y_{i} z_{i},0)
+\end{equation}
+if $y_{i}z_{i} < 0 $  then lost function $>0$
+
+if $y_{i}z_{i}>0 $  the lost function $=0$.
+
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{Insights}
+
+The update of weights is according to the data bias or mistakes, however when the model match to the class then
+\begin{equation}
+\Delta w_{i} = (y_{i} -\hat{y_{i}}) = 0
+\end{equation}
+where $y_{i}$ is the real observed data, and $\hat{y_{i}}$ is the predicted class.
+
+when the $y_{i} = -1$ and $\hat{y} = 1$ then $\Delta w = -2$, in otherwise $y_{i}=1$ and $\hat{y_{i}}=-1$ then $\Delta w = 2$.
+in summary:
+
+\begin{equation*}
+\Delta w_{i} = 
+    \begin{dcases}
+        0 &  y_{i} = \hat{y_{i}} \\
+       -2 &  y_{i}<\hat{y_{i}}  \\
+         2 &  y_{i}>\hat{y_{i}}
+    \end{dcases}
+\end{equation*}    
+\end{frame}
+
+
+\begin{frame}{insights}
+Then when there are mistakes 
+\begin{equation}
+\varphi(w^{t}_{i+1} \mathbf{x_{i}}) =\varphi((w_{i} + \Delta w_{i})^{t} \mathbf{ x_{i}}) = y_{i} 
+\end{equation}
+This mean that  weights for the vector of features of the sample $i$ are update to predict the correct class.
+ 
+\begin{equation}
+w_{i+1} = w_{i} + \eta \Delta w_{i} \mathbf{x_{i}}
+\end{equation}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Perceptron algorithm}
+\begin{verbatim}
+initialize w:
+for each x in sample :
+	estimate y(x)
+	w = w + update(w)
+\end{verbatim}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{descent gradient}
+An algorithm to optimization.
+We can think in a greedy algorithm, searching points, for instance to fit a line to a data points, 
+$e(\beta_{0}^{v}, \beta_{1}^{f})$
+then we have an associeted error fo $\beta_{0}$ $e_{\beta_{0}^{v}} =\sum_{i=1}^{n} (y_{i} - \beta_{0}^{v}+ \beta_{1}^{f}x_{i} )^{2}$. 
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}{Gradient descendent}
+To talk about more deeply about gradient we need talk about 
+
+exploding gradient problem
+
+
+Assume the following convex function :
+\begin{equation}
+ax^{2}+ bx+c 
+\end{equation}
+for practical examples and guarantee a minimum global point we said that $a=2,b=-3, c=5$.
+\begin{equation}
+\begin{align*}
+f^{1} &= 2ax + b = 0 \\
+x^{*} &= \frac{-b}{2a} 
+\end{align*}
+\end{equation}
+
+Therefore the minimum point is obtained in $x^{*} = 0.3$.
+
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Gradient descent}
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+def quadratic(a,b,c,x ):
+  return a*x**2 + b*x + c
+def Dxquadratic(a,b,x):
+  return 2*a*x + b
+def Dxxquadratic(a,x):
+  return a*x
+def dx0quadratic(a,b):
+  return (-b)/(2*a)  # take in mind the left ritgh precedence 
+def evaldx0(a,b,c):
+  point = dx0quadratic(a,b)
+  return quadratic(a,b,c,point)
+\end{lstlisting}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}[fragile]{Gradient descent}
+\begin{lstlisting}
+def GDS_Quadratic( x0, learning_rate=0.01, iterations_max=100, error_max = 0.00001, a=2,b=-3):
+  gradient = Dxquadratic   # We defined previously
+  xi = x0
+  iters = 0
+  error = 100
+  while (iters < iterations_max) and (error > error_max):
+    xj = xi - learning_rate * gradient(a,b, xi)
+    error = abs(xi-xj)
+    xi = xj
+    iters += 1
+  return xj,iters
+GDS_Quadratic(100, learning_rate=0.3) 
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}{Recurrent Neural Networks}
+used in speech recognition, due the ability of learn of sequence data. 
+\begin{itemize}
+\item series data
+\item Words or text
+\item speech recognition
+\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}{RNN simple}{illustration}
+% note that clip is to move around rectangle..
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\begin{tikzpicture}[line cap=round,scale=1.5]
+\clip(1, 1) rectangle (10,10.9);
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (4,9) -- (4,7.5) -- (6,7.5) -- (6,9) -- cycle;
+\draw [line width=2pt,color=zzttqq] (4,9)-- (4,7.5);
+\draw [line width=2pt,color=zzttqq] (4,7.5)-- (6,7.5);
+\draw [line width=2pt,color=zzttqq] (6,7.5)-- (6,9);
+\draw [line width=2pt,color=zzttqq] (6,9)-- (4,9);
+\draw [line width=2pt] (5.048061122941567,6.408519545003317) circle (0.5284510583863585cm);
+\draw [line width=2pt] (5,10) circle (0.5284510583863585cm);
+\draw [->,line width=2pt] (5.005262549857102,6.93523465134791) -- (5.012195121951219,7.5);
+\draw [->,line width=2pt] (5,9) -- (5.006259999359222,9.471586020701869);
+\draw [line width=2pt] (6,8.3)-- (6.4,8.3);
+\draw [line width=2pt] (6.4,8.3)-- (6.4,9.2);
+\draw [line width=2pt] (6.4,9.2)-- (3.6,9.2);
+\draw [line width=2pt] (3.6,9.2)-- (3.6,8.3);
+\draw [->,line width=2pt] (3.6,8.3) -- (4,8.3);
+\draw (4.8438956017014245,8.52335919721424) node[anchor=north west] {$RNN$};
+\draw (4.957078729573911,6.623499550783171) node[anchor=north west] {$X_{i}$};
+\draw (4.9166561839051655,10.213021606167832) node[anchor=north west] {$Y_{i}$};
+\end{tikzpicture}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Different architectures according to the size of input-output}{Application}
+
+Sentiment analysis only produce a integer output  whereas the inputs could be different.
+Another example is machine translation.
+
+\begin{itemize}
+\item one to one 
+\item one to many 
+\item many to one
+\item many to many 
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Mathematical notation}
+
+\begin{equation}
+\begin{align*}
+a_{t} &= f ( W_{aa} * a_{t-1} + w_{ax}X{t} + ba) \\
+y_{t} &= g(w_{ya}a_{t} +b_{y})
+\end{align*}
+\end{equation}
+\end{frame}
+
+
+
+
+\begin{frame}{Problems with standard neural networks}
+a problem of RNN is that not uses information of posteior inputs.
+
+\end{frame}
+
+
+
+\begin{frame}{RNN drawbacks}
+Not capturing long run dependencies.However, LSTM tackle this pobrlem and are the most used today. this NN added to the recurrent process, the possibility of keep, add or delete information with a cell, regarding with a simple recurrent neural network the cell of LSTM added a input a output more. 
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\usetikzlibrary{fit,positioning,arrows.meta}
+\tikzset{neuron/.style={shape=circle, minimum size=0.8cm, 
+  inner sep=0, draw, font=\small}, io/.style={neuron, fill=gray!20}}
+\begin{tikzpicture}[x=1.4cm, y=1.4cm, >=Stealth]
+\foreach \jlabel [count=\j, evaluate={\k=int(mod(\j-1,3)); \jj=int(\j-1);}]
+  in {t-1, t-1(1), t-1(2), t, t(1), t(2), t+1}{
+    \foreach \ilabel [count=\i] in {1, n-m, n}
+        \node [neuron] at (\j, 1-\i) (h-\i-\j){$h_{\jlabel}^{\ilabel}$};
+    \ifcase\k
+      \node [fit=(h-1-\j) (h-3-\j), inner sep=0, draw] (b-\j) {};
+      \node [io, above=of b-\j] (y-\j) {$y_{\jlabel}$};
+      \node [io, below=of b-\j] (v-\j) {$v_{\jlabel}$};
+      \draw [->] (v-\j) -- (b-\j);
+      \draw [->] (b-\j) -- (y-\j);
+    \fi
+    \ifnum\j>1
+      \foreach\i in {1, 2, 3}
+        \foreach \ii in {1, 2, 3}
+           \draw [->] (h-\i-\jj.east) -- (h-\ii-\j.west);
+    \fi
+} 
+\node [left=of h-2-1] {\ldots};
+\node [right=of h-2-7] {\ldots};
+\end{tikzpicture}
+\end{frame}
+
+
+\begin{frame}
+
+% used to avoid putting the same thing several times...
+% Command \empt{var1}{var2}
+\newcommand{\empt}[2]{$#1^{\langle #2 \rangle}$}
+
+\begin{tikzpicture}[
+    % GLOBAL CFG
+    font=\sf \scriptsize,
+    >=LaTeX,
+    % Styles
+    cell/.style={% For the main box
+        rectangle, 
+        rounded corners=5mm, 
+        draw,
+        very thick,
+        },
+    operator/.style={%For operators like +  and  x
+        circle,
+        draw,
+        inner sep=-0.5pt,
+        minimum height =.2cm,
+        },
+    function/.style={%For functions
+        ellipse,
+        draw,
+        inner sep=1pt
+        },
+    ct/.style={% For external inputs and outputs
+        circle,
+        draw,
+        line width = .75pt,
+        minimum width=1cm,
+        inner sep=1pt,
+        },
+    gt/.style={% For internal inputs
+        rectangle,
+        draw,
+        minimum width=4mm,
+        minimum height=3mm,
+        inner sep=1pt
+        },
+    mylabel/.style={% something new that I have learned
+        font=\scriptsize\sffamily
+        },
+    ArrowC1/.style={% Arrows with rounded corners
+        rounded corners=.25cm,
+        thick,
+        },
+    ArrowC2/.style={% Arrows with big rounded corners
+        rounded corners=.5cm,
+        thick,
+        },
+    ]
+
+%Start drawing the thing...    
+    % Draw the cell: 
+    \node [cell, minimum height =4cm, minimum width=6cm] at (0,0){} ;
+
+    % Draw inputs named ibox#
+    \node [gt] (ibox1) at (-2,-0.75) {$\sigma$};
+    \node [gt] (ibox2) at (-1.5,-0.75) {$\sigma$};
+    \node [gt, minimum width=1cm] (ibox3) at (-0.5,-0.75) {Tanh};
+    \node [gt] (ibox4) at (0.5,-0.75) {$\sigma$};
+
+   % Draw opérators   named mux# , add# and func#
+    \node [operator] (mux1) at (-2,1.5) {$\times$};
+    \node [operator] (add1) at (-0.5,1.5) {+};
+    \node [operator] (mux2) at (-0.5,0) {$\times$};
+    \node [operator] (mux3) at (1.5,0) {$\times$};
+    \node [function] (func1) at (1.5,0.75) {Tanh};
+
+    % Draw External inputs? named as basis c,h,x
+    \node[ct, label={[mylabel]Cell}] (c) at (-4,1.5) {\empt{c}{t-1}};
+    \node[ct, label={[mylabel]Hidden}] (h) at (-4,-1.5) {\empt{h}{t-1}};
+    \node[ct, label={[mylabel]left:Input}] (x) at (-2.5,-3) {\empt{x}{t}};
+
+    % Draw External outputs? named as basis c2,h2,x2
+    \node[ct, label={[mylabel]Label1}] (c2) at (4,1.5) {\empt{c}{t}};
+    \node[ct, label={[mylabel]Label2}] (h2) at (4,-1.5) {\empt{h}{t}};
+    \node[ct, label={[mylabel]left:Label3}] (x2) at (2.5,3) {\empt{h}{t}};
+
+% Start connecting all.
+    %Intersections and displacements are used. 
+    % Drawing arrows    
+    \draw [ArrowC1] (c) -- (mux1) -- (add1) -- (c2);
+
+    % Inputs
+    \draw [ArrowC2] (h) -| (ibox4);
+    \draw [ArrowC1] (h -| ibox1)++(-0.5,0) -| (ibox1); 
+    \draw [ArrowC1] (h -| ibox2)++(-0.5,0) -| (ibox2);
+    \draw [ArrowC1] (h -| ibox3)++(-0.5,0) -| (ibox3);
+    \draw [ArrowC1] (x) -- (x |- h)-| (ibox3);
+
+    % Internal
+    \draw [->, ArrowC2] (ibox1) -- (mux1);
+    \draw [->, ArrowC2] (ibox2) |- (mux2);
+    \draw [->, ArrowC2] (ibox3) -- (mux2);
+    \draw [->, ArrowC2] (ibox4) |- (mux3);
+    \draw [->, ArrowC2] (mux2) -- (add1);
+    \draw [->, ArrowC1] (add1 -| func1)++(-0.5,0) -| (func1);
+    \draw [->, ArrowC2] (func1) -- (mux3);
+
+    %Outputs
+    \draw [-, ArrowC2] (mux3) |- (h2);
+    \draw (c2 -| x2) ++(0,-0.1) coordinate (i1);
+    \draw [-, ArrowC2] (h2 -| x2)++(-0.5,0) -| (i1);
+    \draw [-, ArrowC2] (i1)++(0,0.2) -- (x2);
+
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Recurrent Neural Networks in text}
+named entity
+$X^{(i)<t>}$ the $i-th$  training observation, $T_{x}^{(i)}$ is the length of input.
+
+one-hot codification to vectors, then we can get the following 
+
+\vspace{1cm}
+\textbf{
+$x$: in the input appear the $word_{1}$ first after $word_{2}$ and finally $word_{3}$.
+}
+
+
+\[
+Dictionary = 
+\begin{pmatrix}
+Word_{1} \\
+word_{2} \\
+\vdots \\
+word_{n} \\
+\end{pmatrix}
+\]
+
+We can follow the $T_{x}^{(i)}=9$.
+
+\end{frame}
+
+
+\begin{frame}{Encoding the sentence}
+$\vert x \vert  = 9 $ therefore must be $x^{1},x^{2},...,x^{9}$ encoded vectors.
+indexing in one-hot sense $x$
+$\vert Dictonary \vert = n$ for this case, then we have that:
+\[
+x_{1}= 
+\begin{bmatrix}
+1 \\
+0 \\
+0 \\
+\vdots\\
+0
+\end{bmatrix}
+,x2= 
+\begin{bmatrix}
+0 \\
+1 \\
+0 \\
+\vdots\\
+0
+\end{bmatrix}
+,x_{3} = \begin{bmatrix}
+0 \\
+0 \\
+1 \\
+\vdots\\
+0
+\end{bmatrix}
+.....
+\] 
+
+remember that $\vert x_{i} \vert = \vert Dictionary \vert$.
+
+
+\end{frame}
+
+\begin{frame}{Word embedding}
+
+\end{frame}
+
+
+
+\begin{frame}{Performance in time series prediction}
+it also evaluated with some metrics, such as
+\begin{equation*}
+\begin{align*}
+MSE &= \frac{1}{n} \sum (\hat{y} -y )^{2} \\
+RMSE &= \sqrt{MSE} \\
+MAE &= \frac{1}{n} \sum \vert \hat{y} -y \vert
+\end{align*}
+\end{equation*}
+\end{frame}
+
+
+
+
+
+
+
+
+\begin{frame}{Forecasting day-ahead electricity prices: A comparison of time series and
+neural network models taking external regressors into account.}{Malte Lehna, Fabian Scheller, Helmut Herwartz (2022).}
+
+With H-index 152, is ranked Q1 in econometrics and energy.
+
+\end{frame}
+
+
+\begin{frame}{Objective}{Forecasting day-ahead electricity prices: A comparison of time series and
+neural network models taking external regressors into account.}
+
+\textbf{Compare the performance of four techniques to forecasting  german day-ahead electricity price.}
+
+
+\end{frame}
+
+
+
+\begin{frame}{DATA}{Forecasting day-ahead electricity prices: A comparison of time series and
+neural network models taking external regressors into account.}
+
+\textbf{hourly data for twelve
+mobths  from October 2017 to September 2018.}
+
+
+\end{frame}
+
+\begin{frame}{Methodology}{Forecasting day-ahead electricity prices: A comparison of time series and
+neural network models taking external regressors into account.}
+
+\textbf{Compare the performance across the most common metrics in time series prediction, for the models:}
+\begin{itemize}
+\item SARIMAX
+\item LSTM
+\item CNN-LSTM
+\item VAR 
+\end{itemize}
+the test period is for three horizons: 1 day, three days, thirty days.
+We will present the results only for both: LSTM and VAR.
+
+\end{frame}
+
+
+\begin{frame}{mirror logarithmic}
+
+
+\end{frame}
+
+
+
+\begin{frame}{Results}{Forecasting day-ahead electricity prices: A comparison of time series and
+neural network models taking external regressors into account.}
+
+LSTM model have a better performance on average, the two-stage VAR is better for shorter prediction horizons.
+
+
+\end{frame}
+
+
+
+
+
+\begin{frame}{Time series or RNN-LSTM}
+VAR model is a classic model, that have a good performance in terms of meaning and  significance statistics.
+
+\end{frame}
+
+
+
+\end{document}

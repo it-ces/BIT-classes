@@ -1,0 +1,2210 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{comment}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{munsell}{rgb}{0.0, 0.5, 0.69}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{minas}{RGB}{0.244, 0.172, 0.36}
+\definecolor{PUJ}{RGB}{44, 86, 151}
+\definecolor{PUJ2}{RGB}{43, 93, 156}
+\definecolor{PUJ3}{RGB}{20, 52, 107}
+\definecolor{cyandk}{rgb}{0.0, 0.72, 0.92}
+
+\author{Iván Andrés Trujillo }
+
+%% code information
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  classoffset=1,
+  morekeywords={True,False}, keywordstyle=\color{munsell}, 
+  classoffset=0, 
+  keywordstyle=\color{blue},  
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{PUJ3},
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+}
+
+\begin{document}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\graphicspath{{/home/ces/Pictures/puj/}}
+\includegraphics[width = 4cm]{pujshield.eps}\\[0.5cm] 
+
+\begin{center} 
+\textbf{\LARGE Introduction to git and github}\\[0.2cm]
+\emph{\LARGE Notes of class}\\[0.3cm] 
+\emph{Iván Andrés Trujillo Abella} \\
+\textsc{\Large 
+}\\[0.2cm] 
+\textsc{\large Facultad de ingeniería}\\[0.5cm] 
+\HRule \\[0.4cm]
+\end{center}
+\vspace{1cm}
+\section{Introduction}
+
+
+
+
+
+\textbf{Git} it is a open source technology 
+or control system tool.  Source Control Management that could be dowlan in www.git-smc.com.
+
+
+
+Git is a distributed system:
+\begin{verbatim}
+Local machine   A -->  Remote repository <-- B machine Local 
+\end{verbatim}
+
+
+
+to check if already have installed git:
+\begin{verbatim}
+git --version
+\end{verbatim}
+ 
+
+\begin{verbatim}
+git [command] [--flags] [arguments]
+\end{verbatim}
+
+to ask help
+
+\begin{verbatim}
+git help add
+\end{verbatim}
+
+ \begin{verbatim}
+diff [-u]
+c \\change
+a \\ added}
+\end{verbatim}
+
+We can uses vim as text editor and put all in the sequence to make 
+running files thus we made with python, this allow us to run very esasy.
+
+in a specifical folder:
+\begin{verbatim}
+
+```bash
+cd ~/
+mkdir testdiff
+
+cat > text1.txt
+this text is composed
+of three lines:
+line1
+line2
+line3
+```
+
+\end{verbatim}
+
+\begin{verbatim}
+
+```bash
+cat > text2.txt
+this text is composed
+of two lines:
+line1
+line2
+``` 
+\end{verbatim}
+
+
+\begin{verbatim}
+				
+```bash
+diff text1.txt text2.txt
+```
+\end{verbatim} 
+there are another commands with the equall purpose.
+\textbf{wdiff}, \textbf{vimdiff}.
+
+\textbf{Apply changes}
+
+we can find two version of the same document, now we can apply or not the changes.
+
+		
+Now we are interested in make 
+\textit{pipelines}.
+		
+\begin{verbatim}
+
+diff -u old_file new_file.2 > diference.diff
+
+\end{verbatim}
+
+this is very useful, but the mainly objective of my work it is create this kind of model.
+
+a text with diff format, this is very practical due we can uses, the command patch to apply the changes.
+
+\textbf{patch}
+
+\begin{verbatim}
+
+```bash
+patch text_to_apply_changes < text_with_changes.diff
+```
+\end{verbatim}
+
+
+\textbf{Lab seasson}
+
+\begin{verbatim}
+```bash 
+cat > document.txt
+World Wide Web was designed to communicate computers
+the universities contribute in a important way to this develop.
+cp document.txt document_original.txt
+```
+\end{verbatim} 
+We send to a the collegue and receive its modifications.
+
+
+\begin{verbatim}
+```bash
+cat document_revised.txt
+World Wide Web was designed to ARPA NET project to
+communicate computers, the universities from EEUU 
+contribute in a important way to this network project.
+```
+\end{verbatim}
+
+
+
+
+\begin{verbatim}
+```bash
+diff document_revised.txt documnet_original.txt
+```
+\end{verbatim}
+
+\begin{verbatim}
+```bash
+diff -u document_revised.txt documen_original.txt  > changes.diff
+``` 
+\end{verbatim}
+And if we think that the changes are good then we can accept it and modify our document.
+
+\begin{verbatim}
+```bash
+patch document.txt < changes.diff
+```
+\end{verbatim}
+
+take in mind that a \texbf{commit} it is a session that modified files, and take a snapshot in these moment.
+
+
+\section{Shell Scripting}
+How to execute a shell script?
+By default script not can run a file, you must give the permission.
+
+\begin{verbatim}
+chmod + x script_name.sh
+\end{verbatim}
+
+To execute the script we can put:
+\begin{verbatim}
+./script_name.sh
+\end{verbatim}
+	
+Now we can make a lab session, to deal with a this programs.
+In order to take automatic processes. 	
+
+
+
+
+\begin{verbatim}
+
+yum install git
+sudo apt-get install git
+\end{verbatim}
+
+
+\begin{verbatim}
+```bash
+git config --global user.name 'Iván Trujillo'
+git config  --global user.email 'ivantrujillo1229@gmail.com'
+```
+\end{verbatim}
+
+" --global indicate to all repositories that we will create.
+
+
+get the information 
+
+\begin{verbatim}
+git config user.name
+git config user.email
+\end{verbatim}
+you run in a specify repository if there not local values settings then return global configuration.
+
+
+To start to work the are some ways of create from scratch a repository or work with a a existing repository, then we can uses \textbf{git init} or \textbf{git clone}.
+
+In detail \textbf{git init} initialized a empty repository in the current directory.
+
+\begin{verbatim}
+ls -l .git/
+ls -a
+\end{verbatim}
+
+One important concept in git it is staging area or index. This is a file, that contain all information upon the changes and files in the following commit.
+
+for instance suppose that now we are in a \texbf{repo.}
+then, we can add modify a file if you type 
+
+\begin{verbatim}
+```bash
+git diff
+``` 
+\end{verbatim}
+
+then this show us the difference among files, that are commited to the repo.
+then with 
+\begin{verbatim}
+```
+git add .
+```
+\end{verbatim} 
+
+Think in a flow "Set of changes" $->$ commit $->$ 
+If you modify you must said to git which changes will be loaded
+
+
+
+\begin{verbatim}
+git status
+\end{verbatim}
+give us information about the working tree and pending changes.
+
+A file could be in the working tree but not in staging are this could be named as \textbf{untracked files}.
+
+we can add a single file to the staging area:
+\begin{verbatim}
+git add NAME_FILE
+\end{verbatim}
+
+'appear in changes to be commited'
+
+
+\textit{ NOTE THAT IN WORKING THREE ONLY WILL BE TRACKED MODIFIED FILES.}
+
+
+defintion of staging area (index) :
+
+a file maintained by Git that contains all of the information
+about what files and changes will be commited.
+
+
+
+
+\begin{verbatim}
+git diff file 
+\end{verbatim}
+
+
+
+
+\begin{verbatim}
+git commmit -a
+\end{verbatim}
+
+with this option we save the uses of add but only in tracked files, for new files it is necessary uses add. This can be used with -m option also.
+
+
+\begin{verbatim}
+git commit -a -m 'new line'
+\end{verbatim}
+
+
+there are ways of see the changes in files, this is very important due allow us take in mind, what are the additions to broke the code.
+
+\begin{verbatim}
+git diff
+\end{verbatim}
+
+git diff only show by default unstaged changes, namely that are not currently in the staging area.
+
+to see staged we need add:
+
+\begin{verbatim}
+git diff --staged 
+\end{verbatim}
+
+\begin{verbatim}
+git add -p 
+\end{verbatim}
+
+You add a directory and this start out to track this folder(all files).
+
+\begin{verbatim}
+git status -s
+\end{verbatim}
+
+\textbf{git log}
+show us the list of commits made in the current git
+we can uses to show differences see that the pointer HEAD $->$ MASTER
+
+\textbf{git log -p [file\_name]}
+
+we can see how act this command a brief description.
+Notice that file_name it is optional.
+
+
+we can make uses of \textbf{git show ID}
+where ID could be seen in \textbf{git log}.
+
+
+another practical flag it is \textbf{git log --stat}
+
+
+\begin{verbatim}
+git diff ID_commit
+\end{verbatim}
+to compare the actual with this version.
+
+
+
+\subsection{Locations}
+
+\begin{verbatim}
+Working tree --> staging area --> local repository --> remote repository
+             --> add --> commit --> push
+\end{verbatim}
+
+\begin{itemize}
+\item working tree the place where the files are added, view, removed or edit to the next commit.
+\item staging area files that will be commited 
+\item local repository contain the history ( commits ) of a project
+\item remote repository contain the commits usually in the cloud.
+
+\end{itemize}
+
+At working tree there are $.git$ file where the staging area and the local repository are saved.
+
+\section{rename or delete files in repository}
+
+\textbf{git mv} to rename files in repositories.
+
+\begin{verbatim}
+git mv old_name new_name
+\end{verbatim}
+
+
+
+\section{.gitignore}
+
+We can ignore files as produced by LaTeX when they are compiling that we need it is save this in a txt file and add its names for instance:
+
+\begin{verbatim}
+cat > .gitignore
+file.log >> .gitignore
+file.aux >>. gitignore
+file.pdf >>. gitignore
+\end{verbatim}
+ 
+Due this article variable files that depende the main .tex.
+or maybe we can using echo > .gitignore
+
+
+\section{Undoing changes before comitting}
+
+we can uses \textbf{git checkout}
+
+
+sometimes we we add all files with * or . 
+we need not tracked one particular file then we can 
+uses
+
+\begin{verbatim}
+git reset HEAD file
+\end{verbatim}
+
+remember that \textit{HEAD} it is the current "branch" of the project.
+
+in other words \textbf{add} and \textbf{reset} commands are complementary.
+
+
+\section{Undoing things}
+
+When you put a commit and forget something then uses 
+\begin{verbatim}
+git commit --ammend
+\end{verbatim}
+to overwrite the previous commit.
+
+\textbf{git checkout} to restore a modifed before of move to staging area.
+
+when the changes are staged ready, we can uses \textbf{git reset} remenber that add and reset are complementary.
+
+\section{Rollback}
+
+Suppose that you need rollback a previous version of a file.
+Suppose that the new code not works well with another package for instance with pandas or matplotlib.
+
+\subsection{revert}
+this is a powerful command,  that create a commit with the inverse last command commit. this very special due commits follow a sequence and dont lost commits.
+
+\begin{verbatim}
+git revert HEAD
+\end{verbatim}
+
+but what happend if we want jump to another?
+
+
+\begin{verbatim}
+git revert commit_id
+\end{verbatim}
+
+
+\begin{verbatim}
+
+HEAD---
+	   |
+	   |
+	   | 
+	  BRANCH
+
+\end{verbatim}
+
+
+
+
+
+\section{Notes}
+If you type \textbf{git checkour ID commit}
+create a branch.
+git branch to see this.
+
+
+\begin{verbatim}
+git log -p -1
+\end{verbatim}
+
+the parameter number indicates what commit show in this case the first in log history or last commit made.
+
+
+\begin{verbatim}
+git diff id commit
+\end{verbatim}
+
+show us differences among a commit and the current version file.
+
+
+\section{branch}
+
+\begin{verbatim}
+
+ HEAD
+  |
+  |
+  |
+COMMIT 1
+
+\end{verbatim} 
+
+Branch are only pointers, list all branches in our repo:
+\begin{verbatim}
+
+```bash
+git branch 
+```
+
+\end{verbatim}
+
+
+to create a branch :
+\begin{verbatim}
+
+```bash
+git branch name_new_branch
+```
+\end{verbatim}
+
+
+to crate and switch automatically:
+\begin{verbatim}
+
+```bash
+git checkout -b name_new_branch
+```
+
+\end{verbatim}
+
+
+delete branch:
+\begin{verbatim}
+
+```bash
+git branch -d name_branch_to_delete
+```
+\end{verbatim}
+
+we can \textbf{merge} this to the master branch.
+
+
+Note: Remember that with \textbf{checkout} we can switch among branches. 
+
+\textbf{git merge}
+
+master branch merge to another branch
+
+\begin{verbatim}
+
+```bash
+git merge branch_name
+```
+\end{verbatim}
+
+\section{conflicts in merge}
+
+Conflicts arise in merge, with the same line is altered. When merge is appear then the file marked where the conflict arise.
+
+
+git merge --abort	If there are merge conflicts (meaning files are incompatible), --abort can be used to abort the merge action.
+
+
+
+
+\begin{verbatim}
+git log --graph --oneline
+\end{verbatim}
+
+
+
+
+\textbf{push}
+
+after we commit and the working tree is clean we 
+can make the changes in github using 
+
+\begin{verbatim}
+
+```bash 
+git push 
+```
+\end{verbatim} 
+Note that we can change the file directly in web page, then what happens  with the local repository?
+then if I'd like bring those changes then we need used 
+
+\begin{verbatim}
+
+```bash
+git pull
+```
+\end{verbatim}
+
+git pull to retrieve information about our remote repository.
+
+how to create a way of avoid enter the email and the password every time, to push or pull?
+
+this allow us save the password by 15 minutes
+\begin{verbatim}
+ 
+git config --global credential.helper cache 
+
+\end{verbatim}
+
+we can change this time
+\begin{verbatim}
+ 
+git config --global credential.helper 'cache --timeout=3600'
+
+\end{verbatim}
+
+\section{Pratical with git}
+
+when i'm interested in see or compare currently with older 
+\begin{verbatim}
+
+```bash
+git diff
+
+```
+
+\end{verbatim}
+when this is in the index ( staging area).
+
+\begin{verbatim}
+
+```bash
+git diff commit_id
+```
+\end{verbatim}
+show us the difference among the snapshot in commit_id  and HEAD.
+
+Note: HEAD is a nick name to the currently commit.
+therefore git diff HEAD do not show up nothing.
+
+
+when you uses git checkout id\_commit to back a snapshot, then automatically 
+put in another branch, then to back to the previous state used 
+
+\begin{verbatim}
+
+```bash 
+git checkout master
+```
+
+\end{verbatim}
+
+to revert the last one, commit you can type 
+\begin{verbatim}
+
+```bash
+git revert HEAD
+```
+
+\end{verbatim}
+
+\section{Remote}
+
+\begin{verbatim}
+
+```bash
+git remote -v
+```
+
+\end{verbatim}
+to see URL of our repositorie.
+
+hotfix= revisión, a small pice of code to fix a bug.
+\begin{verbatim}
+
+```bash
+git remote show origin  
+```
+
+\end{verbatim}
+
+
+\section{git fetch}
+it is related with updates in remote server.
+allow us compare before make the pull, this is very important to do not damage our code, in case of a mistake.
+
+pull is composed of two commands fetch and merge.
+
+
+\subsection{to check}
+
+Only modified a file directly in github web page.
+
+\begin{verbatim}
+```bash
+git branch -r
+```
+\end{verbatim}
+
+to check the remote repositores we can 
+
+\begin{verbatim}
+
+```
+git remote -v
+``` 
+\end{verbatim}
+
+git fetch retrieve all modifie files that are not
+in out local repo. and save in a hidden directory.
+
+we can move on to branch FETCH\_HEAD
+
+note if you type
+\begin{verbatim}
+
+```
+git checkout FETCH_HEAD
+git branch 
+``` 
+\end{verbatim}
+
+
+whats means 
+\begin{verbatim}
+
+```git branch -a
+```
+\end{verbatim}
+
+to merge to master we used
+\begin{verbatim}
+
+```git merge FETCH_HEAD
+```
+\end{verbatim}
+
+in other words git pull is a shorthand to git fetch and git merge FETCH_HEAD.
+
+
+
+
+The word \texit{origin} is associated with the URL of our remote. if we'd like uses our remote we can associate a name with a URL for instance:
+the open source communite refer forking to the fact of clone a repository and work in it.
+
+\section{Kind of merge}
+
+\subsection{fast-forward}
+
+a fast forward merge is when there are a commond ancestor therefore the label only forward to the new commit.
+
+\begin{verbatim}
+
+            master      branch*
+              |            |     
+              |            |     
+Commit k - commit k+1 - commmit 
+
+\end{verbatim}
+then, fast forward update the label of
+master to branch*.
+
+
+\subsection{three way -merge}
+
+In this case the ancestor no is preceding inmediatly
+\begin{verbatim}
+
+                        master
+                          |      
+                          |
+Commit k - commit k+1 - commit 
+                 |
+                 | 
+              Commit j - commit j+1 - commit*
+                         
+\end{verbatim}
+this situation could create problems, that will must be fixed manually.
+the problems arise if in master try merge with commit*, then the process 
+redirect to  the common acenstor commmit k+1, but the error will be arise
+if the same file has differents changes in the sames lines in branches.
+then you must, the the error must be fixed manually. 
+
+when a document have conflicts appear the  marks $<<<<<<< ======= >>>>>>.$
+
+
+\section{Stashing and cleaning}
+
+
+\section{git rebase and git merge}
+Both are similar, but you must avoid uses rebase in public branches, instead uses merge, and 
+locally it is prefereable uses git rebase due save linearity in commits.
+
+
+tips:
+Always is prefereable create a branch and after merge.
+
+
+
+\section{tips in remote}
+\begin{verbatim}
+
+```bash
+git remote 
+git remote -v
+```
+
+\end{verbatim}
+the default name of remote repo is \textit{origin}.
+
+to more information:
+\begin{verbatim}
+
+```bash
+git remote show origin
+```
+
+\end{verbatim}
+to see branches in remote repo 
+
+\begin{verbatim}
+```bash
+git branch -r
+``` 
+\end{verbatim}
+
+\begin{verbatim}
+```bash
+git log originr/master
+```
+\end{verbatim}
+
+after of fetch data we also can uses:
+\begin{verbatim}
+```bash
+git merge origin/master
+```
+\end{verbatim}
+
+\begin{verbatim}
+git log -p -1
+\end{verbatim}
+take in mind that -1 or any number represent the last change, -2 the last two changes and so on.
+
+
+\begin{verbatim}
+
+```bash
+git remote update
+```
+
+\end{verbatim}
+this command will update, all of your branches and git fetch only the branch where you are on.
+
+\begin{verbatim}
+
+git log --graph --oneline --all
+
+git log -p origin/master
+
+\end{verbatim}
+
+
+\section{Branches in remote repositories}
+to push a remote branch in a repository we can type:
+\begin{verbatim}
+
+```bash
+git push -u origin branch THE_BRANCH_NAME 
+``` 
+
+\end{verbatim}
+
+to remove the remote branch, 
+\begin{verbatim}
+
+```bash
+git push --delete origin branch_name
+```
+\end{verbatim}
+\textbf{rebase} is used to integrate changes among branches.
+
+
+
+\section{git bitsec}
+
+
+\subsection{note}
+HEAD~# the last # number.
+
+
+\subsection{squash}
+
+when apply rebase, change pick keyword by
+squash.
+
+\begin{verbatim}
+
+
+       commit_b3
+          |                      
+       commit_b2
+          |
+      commit_b1                   unified_commit*  
+       /                           /
+      /                           /
+Commit 2     >>>>>>>         commit 2
+   |                            |     
+commit 1                     commit 1       
+
+
+\end{verbatim}
+
+\begin{verbatim}
+git rebase -i HEAD~3
+\end{verbatim}
+
+change the word in the new document.
+
+\section{An improve workflow with rebase}
+
+\subsection{excersice with rebase}
+
+\begin{verbatim}
+
+ 
+      /  Branch_commit
+     / 
+    | 
+ commit x
+
+\end{verbatim}
+
+after a time you update the local repository
+with the changes in remote repo, then:
+
+\begin{verbatim}
+
+
+  commit x*
+     |
+     |   Branch_commit
+      / 
+     |
+     |
+  commit x
+
+\end{verbatim}
+
+After the  apply rebase git rebase master
+
+\begin{verbatim}
+
+
+        Branch_commit
+      /  
+     /
+     | 
+     |
+ commit x*
+     |
+     |
+   commit x
+
+\end{verbatim}
+where also could be see conflicts the rebase is realized from the branch.
+
+\begin{verbatim}
+
+git checkout master 
+git rebase branch
+
+\end{verbatim}
+
+\begin{verbatim}
+
+
+Brach_commit
+  |
+  |
+commit x*
+  |
+  |
+commit x
+
+\end{verbatim}
+
+\subsection{Notes to rewrite history}
+In this section interactive rebase play a important role.
+
+\begin{verbatim}
+
+git commit --amend --no-edit
+\end{verbatim}
+
+Remember that this will add the staged 
+documents to the snapshot.
+
+--no-edit indicate that let the before commit equal.
+
+\subsubsection{rewrite a commit}
+
+\begin{verbatim}
+git rebase -i HEAD~1
+\end{verbatim}
+
+this is for the last commit and change \texit{pick} for \texit{reword} after appear the vim again, and could reword the commit.
+if you drop a commit you drop the changes made in it.
+drop commit has the same logic.
+
+\section{rebase vs merge}
+
+remember that:
+
+\begin{verbatim}
+
+```bash
+git merge feature master
+```
+
+\end{verbatim}
+
+
+\begin{verbatim}
+
+```bash
+git rebase refactor 
+```
+
+\end{verbatim}
+move the current branch on top of the refactor branch.
+
+a practical example of rebase, for instance we 
+are working in a branch, but your partner pull a update, then rebase a linear
+a after merge to your branch.
+
+
+
+
+\subsection{Good practices} 
+To collaborate with another persons. why is better a 
+fetch-rebase- push workflow than a pull ?
+
+when a update occur in the remote repo, then 
+if we uses pull then a thre-way merge appear, 
+instead, we need a liner history with rebase. 
+
+\begin{verbatim}
+
+
+git fetch 
+git rebase origin/master
+
+\end{verbatim}
+
+
+always update the repository.
+
+
+\subsection{a simple git pull request}
+
+Note: forking is to create a copy of a repository
+that belong to another person.
+
+Note: Pull request is a commit or series of commits, that are send to the owner repo.
+
+
+
+\subsection{team work}
+After that we create the repo, we pull our collaborators in settings,  add collaborators,
+they have all power to modify then we are need cautiously.
+the collaborators only need clone the repo in their local machines (forking not).
+
+
+this is the better work flow:
+Always create branches to work, when you finish your new features then you can merge to the master 
+branch. you can merge to the master but is better take a person in charge of them this changes.
+is better assing a person to handling merge or reviwier.
+
+Remember work in branch.
+You can see diff with branches 
+\begin{verbatim}
+
+```bash
+git diff branch
+```
+
+\end{verbatim}
+when you put, then you consider a put request, and i can check without alter the branch.
+
+
+\section{Review concepts}
+
+Forking works through pull request, therefore we do not affect directly the original repo.
+if you are not collaborator (add) when you clon a repo, you cant not suggest changes.
+
+fork contain main data; files and  unlike, issues; branches; pull request not.
+
+upstream= is the original repository where i fork the project or files.
+
+
+it is important to know hot sync a fork:
+\begin{verbatim}
+
+git remote add upstream https://github.com/octocat/Spoon-Knife.git
+
+git remote -v 
+
+\end{verbatim}
+
+
+We need up keep update, our fork, if upstream is very active.
+
+
+conde in development.
+
+\begin{verbatim}
+
+```bash
+git fetch 
+git merge upstream/master
+```
+
+\end{verbatim}
+
+\subsubsection{Updating pull request}
+Once time that you submit a pull request in a branch, automatically appear on the commits in the same place. to create a different pull request you need create a different branch.
+
+
+
+we can speak with the user who send the pull request and ask more information or examples.
+
+
+\begin{verbatim}
+
+#pick   >>>>>>  pick
+#pick           squash
+
+\end{verbatim}
+
+\begin{verbatim}
+```git push -f
+```
+\end{verbatim}
+
+
+
+\section{Tools to integrate}
+
+
+
+\subsection{CI/CD}
+continuous integration and continous
+delivery.
+
+
+
+
+
+
+
+\textbf{pipeline}
+remember that is the input of a program is the 
+output of another.
+\begin{verbatim}
+standard input
+standar output
+standar error.
+\end{verbatim}
+
+\begin{verbatim}
+
+```bash
+history
+```
+\end{verbatim}
+
+we can store the output of any program in  a
+text file. with $>$ redirect 
+
+\begin{verbatim}
+
+```bash
+python3 sort.py > output.txt
+```
+\end{verbatim}
+
+
+$>>$ redirect without lost the content. it means that put the content at final of the document as a \textbf{append}
+
+
+
+\subsection{Grep}
+
+\texit{Global regular expressions print} it is used to search patterns in text. We can uses grep to search $>>>>$  when bugs are presented.
+
+grep $'>>>>'$ file
+
+by default grep, search a regular expression, 
+this means, that include substrings where the expressions match.
+
+\subsubsection{options}
+
+\begin{itemize}
+-i eliminate the casesensitivness..
+-R search in all files are subdirectories.
+-c to count the number of times that appear.
+-n to show the number of line that appear.
+-w exact mathc this means whole word.
+-r to include all subdirectories
+-v print all lines that not contain the word.
+-x include all sentence whole match.
+grep support several files
+\end{itemize}
+
+\begin{verbatim}
+grep '>>>>>' file1 file2 file3
+\end{verbatim}
+thus search in each file.
+
+search multiple words.
+\begin{verbatim}
+```bash 
+grep word1 file | grep word2 file
+```
+```bash
+ls | grep Doc
+```
+\end{verbatim}
+remember use ' ' to search a whole phrase. Is better uses  \text{find} to search files.
+
+wc allow us count how many lines have a file.
+the output of wc is  lines, words and characters.
+
+
+\section{Concepts in computers UNIX-like Systems}
+A pipe is a special file that connect the process in the flow stdout $>$ stint. $|$ pipe $&$ ampersand they are control operators. Pipes are unidirectional left to to right.
+
+
+
+
+
+\text{filter}
+is a program to process streams and produce streams.
+for instance, \text{sed, grep and awk} are filters.
+
+
+
+
+
+
+
+\subsection{issues}
+we can close issues when commit using the keywords closes $#N$ where $N$ is the number of issue.
+
+
+
+
+
+
+
+\subsection{Add another commands}
+\begin{verbatim}
+
+git remote --verbose 
+
+\end{verbatim}
+to get information about remote repository.
+
+a local repository could be nested to a remote repository this is useful when you already have a local repository and commits and you want add to a remote.
+
+you only need create the repository in github,
+\begin{verbatim}
+git init 
+\end{verbatim}
+in the folder
+\begin{verbatim}
+%git add .
+%git commit -m 'first'
+git remote add origin  URL
+git remote -v
+git push -u origin master
+\end{verbatim}
+\begin{verbatim}
+git remote add
+\end{verbatim}
+
+
+
+hint: all commits belong to a branch
+
+
+
+push add commits from a local to a remote repository.
+
+
+\begin{verbatim}
+git push [-u] [repository] [branch]
+\end{verbatim}
+
+\begin{verbatim}
+git push -u origin master
+\end{verbatim}
+for what is is the flag -u?
+
+
+git push or git push origin master?
+
+\begin{verbatim}
+git push # by deafult is poniter to origin this means that push all branches
+git push master origin # only the master branch is update  in origin.
+\end{verbatim}
+
+Remember that is acyclic. 
+
+a branch occur if a commit have more than one child.
+a merge occur when a commit has more than one parent.
+
+\begin{verbatim}
+
+branch A ---
+              \      Merge
+              / ( have two parents) 
+branch B ---- 
+
+
+\end{verbatim}
+
+
+
+
+\begin{verbatim}
+git log --online --graph 
+\end{verbatim}
+
+
+\subsection{git objects}
+\begin{itemize}
+\item commit object
+\item annotated tag
+\item tree directories
+\item blob
+\end{itemize}
+
+\subsection{git IDs}
+is the name of the git object ( hash algorithm) SHA-1
+\end{document}
+
+\begin{comment}
+strung = encadenado.
+stalling= 
+buffering=
+halting=
+throughtput=
+rendered= is like 'concebida'
+halts=
+upstream=
+stalling=
+bracktrack=
+flushed=
+hovering=
+turn up=aparecer
+convey=
+flowed=fluir, correr.
+blast= explosión
+toggle= palanca, fiador.
+sreamline=linea de corriente.
+fleshed out = concentrarse, desarrollar.
+note= Rember in git to  push to upstream yor must send throught github GUI -web 
+the pull request.
+waived= renunciar.
+this rule is waived= no se aplica, no se tiene cuenta.
+unto=hasta, preposition.
+pull down; derribar, bajar.
+synced; sincronizado.
+squash= aplastar.
+blowing away: arrancar, llevarse, soplar lejos
+fetch= ir a buscar, extrer, ir por.
+called out = evocado, convocado.
+fetched= obtenido.
+meantime= mientras tanto.
+through= mediante, através.
+kick off= comenzar.
+check out= revisar, mirar.
+hotfix= revisión.
+you are on= en la que estas[puesto, colocado].
+ahead=adelante (adverb.)
+doing= haciendo.
+stash= esconder.
+phrase= frase, expresesar.
+fires up= enciende
+tip = punta
+able= poder, capaz.
+to get around this= para evitar esto.
+fleet=flota, parque, armada.
+rollback= retroceder.
+quick-fix= arreglo rapido.
+avert= evitar, apartar.
+hop on over=	
+hop on= subir
+nifty=
+spot=
+strain=
+juggling=
+darn=
+nailed=
+grasp=
+awhile=
+reability=
+curb=
+standby=
+misbehave=
+hub=
+brush up=
+workbench=
+latest outage: última interrupción.
+prompt: instamos, pedimos.
+ground:terreno.
+checkout:revisa, verifica.
+ammend: emendar, mejorar.
+batch: lote, partida, grupo.
+jumble: revoltijo.
+backstory:trasfondo
+spun up: hilado hasta
+cheat:engañar, estafar.
+cluttering: desorden.
+heads up=aviso.
+rewind=rebobinar, dar cuerda a
+faulty= defectuoso, immperfecto
+spotted=manchado.
+rev up= acelerar
+colliding=
+nailed it= como le diste! , justo en el clavo.
+flawed= defectuoso.
+tidy= ordenado,limpio.
+doodling= garabatear.
+scary= da miedo.
+heads up=
+snap= chasquido, instantaneo.
+shiny=brillante
+pointer=puntero, indicador.
+jot down= anotar, apuntar.
+overhead= arriba, encima,
+overhead=gastos generales.
+unwordly= espiritual, poco mundano.
+checksumming= suma de comprobación
+undoable=deshacer
+screwing= atornillar, apretar.
+checkout=the administrative procedure followed when a guest leaves a hotel at the end of a stay.
+messing= estropear.
+killer feature= caracteristica asesina
+encourages= anima, fomenta.
+somewhat= algo.
+blobs= mancha, gota.
+rewinds=rebobinar, dar cuerda.
+detached=separado, desprendido.
+spawn= aparecer, desovar, engendrar.
+fork= tnedor, bifurcación
+throw away= tirar a la basura, botar.
+assigment= tarea, encargo.
+think back= pensar en 
+heads up= aviso.
+clashing=chocar.
+check out= revisar, verificar.
+assured= seguro
+utterly: absolutamente.
+confident=confiado, seguro.
+tangle=maraña, enredo.
+throw out: tirar rechazar.
+throwing: lanzar, arroje.
+wrap up= abrigar, liar, concluir, terminar.
+entangled= enredado
+cutting edge: innovador
+cutting edge technology ; tecnología de vanguardia.
+spawn= generar.
+seanless: sin costura, bien hecho.
+pull: tirar, halar.
+glisteining: brillante.
+push: empujar.
+passphrase: frase de contraseña.
+handshake:apretón de manos.
+detached: separado, desprendido, suelto.
+miscellaneous : variado.
+dangling: colgado
+halt= entregar
+seamlessly=sin problemas.
+detached;separado.
+bare: desnudo.
+deeds: andanzas.
+deed: escritura, hecho, acción, acto.
+garbled:confuso.
+eavesdrop= escuchar a escondidas.
+daunting: desalentador
+thereby= de este modo, así.
+streaming= transmitir.
+crooks=ladrones.
+reword= expresar en otras palabras.
+stash: reserva, esconder.
+\references{goog articles}
+https://www.atlassian.com/git/tutorials/merging-vs-rebasing
+
+
+\subsection{YAML format}
+what is YAML format?
+thereby=de este modo. 
+foresight=precaución, previsión
+
+
+
+
+\subsection{research}
+
+git remote add upstream http of the upstream  it means where you fork.
+
+to check git remote -v.
+
+
+"Closes: #1
+
+we put in origin and we can make a pull request after by github to 
+the original or upstream.
+
+git push origin improve-username-behavior
+
+
+\section{GET}
+
+get have some uses,
+
+get= receive, obtain , buy.
+
+0) i got some awards at university.
+
+0.1) we've gotten 40 requested to change code.
+
+0.12) what thins are you getting?
+ 
+ get //  have got = have = ownership, relationship, obligation and neccesity.
+
+-1.1 )  have got two computers.
+
+-1.2) you have got to get up early in the morning.
+
+-1.3) she has got to read the book.
+
+for past only need had.
+
+
+get= offers and request
+
+*1) could you get me the paper please?
+*2) can i get you something to see while you wait?
+
+
+
+get = reach a place.
+
+
+1) call me as soon as you get to the office.
+
+get= become / change
+2) the kids got really scared when they saw the spider.
+
+
+get= understand
+3) i dont get it
+
+
+\section{Research}
+
+How revert changes to a single documment not all.
+
+\section{git log}
+
+show us, the most recent commit as the first.
+
+
+\section{Git with remote repository}
+
+In this case we can introduce to gitlab or github, we uses github.
+
+after we created an account in github, and and a repo, we can clone or dowland the repo
+in our local machine using 
+\textbf{git clone URL}
+
+for instance we can modify the README.md
+the extension md stand for \textit{Mark down}.
+
+if we edited then we can used to probe how works github.
+
+https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork
+
+https://docs.github.com/en/enterprise/2.13/user/articles/syncing-a-fork
+
+
+
+
+\subsection{References}
+master is the default branch of the repository.
+
+Head is a reference to the current commit.
+
+
+\begin{verbatim}
+git show HEAD
+\end{verbatim}
+
+
+
+\begin{verbatim}
+
+  master
+    |               
+    |
+Commit 1 - commit 2 
+               |
+               |
+             testing
+              HEAD
+
+\end{verbatim}
+
+HEAD usually point to the last commit in the branch
+we are on, however we can detached to any branch or commit.
+
+hint: remember that HEAD is unique.
+
+
+\begin{verbatim}
+git log --oneline
+\end{verbatim}
+
+
+
+\subsection{Detached HEAD}
+\begin{verbatim}
+
+\end{verbatim}
+
+
+\subsection{tildes and carets}
+
+used to refer relative previous commits. 
+
+
+
+
+
+
+\subsection{Tags}
+uses to special commits, for instance versions v.2.0 or v.1.0
+
+
+
+\begin{verbatim}
+git tag v1 
+\end{verbatim}
+if not specify git IDs then the HEAD or current 
+commit will be tag.
+
+only \textit{git tag} shows the tagas in alphabetical order.
+
+\textit{git push} do not load automatically transfer tags to the remote repository.
+to transfer all
+
+\begin{verbatim}
+git push 
+\end{verbatim}
+
+
+
+
+
+what is hotfix?
+
+
+
+\begin{subsection fugitive  and airline in VIM}
+These are very practical plugins, airline proportion a  good status bar to see in what branch we are on.
+and fugitive as handy features as 
+\begin{verbatim}
+Gbrowse
+\end{verbatim}
+
+
+
+
+
+
+\subsection{Git show}
+
+
+
+
+
+
+\subsection{Checksums}
+a small data derived from another digital data, checksums is useful to data integrity ( not authenticity) this piece of data for instance 123455 is derived from a checksum algorithm.
+
+
+
+
+
+
+
+checksum hash (SHA-1)
+rembemer that SHA-1 are very volatile when modify a document, is a fingerprint in the integrity of data.
+
+
+
+
+
+\subsection{SHA algorithm}
+Tree requirements, fast, avalanche requirements.
+SHA-1 was published by NASA 1995.
+
+
+
+
+
+\section{Branch}
+Create a branch is a create a label.
+
+
+
+
+\section{Remote branch}
+insights about remote, therefore it is important to know how this work, 
+
+
+
+
+\section{Deleting a branch label}
+When you delete a branch the commits associate will be dangling commits this means that will be garbage collected.
+
+\begin{frame}
+git branch -d BRANCHNAME
+\end{frame}
+
+Usually a BRANCH is delete with the feature to improve was merge to the master branch.
+
+then when there are not merge commits, of the branch that we want delete uses 
+
+\begin{frame}
+git branch -D BRANCHNAME
+\end{frame}
+
+you can recover dangling commits:
+
+\begin{verbatim}
+git reflog
+\end{verbatim}
+anote the hash and 
+
+\begin{frame}
+git checkout -b  HASH-1(of dangling commit)
+\end{frame}
+
+
+
+
+
+
+\subsection{tracking branch}
+Remember that all branches are pointers to certain commits. 
+
+
+
+
+
+
+
+
+\begin{verbatim}
+git pull
+\end{verbatim}
+to bring data, that is is the remote to your local machine.
+
+
+\textbf{Example one workflow}
+\begin{verbatim}
+git branch NEWBRANCH
+git checkout NEWBRANCH
+\end{verbatim}
+ 
+the following command is a shorthand of make the two previous:
+
+\begin{verbatim}
+git checkout -b NEWBRANCH
+\end{verbatim}
+
+
+detached HEAD:
+if you are in a detached head state.
+you can back to another point and modify some points in the project or version.
+
+you back to the SHA-1 of a commit. 
+if you want initialized to work in this point you must create a branch label  or branch and checkout to the branch thus you are again in a no detached state.
+hint: to resolve a detached head create a branch.
+
+
+
+
+analyze  this command 
+
+    git push --set-upstream origin add-tex
+
+
+
+remember that in git branch NAMEBRANCH.
+NAMEBRANCH is the argument of the command.
+
+
+hint: remember that \textbf{checkout} updates HEAD and update working tree with its commits.
+
+
+
+
+\section{Merging}
+\subsection{Kind of merges}
+\begin{itemize}
+\item fast-forward merge
+\item merge commit
+\item squash merge
+\item rebase
+\end{itemize}
+
+
+\subsubsection{FAST-FORWARD}
+move the base branch label to the tip of the topic branch. This is possible only if there are not other commits since we create the branch.
+
+\begin{verbatim}
+go to the master ( checkout)
+merge the branch
+delete the branch
+\end{verbatim}
+ 
+you note that the fast-forward merge produce a linear history.
+
+
+\subsection{Merge-Commit}
+This allow us additional commits in master branch before of branching.
+
+this is produced when there are commits in the master after the branching, this combine the commits a make a merge commit.
+
+here could be arise conflicts.
+because merge-commit is merging the tips of each branch.
+this means that a merge commit is linked to multiple parents
+
+\begin{verbatim}
+checkout master
+merge BRANCH
+delete BRANCH
+\end{verbatim}
+
+At this moment is good take different
+notebooks with different specifications
+as Machine learning implemntations, 
+Statistical models, visualizations.
+
+
+each team has history policies:
+linear history 
+merge commits
+
+
+to force to no uses fast forward:
+\begin{verbatim}
+git checkout master
+git merge --no-ff BRANCH
+git branch -d BRANCH
+end{verbatim}
+recursive strategy
+
+tips:
+we have a master and crate the branch of development until the branch is merge with master.
+
+\begin{verbatim}
+git log  --graph --all
+\end{verbatim}
+
+tips: is good include in the commit where occur a merge
+
+\subsubsection{Merge conflicts}
+araise when the commits modify the same word in different ways
+
+
+
+
+
+
+
+Note that if you want merge the commits of B to A you need are on B and write
+\begin{verbatim}
+git checkout A
+git merge B
+\end{verbatim}
+
+you can delete de branch label
+
+
+
+
+\section{Team work flow}
+for instance locally we create a branch 
+of master or main, i finish my function and then i push the branch for the  request, the request are accepted then when  pull the main to update, we can update the branch of development if i go to the branch and
+put 
+\begin{verbatim}
+git checkout BRANCHDEVELOPMENT
+git merge master
+\end{verbatim}
+
+Create pull request to merge, to the master branch.
+
+\subsection{clonning or forking}
+the difference to consider is the communication among the repositories.
+
+when you clone a repo, you modify the repo that you clone. 
+1with fork this is independent. 
+
+the changes that you make in the original repo, not are transmited to the fork.
+
+
+remeber the shortcut of
+\begin{verbatim}
+git commit -a -m 'add commit message'
+\end{verbatim}
+
+to see the history of mergins uses
+
+\begin{verbatim}
+git log --graph --oneline
+\end{verbatim}
+
+
+
+\subsection{conlifcts}
+
+arise when there are modifications in the same line of code.
+
+when appear the message about merge conflict you must tyoe
+
+\texbf{Automatic merge failed, fix confflics}
+
+\begin{verbatim}
+git status
+\end{verbatim}
+
+modify the lines of error and work all that you want
+
+\subsection{guideline to contributing}
+
+
+is better make changes and after made 
+pull request with forking.
+
+
+endeavor; esfuerzo.
+ 
+
+
+
+\begin{verbatim}
+git show remote origin
+\end{verbatim}
+
+
+pull - merge workflow.
+\begin{verbatim}
+git add -p
+\end{verbatim}
+
+
+
+
+rebase:
+
+it is important try of not uses rebase with pushes commits.
+\subsection{interactive rebase}
+Not make this over push code.
+only in your local repository.
+
+\begin{verbatim}
+git rebase -i HEAD~4
+\end{verbatim}
+
+the word pick let the commit intact,
+and this will appear in the editor in the following way:
+pick HASH-1
+pick HASH-1,2
+pick HASH-1,3
+pick HASH-1,4
+if we want to squast or melt the last three we need rewrite to:
+pick HASH-1
+squash HASH-1,2
+squash  HASH-1,3
+squash  HASH-1,4
+and only appear a commit
+
+
+
+
+
+work with github in a collaborative TEAM:
+how contribute to another repositories?
+
+\begin{verbatim}
+fork a external repo
+clone the repo
+push changes
+pull request
+\end{verbatim}
+ 
+take in mind that the original repo could make another changes, that
+were submmited after of forking, then to update que can uses upstream.
+
+the update version is 
+\begin{verbatim}
+git remote -v 
+\end{verbatim}
+this show us where fetch and push
+
+\begin{verbatim}
+git remote add upstream URL-ORIGINAL-REPO
+git remote -v 
+git fetch upstream
+git rebase upstream/master
+git push origin master --force
+make the changes 
+and pull request
+git push origin master
+\end{verbatim}
+
+probar: fork with remote branchs, work witth de deployment branch.
+ 
+# In tableOne contribute to make improvements in
+calculating automatically the distribution of each variable
+and as reponses use a functionality additional
+try collaborate to tableone
+
+
+hint: remember that by defualt remote repositores have
+the \texbf{origin} repository
+
+
+
+
+to get more information about remote you can uses
+\begin{verbatim}
+git remote show origin
+\end{verbatim}
+
+\begin{verbatim}
+git branch -r
+\end{verbatim}
+
+
+to create development branch only need 
+\begin{verbatim}
+git checkout -b deployment
+make changes
+git push origin deployment
+\end{verbatim}
+
+
+\subsection{fetch}
+git fetch dowland the data from remote repos witout merge with your pure locally branches, therefore not force to accept the changes.
+therefore this command need git merge.
+
+
+
+\begin{verbatim}
+git log origin/master
+\end{verbatim}
+
+\begin{verbatim}
+git merge origin/master
+\end{verbatim}
+
+
+
+
+create a local copy of a remote branch
+\begin{verbatim}
+git checkout NEW_REMOTE_BRANCH
+\end{verbatim}
+
+\begin{verbatim}
+git log -p -1
+\end{verbatim}
+
+to all branches without automatically merge
+is:
+\begin{verbatim}
+git remote update
+\end{verbatim}
+
+
+\begin{verbatim}
+git log --graph --oneline --all
+\end{verbatim}
+
+
+\begin{verbatim}
+git log -p origin/master
+\end{verbatim}
+
+
+
+\begin{comment}
+mirrored:reflejado
+meantime:mientrastanto
+\end{comment}
+
+\subsection{Pushing remote branches}
+
+
+\begin{verbatim}
+git push -u origin upstream
+\end{verbatim}
+
+\section{rebase}
+rebase put the branch of the tip of master
+altering the hasesher
+
+
+\begin{verbatim}
+Merge  \
+  |     \
+  |     commit b1
+  |       |
+commitp  commit b0 
+  |     /
+  |    /
+commit  
+  |
+  |
+commit 
+\end{verbatim}
+
+rebase put commit b0 and b1 over commtip 
+keeping the history linear
+uses git log to see how the graph is.
+
+hint: rember the three way merge is the algorithm of commit merge.
+
+to delete a remote branch
+\begin{verbatim}
+git push --delete origin BRANCH
+\end{verbatim}
+
+
+
+
+\begin{verbatim}
+git rebase and the branch that will be the new base
+\end{verbatim}
+think in that you do not a three way, isnteand aplly a fast forward merge if you want.
+take in mind that you are on in the branch alternative not master.
+and put your changes over HEAD of the master then.
+
+\begin{verbatim}
+git rebase master
+\end{verbatim}
+
+now you can merge the alternative branch to master or rebase again.
+
+
+
+
+\section{Collaborate}
+
+sincronize the branches each time do you start to work
+
+
+
+\begin{verbatim}
+git remote add origin https://github.com/it-ces/labHealth
+\end{verbatim}
+
+
+\end{comment}
+

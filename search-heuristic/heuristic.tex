@@ -1,0 +1,495 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{munsell}{rgb}{0.0, 0.5, 0.69}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{minas}{RGB}{0.244, 0.172, 0.36}
+\definecolor{PUJ}{RGB}{44, 86, 151}
+\definecolor{PUJ2}{RGB}{43, 93, 156}
+\definecolor{PUJ3}{RGB}{20, 52, 107}
+\definecolor{cyandk}{rgb}{0.0, 0.72, 0.92}
+
+\author{Iván Andrés Trujillo }
+
+%% code information
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  classoffset=1,
+  morekeywords={True,False}, keywordstyle=\color{munsell}, 
+  classoffset=0, 
+  keywordstyle=\color{blue},  
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{PUJ3},
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+}
+
+\begin{document}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\includegraphics[width = 4cm]{pujshield.eps}\\[0.5cm] 
+
+\begin{center} 
+%%%% Title%%%%%
+\textbf{\LARGE Introduction to heuristics and meta-heuristics  in Python}\\[0.2cm]
+\emph{\LARGE Notes of class}\\[0.3cm] 
+%%%%%%%%%%%%%%%%%%%%%%
+\emph{Iván Andrés Trujillo Abella} \\
+\textsc{\Large 
+}\\[0.2cm] 
+\textsc{\large Facultad de ingeniería}\\[0.5cm] 
+\HRule \\[0.4cm]
+\end{center}
+\vspace{1cm}
+
+
+
+
+\section{Some concepts about graph theory}
+a graph $G = (V,E) $ composed of two set the set of vertex $V$ and the set of edges $E$.
+the set $V$ could be person, items or another entities while $E$ is the set that linked the them.
+
+for instance:
+$V = \{ (A,B,C) \}$ and $E =  \{ (A,B), (A,C), (B,C) \}$.
+generally the graphical representation is by points and lines, where vertex and points and lines that connected the vertices represented edges.
+
+in some cases could be exist loops inside graphs for instance:
+$V = \{ (A,B,C,D \}$ and $E = \{ (A,A), (A,B),(C,D) \}$ note that so far we had been dispensing of the loop $(A,A)$.
+
+
+\section{Algorithms and search}
+
+\begin{itemize}
+\item algorithm hill climbing
+\item search A*
+\item minmax 
+\item alfa and beta algorithm
+\end{itemize}
+
+
+
+
+
+
+rubik cube.
+
+
+peeling: peladura
+fading: desvanecimiento.
+
+mainstream:
+circunvent:
+braid:
+
+amusement:
+noughts;
+scrambled:
+spotlight:
+shelves:
+halted:
+advertisements:
+rear: trasero,
+craze:
+plummeted:
+shortage:
+sued:
+appealed:
+overturned:
+amended:
+disclosed:
+upheld:
+concealed:
+inward:
+screw:
+advertised:
+flipped:
+scrambled:
+takes up:
+lament;
+awful:
+silinesss
+
+
+
+\section{Algorithms in blind}
+
+expaction function 
+and stop function:
+
+
+
+
+Depth first search (DFS):
+it is an algorithm, but not guaranteed the optimum route.
+
+
+stack structure:
+
+
+
+hash set:
+
+
+
+
+\subsection{DFS algorithm}
+depth first search 
+how works here the data structure ?
+
+
+important here longitute of path and branching factor:
+
+
+\subsubsection{LIFO structure }
+LIFO (last in first out ), the stack is a example, the last element added is the first removed. Are useful to implement recursion.
+
+\begin{lstlisting}
+stack = ['A','B','C']
+stack.append('D') # Add to the tail 'D'
+stack.pop() # remove the last element namely 'D'
+\end{lstlisting}
+
+
+
+\subsection{BFS algorithm}
+
+
+\subsubsection{FIFO structure}
+FIFO (first in first out), the queue is a example, the first element added is the first element removed.
+imagine good or services, line in a restaurant.
+
+
+\begin{lstlisting}
+queue  = ['A','B','C','D']
+queue.pop(0) # Remove the first element  'A'
+queue.append('Z') # Add the 'A' to the tail.
+\end{lstlisting}
+
+
+
+
+
+\section{Applying BFS and DFS to a particular tree}
+
+
+
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(4.4460283220320145,3.4839563756562133) rectangle (26.028671106012656,17.35447680358096);
+\draw [line width=2pt] (13.9,14.74) circle (1cm);
+\draw [line width=2pt] (12,12.16) circle (1cm);
+\draw [line width=2pt] (16.08,12.36) circle (1cm);
+\draw [line width=2pt] (12.6,9.3) circle (1cm);
+\draw [line width=2pt] (9.78,9.5) circle (1cm);
+\draw [line width=2pt] (16.07875233780117,9.398522089690589) circle (1cm);
+\draw [line width=2pt] (18.66,9.66) circle (1cm);
+\draw [line width=2pt] (13.303297233655439,13.937537659053866)-- (12.371390676354103,13.08847669088526);
+\draw [line width=2pt] (14.378852130680574,13.862104427085615)-- (15.315088801882949,13.004135745782781);
+\draw [line width=2pt] (11.385571860132973,11.371027211534171)-- (10.08561234285114,10.452156024975443);
+\draw [line width=2pt] (11.781660987974588,11.184127018599364)-- (12.241095078760932,10.233374125155812);
+\draw [line width=2pt] (16.1610200714651,11.363287529916581)-- (16.07014909872466,10.39848508114447);
+\draw [line width=2pt] (16.63968150395849,11.531292202204684)-- (17.999046964532916,10.41042726823247);
+\draw (13.796623559594307,15.10863897461962) node[anchor=north west] {$\mathbf{A}$};
+\draw (11.833281055030623,12.566181055040746) node[anchor=north west] {$\mathbf{B}$};
+\draw (16.014211856115878,12.74980301589922) node[anchor=north west] {$\mathbf{C}$};
+\draw (9.60156799228917,9.938974538142576) node[anchor=north west] {$\mathbf{D}$};
+\draw (12.41239647004581,9.656479213744923) node[anchor=north west] {$\mathbf{E}$};
+\draw (15.943588025016465,9.882475473263046) node[anchor=north west] {$\mathbf{F}$};
+\draw (18.55666977569475,9.938974538142576) node[anchor=north west] {$\mathbf{G}$};
+\begin{scriptsize}
+\draw [fill=xdxdff] (13.303297233655439,13.937537659053866) circle (2.5pt);
+\draw [fill=xdxdff] (12.371390676354103,13.08847669088526) circle (2.5pt);
+\draw [fill=xdxdff] (14.378852130680574,13.862104427085615) circle (2.5pt);
+\draw [fill=xdxdff] (15.315088801882949,13.004135745782781) circle (2.5pt);
+\draw [fill=xdxdff] (11.385571860132973,11.371027211534171) circle (2.5pt);
+\draw [fill=xdxdff] (10.08561234285114,10.452156024975443) circle (2.5pt);
+\draw [fill=xdxdff] (11.781660987974588,11.184127018599364) circle (2.5pt);
+\draw [fill=xdxdff] (12.241095078760932,10.233374125155812) circle (2.5pt);
+\draw [fill=xdxdff] (16.1610200714651,11.363287529916581) circle (2.5pt);
+\draw [fill=xdxdff] (16.07014909872466,10.39848508114447) circle (2.5pt);
+\draw [fill=xdxdff] (16.63968150395849,11.531292202204684) circle (2.5pt);
+\draw [fill=xdxdff] (17.999046964532916,10.41042726823247) circle (2.5pt);
+\end{scriptsize}
+\end{tikzpicture}
+
+
+
+
+
+
+
+\subsection{Dijkstra algorithm}
+
+
+
+
+\subsection{Asymtotic analysis of DFS and BFS}
+
+Memory and time;
+
+
+what  is branching factor?
+if is variable then uses the mean.
+
+
+
+how traverse a tree is the question:
+
+
+traversing is visit each node of graph:
+
+
+
+\subsection{question}
+whats mean greedy algorithm
+what means recursive algorithm
+
+
+
+whats is queue?
+
+
+
+\section{how represent graphs in python}
+
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(4.4460283220320145,3.4839563756562133) rectangle (26.028671106012656,17.35447680358096);
+\draw [line width=2pt] (13.9,14.74) circle (1cm);
+\draw [line width=2pt] (12,12.16) circle (1cm);
+\draw [line width=2pt] (16.08,12.36) circle (1cm);
+\draw [line width=2pt] (12.105633182304109,9.257625701340354) circle (1cm);
+\draw [line width=2pt] (16.205875233780116,9.200775362612232) circle (1cm);
+\draw [line width=2pt] (13.303297233655439,13.937537659053866)-- (12.371390676354103,13.08847669088526);
+\draw [line width=2pt] (14.378852130680574,13.862104427085615)-- (15.315088801882949,13.004135745782781);
+\draw [line width=2pt] (12.091591730846122,11.164203356683398)-- (12.073162352429183,10.257098384912663);
+\draw [line width=2pt] (16.1610200714651,11.363287529916581)-- (16.197271994703605,10.200738354066113);
+\draw (13.796623559594307,15.10863897461962) node[anchor=north west] {$\mathbf{A}$};
+\draw (11.833281055030623,12.566181055040746) node[anchor=north west] {$\mathbf{B}$};
+\draw (16.014211856115878,12.74980301589922) node[anchor=north west] {$\mathbf{C}$};
+\draw (11.918029652349919,9.64235444752504) node[anchor=north west] {$\mathbf{D}$};
+\draw (16.02833662233576,9.628229681305157) node[anchor=north west] {$\mathbf{E}$};
+\draw [line width=2pt] (12.999207410771165,12.199806409785158)-- (15.088738774006357,12.228086460734371);
+\draw [line width=2pt] (13.07383916782454,9.507779992933388)-- (15.547220496200314,11.513745900848354);
+\begin{scriptsize}
+\draw [fill=xdxdff] (13.303297233655439,13.937537659053866) circle (2.5pt);
+\draw [fill=xdxdff] (12.371390676354103,13.08847669088526) circle (2.5pt);
+\draw [fill=xdxdff] (14.378852130680574,13.862104427085615) circle (2.5pt);
+\draw [fill=xdxdff] (15.315088801882949,13.004135745782781) circle (2.5pt);
+\draw [fill=xdxdff] (12.091591730846122,11.164203356683398) circle (2.5pt);
+\draw [fill=xdxdff] (12.073162352429183,10.257098384912663) circle (2.5pt);
+\draw [fill=xdxdff] (16.1610200714651,11.363287529916581) circle (2.5pt);
+\draw [fill=xdxdff] (16.197271994703605,10.200738354066113) circle (2.5pt);
+\draw [fill=xdxdff] (12.999207410771165,12.199806409785158) circle (2.5pt);
+\draw [fill=xdxdff] (15.088738774006357,12.228086460734371) circle (2.5pt);
+\draw [fill=xdxdff] (13.07383916782454,9.507779992933388) circle (2.5pt);
+\draw [fill=xdxdff] (15.547220496200314,11.513745900848354) circle (2.5pt);
+\end{scriptsize}
+\end{tikzpicture}
+
+The last figure is a undirected graph;
+we have some representations to this graph, by dictionaries or by adjacency matrix.
+
+\begin{lstlisting}
+# defining a graph 
+graph = {
+'A':[B,C]
+'B':[A,C]
+'C':[D,E]
+'E':[C]
+}
+\end{lstlisting}
+Result that we can also represent in a adjacency matrix in the following sense:
+
+\begin{table}[h]
+\begin{tabular}{llllll}
+ & A & B & C & D & E \\ \cline{2-6} 
+\multicolumn{1}{l|}{A} & 0 & 1 & 1 & 0 & 0 \\
+\multicolumn{1}{l|}{B} & 1 & 0 & 1 & 1 & 0 \\
+\multicolumn{1}{l|}{C} & 1 & 1 & 0 & 1 & 1 \\
+\multicolumn{1}{l|}{D} & 0 & 1 & 1 & 0 & 0 \\
+\multicolumn{1}{l|}{E} & 0 & 0 & 1 & 0 & 0
+\end{tabular}
+\end{table}
+the table put the format, graph is the importance 
+
+
+\newpage
+in directed graphs (only one direction is allowed) the representation is similar.
+The algorithms rely on in data structures,
+
+
+
+
+
+
+\subsection{Konigsbiger bridge problems}
+resolver by euler an analytical solution an a brute force solution.
+
+$V = (A,B,C,D)$
+and $E = \{ (A,B), (A,B) , (A,C), (A,C) , (B,D) , (A,D), (C,D)  \}$
+note here that appear two times two different edges.
+
+\begin{lstlisting}
+graph = {
+'A':[B,B,C,C,D]
+'B':[A,A,D]
+'C':[A,A,D]
+'D':[A,B,C]
+}
+\end{lstlisting}
+
+in adjacency matrix born the concept of weights,thus:
+
+
+\begin{table}[h]
+\begin{tabular}{lllll}
+ & A & B & C & D \\ \cline{2-5} 
+\multicolumn{1}{l|}{A} & 0 & 2 & 2 & 1 \\
+\multicolumn{1}{l|}{B} & 2 & 0 & 0 & 1 \\
+\multicolumn{1}{l|}{C} & 2 & 0 & 0 & 1 \\
+\multicolumn{1}{l|}{D} & 1 & 1 & 1 & 0
+\end{tabular}
+\end{table}
+
+
+
+
+
+
+\section{Maze-solving algorithms}
+perfect mazes are three from stand point of graph theory.
+
+\subsection{random mouse algorithm}
+
+
+
+\subsection{wall follower}
+
+
+\subsection{pledge algorithm}
+
+
+
+\subsection{Hill climbing algorithm}
+
+Stuck in a local maximum.
+
+
+
+\subsection{branch and bound algorithm}
+
+
+
+
+\section{A* search algorithm}
+
+
+
+\section{tabu search}
+
+
+\subsection{Grey wolf optimizer}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Neural networks MIT}
+
+
+
+\subsection{Deep Learning}
+
+
+
+\subsection{What is backpropagation}
+
+
+\subsection{softmax}
+
+
+
+
+\subsection{Recurrent neural network}
+
+
+
+
+\subsection{LSTM network}
+
+Is important the idea behind threshold!
+
+
+
+\subsubsection{Representation of weights and counter map}
+
+follow the gradient...
+
+
+\subsubsection{Theorem of gradient}
+
+\subsubsection{Whay is the steepest way??}
+
+
+\subsection{When gradient descent dont work}
+
+discontinuous function:
+
+gradient require a continuous space:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

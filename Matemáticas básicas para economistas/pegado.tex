@@ -1,0 +1,193 @@
+\documentclass[12pt]{article}
+\usepackage{pgf,tikz}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\usepackage[utf8]{inputenc} 	
+
+\begin{document}
+
+
+\subsection*{Notas de clase}{\bf{Iván trujillo, 20132120845}}
+
+\vspace*{0,9cm}
+
+
+La función de producción Cobb-Douglas es simplemente el caso especial cuando $i=2$ de la siguiente función;
+
+$$\prod_{i=1}^n x_i^{\alpha_i}  $$ [1]
+
+Para cualquier combinación de insumos, podemos demostrar que [1] presenta rendimientos constantes a escala (si se quiere) siempre y cuando 
+
+ $$ \lambda^{\sum_{i=1}^n\alpha{_i}}=\lambda $$
+ 
+ 
+puesto que; 
+
+
+
+$$\prod_{i=1}^n \left(\lambda x_i \right)^{\alpha_i}=\lambda^{{\sum_{i=1}^n\alpha_i}}\prod_{i=1}^n x_i^{\alpha_i}$$
+ 
+ 
+ 
+ 
+ En otras palabras que la suma de las participaciones de los factores productivos en el ingreso sea la unidad $\sum_{i=1}^n\alpha{_i}=1$
+ 
+ al suponer esto estaríamos condicionando a que la economía es lo bastante grande para acabar con los rendimientos crecientes de escala Romer(xxx).
+\\ 
+ 
+ por lo tanto si se observa el punto, para determinar el grado de homogeneidad, es suficiente sumar los coeficientes de participación.
+para el caso concreto cuando los exponentes son $\alpha$ y $1-\alpha$ sin importar el valor $\alpha$ será de grado 1. 
+
+Cuando la función de producción es homogénea de grado $\phi$, podemos considerarla de manera intensiva esto quiere decir que si
+
+ 
+$$Z=f(\lambda x_1,\lambda x_2,\lambda x_3,...,\lambda x_n)\\ =
+\lambda^{\phi}f(x_1,x_2,x_3,...,x_n) $$
+
+así que queremos expresarla de manera intensiva diremos que $\lambda=\frac{1}{x_{i}}$
+y obtenemos que;
+
+
+$$Z=f( \dfrac{x_1}{x_i},\dfrac{x_2}{x_i},\dfrac{x_3}{x_i},..1..,\dfrac{x_n}{x_i}) =
+\dfrac{1}{x_i^{\phi}}f(x_1,x_2,x_3,...,x_n) $$
+
+observe que el 1 de la función quiere decir que hemos escogido un insumo arbitrario. 
+
+$Z = f(x_1,x_2,x_3,...,x_n) =  x_i^\phi f( \dfrac{x_1}{x_i},\dfrac{x_2}{x_i},\dfrac{x_3}{x_i},..1..,\dfrac{x_n}{x_i})$
+
+Observe que en los modelos requerimos por lo general que $\phi=1$ homogenea de grado uno esto implica que 
+
+$$
+\dfrac{Z}{x_i}=f( \dfrac{x_1}{x_i},\dfrac{x_2}{x_i},\dfrac{x_3}{x_i},..1..,\dfrac{x_n}{x_i})$$
+
+para el caso concreto de [1] podemos seleccionar cualquier insumo $x_j$ y reescribirla como; 
+
+
+$$Z=\prod_{i=1}^n \left( \frac{x_i}{x_j}\right)^{\alpha_i} x_j^{\phi}$$
+
+
+es útil que el factor que hemos escogido sea la población(cuando decimos que esta es igual a la fuerza laboral) puesto que esto nos determinará una función de producción per cápita, así
+
+
+ $$z=\prod_{i=1}^n \left( \frac{x_i}{x_j}\right)^{\alpha_i}  =\prod_{i=1}^n k_{i}^{\alpha_i}$$  [2]
+
+donde $z$ es el producto per cápita y $k_{i}$ es el argumento o factor productivo per cápita.
+
+Lo importante a notar ahora de nuestra función de producción per capita es que nos permite estudiar el crecimiento del producto por persona, sin embargo hay otras condiciones que se deben cumplir como las condiciones de INADA.
+
+si logramos establecer esta relación de nuestra función de producción [1] tal que el producto marginal del factor $x_{i}$ sea positivo pero decreciente estaremos ante una satisfactoria función de producción denominada neoclásica.
+
+
+El producto Marginal; 
+
+$$PMx_i=(x_i)^{-1}\alpha_i\prod_{i=1}^nx_i^{\alpha_i}$$
+
+Es positivo para todos las cantidades positivas de argumentos(insumos). Sea cual sea el valor de la participación $\alpha_i$ del factor sera positiva mientras esta también lo sea, esto quiere decir que no será cierta nuestra condición si y solo $\alpha_{i}=0$. lo que nos daría una productividad marginal nula.
+
+
+El producto Marginal decreciente;
+
+$$\frac{\partial PMx_i}{\partial x_i}=(x_i)^{-2}\alpha_i(\alpha - 1)\prod_{i=1}^nx_i^{\alpha_i}$$
+es negativo para cualquier cantidad positiva de los argumentos, recuerde que se está hablando de una derivada parcial, lo cual implica los rendimientos de un insumo cuando los demás permanecen constantes. Ahora observe que nuestra condición no será cierta si y solo si $\alpha_i \geq 1$, lo cual sería un supuesto poco realista puesto que no se daría la famosa premisa de \textit{los rendimientos decrecientes}, seguiríamos obteniendo producto indiscriminadamente o no reduciríamos la producción cuando los factores sobrepasen su eficiencia.
+
+
+
+
+
+Los supuestos anteriores de productividad se derivan de las condiciones de \textit{inada}
+
+$$\lim_{x_i\longrightarrow \infty}PMx_i=0$$
+$$\lim_{x_i\longrightarrow 0}PMx_i=\infty$$
+
+\newpage
+las dos propiedades se pueden comprobar de ;
+$$\lim_{x_i\longrightarrow \xi}\frac{1}{x}$$ donde $$ {\xi=\infty, 0}$$.
+
+
+
+Observemos que de manera inmediata se puede deducir que la misma estructura de se refleja en la función intensiva como se comporta con respecto [2] con respecto a sus productividades.
+
+
+
+$$PMk_i=(k_i)^{-1}\alpha_i\prod_{i=1}^nk_i^{\alpha_i}$$
+
+
+
+
+$$\frac{\partial PMk_i}{\partial k_i}=(x_i)^{-2}\alpha_i(\alpha - 1)\prod_{i=1}^nk_i^{\alpha_i}$$
+
+\section{Modelos de crecimiento}
+En esta sección se intenta exponer como diferentes formas funcionales pueden ayudarnos a entender el crecimiento económico.
+
+lo importante de nuestro modelo es determinar como evoluciona la economía en el tiempo, cuales son los cambios en el producto de la economía, para eso resulta el producto por habitante una buena medida de análisis, por ejemplo Mozambique en 1990 era el país mas pobre del mundo en términos de PIB per cápita, en un cuarto de siglo, con tasas de crecimiento promedio para el periodo (1990-2015) logró dejar de ser el país mas pobre y logró tener un PIB per cápita casi 5 veces mas grande.
+
+
+
+
+
+Como se evidenció en el párrafo anterior, usualmente la evolución del producto per capita, es una medida del crecimiento de las economías.
+
+Solow(xxx) se interesó en el aporte que tiene el capital físico, por eso debemos preguntarnos como es su evolución en el tiempo y como afecta el producto.
+
+
+
+$$\dfrac{K}{L} =k $$
+
+$$ \dfrac{d(\dfrac{K}{L})}{dt}= \dfrac {dk}{dt}$$
+
+
+$$ \dfrac{dk}{dt}=\dfrac{\dfrac{dK}{dt}.L-\dfrac{dL}{dt}K}{L^{2}} = \dfrac{\dfrac{dK}{dt}}{L}-\dfrac{\dfrac{dL}{dt}}{L}k$$
+
+
+
+
+\
+
+Supondremos también que $L$ crece a una tasa constante.  recuerde en la sección(....) se demostró que $\dfrac{dln h(x)}{dx}=\dfrac{dH(x)}{h(x)}$
+
+
+
+
+esta expresión se obtiene aplicando la regla del cociente expuesta en la sección(...).
+
+
+
+
+Tengamos en cuenta que el $Z$ es nuestro producto.
+
+$$Z=I+C$$
+
+$I,C$ son la inversión y el consumo respectivamente.
+
+Ahora podemos desagregar la inversión en dos componentes, la depreciación y la inversión neta.
+
+$$I=K^{*}+\delta K$$
+
+de entrada se supone que, esta tasa de depreciación $\delta$ es constante. Además, el consumo no es otra cosa que la parte que no  se ahorra del producto; $(1-s)Z$.
+
+así se obtiene;
+
+$$Z= (1-\psi)Z+K^{*}+\delta K$$
+$$Z=Z-\psi Z +K^{*}+\delta K$$
+$$K^{*}= \psi Z - \delta K $$
+
+El capital neto, es la parte del ahorro  que no se ha contabilizado en la depreciación. 
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+\end{document}

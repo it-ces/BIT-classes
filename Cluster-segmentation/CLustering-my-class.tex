@@ -1,0 +1,484 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{nicematrix}
+\usepackage{bm}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{fancyvrb}
+\usepackage{comment}
+\usepackage{array}
+\usepackage{pgfcore}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{munsell}{rgb}{0.0, 0.5, 0.69}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{minas}{RGB}{0.244, 0.172, 0.36}
+\definecolor{PUJ}{RGB}{44, 86, 151}
+\definecolor{PUJ2}{RGB}{43, 93, 156}
+\definecolor{PUJ3}{RGB}{20, 52, 107}
+\definecolor{cyandk}{rgb}{0.0, 0.72, 0.92}
+\setbeamerfont{frametitle}{size=\LARGE ,series=\bfseries}
+\setbeamercolor{frametitle}{fg=PUJ2, bg=white} %% title of the beamer
+\setbeamercolor{titlelike}
+{parent=structure,bg=PUJ2}
+\setbeamercolor{title}{fg=white, bg=PUJ3} 
+%\setbeamercolor{navigation symbols}{fg=white, bg=white}
+\setbeamercolor*{palette primary}{use=structure,fg=black,bg=yellow}
+\setbeamercolor*{palette secondary}{use=structure,fg=white,bg=PUJ3}
+\setbeamercolor*{palette tertiary}{use=structure,fg=white,bg=PUJ3}
+
+\setbeamercolor{block title}{bg=PUJ3,fg=white}
+
+
+%% code information
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  classoffset=1,
+  morekeywords={True,False}, keywordstyle=\color{munsell}, 
+  classoffset=0, 
+  keywordstyle=\color{blue},  
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{PUJ3},
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4,
+}
+
+%% You can change default language in the middle of document with \lstset{language=Java}.
+
+
+%% PUT or Remove the logo in a slide.
+
+
+%% Information topic
+
+\institute{Javeriana}
+\date{2020}
+
+\title[Aicoll] %optional
+{Introduction to clustering}
+\subtitle{Using python.}
+
+\author[Iván Andrés Trujillo] 
+{
+Iván Andrés Trujilllo Abella}
+
+\institute[] 
+{
+\textbf{Aicoll}
+ \\
+  \and
+  
+\textbf{ Unidad de analítica \\
+}
+}
+
+\date[Analítica] % (optional)
+
+\newif\ifplacelogo % create a new conditional
+\placelogotrue % set it to true
+%\logo{\ifplacelogo\color{red}\rule{.5cm}{.5cm}\fi}
+
+
+
+
+\begin{document}
+
+
+
+\frame{\titlepage}
+
+\begin{frame}{Insights}
+How we can measure if two samples are similar?
+\end{frame}
+
+
+\begin{frame}{Challenges}
+\begin{itemize}
+\item How many groups we can find?
+\item How choose relevant variables?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Clustering} 
+It is a optimization problem.
+That involves similarity among features.
+the most uses measure it is a distance metric among two points.
+\end{frame}
+
+
+\begin{frame}{Data}
+\begin{table}[]
+\begin{tabular}{ccc}
+\textbf{Economy} & \textbf{PIB} & \textbf{Mean Growth} \\ \hline
+A                & 10           & 0.5                  \\
+B                & 11           & 0.7                  \\
+C                & 12           & 1.2                  \\
+D                & 14           & 0.3                 
+\end{tabular}
+\caption{Solow hypothesis}
+\end{table}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Euclidean distance}
+The distance as a approximation to similarity.
+
+\begin{equation}
+d_{ij} = \sqrt{\sum(x_{if} - x_{jf})^{2}}
+\end{equation}
+
+where $f$ indicate the feature of the individuals $ij$
+
+\begin{table}[]
+\begin{tabular}{ccccc}
+\multicolumn{1}{l}{}            & \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} \\ \cline{2-5} 
+\multicolumn{1}{c|}{\textbf{A}} & 0          & $d_{AB}$   & $d_{AC}$   & $d_{AD}$   \\
+\multicolumn{1}{c|}{\textbf{B}} & $d_{BA}$   & 0          & $d_{BC}$   & $d_{BD}$   \\
+\multicolumn{1}{c|}{\textbf{C}} & $d_{AC}$   & $d_{BA}$   & 0          & $d_{CD}$   \\
+\multicolumn{1}{c|}{\textbf{D}} & $d_{AD}$   & $d_{BD}$   & $d__{DC}$  & 0         
+\end{tabular}
+\caption{Euclidean distance matrix}
+\end{table}
+note the symmetry $d_{AB} = d_{BA} = \sqrt{(11-10)^{2} + (0.7 - 0.5)^{2}}$.
+\end{frame}
+
+\begin{frame}{Association coefficients}
+\begin{table}[]
+\begin{tabular}{cccc}
+                            &                                           & \multicolumn{2}{c}{\textbf{B}}          \\
+                            &                                           & \textbf{Feature} & \textbf{Not feature} \\ \cline{3-4} 
+\multirow{}{}{\textbf{A}} & \multicolumn{1}{c|}{\textbf{Feature}}     & a                & b                    \\
+                            & \multicolumn{1}{c|}{\textbf{Not feature}} & c                & d                   
+\end{tabular}
+\end{table}
+$S_{(ij)} = \frac{a+d}{a+b+c+d}$ take in mind that two objects could be similar by lacking feature the following could be tackle this problem $J_{(ij)} = \frac{a}{a+b+c}$. Notice that the both are numbers between zero and one, the first indicate not similarity a
+\end{frame}
+
+
+\begin{frame}{Methods of clustering}
+Hierarchical clustering and k-means, are most popular methods to clustering.
+
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Hierarchical cluster}
+
+\begin{verbatim}
+n points then n cluster:
+find the most pair similar cluster and merge
+(step by step namely will be one fewer):
+stop when all points are merged in one cluster
+\end{verbatim}
+
+\end{frame}
+
+
+
+
+
+\begin{frame}[fragile]{Linkage}{if we have more of one point how measure?}
+\begin{itemize}
+\item single: the shortest distance between two any member of two clusters.
+
+\begin{equation}
+d(C_{i},C_{j}) = min\{d(i,j)\}, \forall i,j \in C_{i}x C_{j}
+\end{equation}
+
+\item Complete: the greatest distance from any member to another member.
+
+
+\begin{equation}
+d(C_{i},C_{j}) = max\{d(i,j)\}, \forall i,j \in C_{i}x C_{j}
+\end{equation}
+
+\item Avarage: Consider the mean of distances among the points of clusters.
+
+\begin{equation}
+d(C_{i}, C_{j}) = d(C_{\bar{\bm{x_{i}}}} , C_{\bar{\bm{x_{j}}}}).
+\end{equation}
+
+
+\end{itemize}
+
+\end{frame}
+
+
+
+
+\begin{frame}{Stopping criteria}
+\begin{itemize}
+\item Minimun number of clusters: reach a minimum number of cluster
+\item treshold of maximun distance: not joint cluster with a maximun distance
+\item maximun of steps:
+
+\end{itemize}
+
+\end{frame}
+
+
+
+
+\begin{frame}{k means}
+We can make a partition of $n$ individuals in $k$ groups, and denote $p(n,k)$
+the distance of the point $i$ to the $c$ 
+\begin{equation}
+d_{i,c} = ( \sum_{f=1}^{m}(x_{i,f} - \bar{x}_{c,f})
+\end{equation}
+
+therefore:
+
+\begin{equation}
+e(p(n,k)) = \sum d_{i,c}^{2}
+\end{equation}
+
+Now we must select the arrangement that minimize $e(p(n,k)$.
+
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]{K means}
+
+\begin{verbatim}
+chose k initial centroids:
+	assing each observation to the closest centroid
+	assing new centroids 
+	break the assingantion if not change 
+\end{verbatim}
+\end{frame}
+
+
+
+
+\begin{frame}{How update the centroids}
+Suppose that you consider $N$ variables, and $k$ cluster therefore, 
+
+\begin{equation}
+C_{i} = (\bar{x}_{1i},\bar{x}_{2i},...\bar{x}_{Ni}), i=1,2,...,k
+\end{equation}
+Remember that $i$ denote the cluster actually assigned then the calculate is over all points that belong to the cluster $\forall j \in S_{i}$.
+This process remain until not change the composition of clusters.
+\end{frame}
+
+
+
+
+
+
+
+
+\begin{frame}{Complexity }
+$k$ cluster for each $p$ points and $t$ time of calculate the metric.
+\end{frame}
+
+
+\begin{frame}{Problems}
+Sensible to the selection of k.
+\begin{block}{Question}
+the result depend upon initial centroids?
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}{Choose $k$}
+$\theta$ observations in $k$ groups, 
+$ 2< k < \theta$
+\begin{itemize}
+\item A prior knowledge
+\item Iteration 
+\item Uses hierarchical cluster 
+\end{itemize}
+The reduction of the number of cluster imply lost in homogeneity.
+\end{frame}
+
+
+
+\begin{frame}{Choose k}
+\begin{equation}
+SSE = \sum_{i=1}^{n} \sum_{j=1}^{k} W_{(i,j)} \Vert X^{i} - \mu^{j} \Vert^{2}_{2}
+\end{equation}
+remember that $\bm{x}$ and $\bm{y}$ 
+\end{frame}
+
+
+\begin{frame}{Assessment of quality}
+Silhouette is a measure that give us a number from -1 to 1. 
+\begin{equation}
+s^{i} = \frac{b^{i} - a^{i}}{\max(b^{i} , a^{i})}
+\end{equation}
+
+$a^{i}$  the average distance among a sample that $x \in i$ and the other samples of the same group.
+
+$b^{i}$  the average distance among $x \in i$ and the all other samples of the closest group.
+
+how values of $s^{i}$ are ideal?,
+
+\end{frame}
+
+
+\begin{frame}{Fuzzy c means clustering}
+Each point have a membership value to each cluster.
+
+\begin{equation}
+\sum_{k=1}^{m} \sum_{j=1}^{n} f_{jk}^{2} \Vert x_{j} - \mu_{k} \Vert 
+\end{equation}
+
+take in mind that $f_{jk}$ it is the is the membership value of the $j$ individual in the $k$ cluster.
+
+$u_{k}$ it is a function also of the points  of data and membership values.
+
+\end{frame}
+
+
+
+\begin{frame}{Cluster ideas}
+hard clustering: problems with no overlapping.
+soft clustering: belong to more than one centroid ( K-means).
+
+
+minimiza intra-clusters maximizing inter-cluster.
+
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}{Examples of $c$ fuzzy means}
+\href{
+https://www.sciencedirect.com/science/article/abs/pii/S0957417421000634}{Cancer data analysis}
+
+\href{https://www.sciencedirect.com/science/article/pii/S2352484720315195}{Impact on industry}
+
+\href{https://www.sciencedirect.com/science/article/pii/S0010482520301293}{Segmentation cancer tissue}
+\end{frame}
+
+
+\begin{comment}
+entails:
+churn: batir, agitarse, 
+recency:
+engagement:
+nesters:
+hone in :
+inching:
+fancy: elegante.
+
+
+topics to research greedy algorithm
+
+\end{comment}
+
+
+\begin{frame}{Until now}
+\begin{itemize}
+\item spherical shapes with k-means
+\item stopping criteria with hierarchical
+\end{itemize}
+
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{DBScan}
+We can trait noise with DBScan.
+
+Works differently to another two:
+\begin{itemize}
+\item Density 
+\end{itemize}
+
+
+\end{frame}
+
+
+\begin{frame}{Core object $(r,\eta)$}
+object that have at least $\eta$ neighborhoods in a radius of $r$. think that a core object it is a candidate point to be a cluster.
+\end{frame}
+
+\begin{frame}{H object}
+we said that a pattern or point $H$  is \textbf{directly reachable} from a 
+another point $O$ if $H$ it is neighbor of $O$ and $O$ it is object core.
+\end{frame}
+
+
+\begin{frame}{S object}
+We said that a pattern or point  $S$ is  \textbf{indirectly reachable} from another point $O$ if there are a sequence of of objects $p_{1},p_{2},...,p_{n}$ where $p_{i}$ is directly reachable from $p_{i-1}$. where $p_{1}=O$ and $p_{n}=S$.
+
+To chain is apply to core objects.
+\end{frame}
+
+
+
+
+\begin{frame}
+summary in object core,  border object and noise object.
+\end{frame}
+
+
+
+
+\begin{frame}{Outliers}
+Outliers tend to have less densities.
+\end{frame}
+
+
+
+
+\begin{frame}{Advantages}
+\begin{itemize}
+\item we dont need provided the number of cluster as in K-means
+\item not is contingent to spherical shapes
+\item handled noise  and outliers
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Disadvantages}
+\begin{itemize}
+\item rely on in the knowledge domain to tune the hyperparameters.
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+
+\end{document}
