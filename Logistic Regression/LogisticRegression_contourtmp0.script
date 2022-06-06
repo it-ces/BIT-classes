@@ -1,1 +1,0 @@
-unset surface; set cntrparam levels 9; set contour; set table "LogisticRegression_contourtmp0.table"; splot "LogisticRegression_contourtmp0.dat";
