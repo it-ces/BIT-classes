@@ -1,10 +1,10 @@
-Cluster-segmentation/**/*.tex
-Cluster-segmentation/**/*.ggb
-Cluster-segmentation/**/*.txt
-Cluster-segmentation/**/*.toc
-Cluster-segmentation/**/*.log
-Cluster-segmentation/**/*.nav
-Cluster-segmentation/**/*.snm
-Cluster-segmentation/**/*.vrb
-Cluster-segmentation/*.tex
+*.tex
+*.ggb
+*.txt
+*.toc
+*.log
+*.nav
+*.snm
+*.vrb
+*.tex
 
