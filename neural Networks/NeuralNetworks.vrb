@@ -1,0 +1,10 @@
+\frametitle{sklearn}
+\begin{lstlisting}
+from skelearn.linear_model import Perceptron
+model = Perceptron(penalty=None , max_iter=1000, eta0=0.4, random_state=1)
+model.fit(X,y)
+model.score(X,y) # Print the number of matches
+from sklearn.metrics import confusion_matrix
+confusion_matrix(y, model.predict(X))
+print(model.coef_)
+\end{lstlisting}

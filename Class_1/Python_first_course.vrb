@@ -1,0 +1,15 @@
+\frametitle{Pi information}
+\begin{lstlisting}
+import numpy as np
+def Pi(dots):
+	c1,c2=-1,1
+	x = np.random.uniform(c1,c2, size=dots)
+	y = np.random.uniform(c1,c2, size=dots)
+	coordenates_circle = (x**2)+(y**2) < 1
+	pi= 4*sum(coordenates_circle) / dots
+	
+	def IPi():
+		print(f'pi was roughly {pi} with {dots} iterations')
+	IPi()
+\end{lstlisting}
+\textbf{dots} and \textbf{pi} are \textbf{nonlocal names} for \textbf{IPi()} function.

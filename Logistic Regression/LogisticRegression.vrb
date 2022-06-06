@@ -1,0 +1,13 @@
+\frametitle{python implementation}\framesubtitle {Statsmodels}
+\begin{lstlisting}
+formula = 'died~studytime + C(drug) ' # logit died studytime i.drug
+model = smf.logit(formula= formula, data=df)
+results = model.fit()
+print(results.summary())
+coefs = pd.DataFrame({
+    'coef': results.params.values,
+    'odds ratio': np.exp(results.params.values),
+    'name': results.params.index
+})
+coefs
+\end{lstlisting}
