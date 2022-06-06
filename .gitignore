@@ -3,5 +3,7 @@
 *.snm
 *.toc
 *.ggb
+*.log
+*.out
 *.bbl
 *.aux

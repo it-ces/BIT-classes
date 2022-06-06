@@ -1,8 +1,0 @@
-mktexpk --mfmode / --bdpi 600 --mag 2+293/600 --dpi 1493 jkpbne
-mktexpk --mfmode / --bdpi 600 --mag 2+293/600 --dpi 1493 jkpbn8r
-mktexpk --mfmode / --bdpi 600 --mag 1+120/600 --dpi 720 jkpmite
-mktexpk --mfmode / --bdpi 600 --mag 1+120/600 --dpi 720 jkpmit8r
-mktexpk --mfmode / --bdpi 600 --mag 1+120/600 --dpi 720 jkpbne
-mktexpk --mfmode / --bdpi 600 --mag 1+120/600 --dpi 720 jkpbn8r
-mktexpk --mfmode / --bdpi 600 --mag 1+120/600 --dpi 720 jkpmne
-mktexpk --mfmode / --bdpi 600 --mag 1+120/600 --dpi 720 jkpmn8r
