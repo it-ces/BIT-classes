@@ -1,0 +1,94 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\TOSHIBA\Desktop\project growth\trabajo empirico\Estmacio.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}14 Nov 2017, 14:05:45
+
+{com}. do "C:\Users\TOSHIBA\AppData\Local\Temp\STD03000000.tmp"
+{txt}
+{com}. sort g5cl 
+{txt}
+{com}. forvalues i=1/5{c -(}
+{txt}  2{com}. displa   " "
+{txt}  3{com}. display "cluster `i'"
+{txt}  4{com}. list dpto if g5cl==`i', noobs noheader separator(0)
+{txt}  5{com}. {c )-}
+ 
+cluster 1
+{txt}  {c TLC}{hline 17}{c TRC}
+  {c |} {res}      Magdalena {txt}{c |}
+  {c |} {res}         Nariño {txt}{c |}
+  {c |} {res}        Quindío {txt}{c |}
+  {c |} {res}       Putumayo {txt}{c |}
+  {c |} {res}        Guainía {txt}{c |}
+  {c |} {res}         Vaupés {txt}{c |}
+  {c |} {res}          Cauca {txt}{c |}
+  {c |} {res}Norte Santander {txt}{c |}
+  {c |} {res}        Caquetá {txt}{c |}
+  {c |} {res}       Guaviare {txt}{c |}
+  {c |} {res}        Córdoba {txt}{c |}
+  {c |} {res}        Vichada {txt}{c |}
+  {c |} {res}          Sucre {txt}{c |}
+  {c |} {res}          Chocó {txt}{c |}
+  {c |} {res}       Amazonas {txt}{c |}
+  {c BLC}{hline 17}{c BRC}
+ 
+cluster 2
+  {c TLC}{hline 26}{c TRC}
+  {c |} {res}                   Huila {txt}{c |}
+  {c |} {res}               Atlántico {txt}{c |}
+  {c |} {res}               Antioquia {txt}{c |}
+  {c |} {res}                  Tolima {txt}{c |}
+  {c |} {res}                 Bolívar {txt}{c |}
+  {c |} {res}              La Guajira {txt}{c |}
+  {c |} {res}               Risaralda {txt}{c |}
+  {c |} {res}San Andrés y Providencia {txt}{c |}
+  {c |} {res}            Cundinamarca {txt}{c |}
+  {c |} {res}                   Cesar {txt}{c |}
+  {c |} {res}                  Boyacá {txt}{c |}
+  {c |} {res}                   Valle {txt}{c |}
+  {c |} {res}                  Caldas {txt}{c |}
+  {c BLC}{hline 26}{c BRC}
+ 
+cluster 3
+  {c TLC}{hline 8}{c TRC}
+  {c |} {res}Arauca {txt}{c |}
+  {c BLC}{hline 8}{c BRC}
+ 
+cluster 4
+  {c TLC}{hline 12}{c TRC}
+  {c |} {res}      Meta {txt}{c |}
+  {c |} {res}Bogotá D C {txt}{c |}
+  {c |} {res} Santander {txt}{c |}
+  {c BLC}{hline 12}{c BRC}
+ 
+cluster 5
+  {c TLC}{hline 10}{c TRC}
+  {c |} {res}Casanare {txt}{c |}
+  {c BLC}{hline 10}{c BRC}
+
+{com}. 
+. table g5cl, contents(mean pib2000  mean pib2015)
+
+{txt}{hline 10}{c TT}{hline 29}
+     g5cl {c |} mean(pib2000)  mean(pib2015)
+{hline 10}{c +}{hline 29}
+        1 {c |}     {res}2578608.3      7839830.9
+        {txt}2 {c |}     {res}4370377.9       14092220
+        {txt}3 {c |}     {res}8774001.2       17280750
+        {txt}4 {c |}     {res}6945360.7       29484967
+        {txt}5 {c |}      {res}25701253       35948822
+{txt}{hline 10}{c BT}{hline 29}
+
+{com}. 
+{txt}end of do-file
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\TOSHIBA\Desktop\project growth\trabajo empirico\Estmacio.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}14 Nov 2017, 14:06:17
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
